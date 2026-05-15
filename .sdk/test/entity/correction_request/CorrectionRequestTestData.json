@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "correction_request": {
+      "CORRECTION_REQUEST00": {
+        "applicant_name": "s64",
+        "category": "s65",
+        "data": "s66",
+        "id": "CORRECTION_REQUEST00",
+        "nid": "s68",
+        "source": "s69",
+        "status": "s6a",
+        "submitted_at": "s6b",
+        "success": true,
+        "updated_at": "s6d"
+      },
+      "CORRECTION_REQUEST01": {
+        "applicant_name": "sc8",
+        "category": "sc9",
+        "data": "sca",
+        "id": "CORRECTION_REQUEST01",
+        "nid": "scc",
+        "source": "scd",
+        "status": "sce",
+        "submitted_at": "scf",
+        "success": true,
+        "updated_at": "sd1"
+      },
+      "CORRECTION_REQUEST02": {
+        "applicant_name": "s12c",
+        "category": "s12d",
+        "data": "s12e",
+        "id": "CORRECTION_REQUEST02",
+        "nid": "s130",
+        "source": "s131",
+        "status": "s132",
+        "submitted_at": "s133",
+        "success": true,
+        "updated_at": "s135"
+      }
+    }
+  },
+  "new": {
+    "correction_request": {
+      "correction_request_ref01": {
+        "applicant_name": "s190",
+        "category": "s191",
+        "data": "s192",
+        "nid": "s194",
+        "source": "s195",
+        "status": "s196",
+        "submitted_at": "s197",
+        "success": true,
+        "updated_at": "s199"
+      }
+    }
+  }
+}

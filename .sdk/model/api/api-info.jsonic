@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Bangladesh Election Commission"
+        url: "https://cms-card-management-system-nid-cms-steel.vercel.app/"
+      }
+      description: "This API provides a platform for users to manage and review National ID (NID) correction requests. Users can log in, search for requests, view details, approve or reject applications, and track status updates. It is designed specifically for authorized officials of the Bangladesh Election Commission."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://cms-card-management-system-nid-cms-steel.vercel.app/api"
+        }
+      ]
+      title: "NID Correction Portal"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

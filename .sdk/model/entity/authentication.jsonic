@@ -1,0 +1,103 @@
+# Entity: authentication
+
+main: kit: entity: authentication: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "message"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "otp"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "password"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "session_id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "token"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "user"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "username"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "authentication"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/auth/login"
+          parts: [
+            "auth"
+            "login"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/auth/logout"
+          parts: [
+            "auth"
+            "logout"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/auth/verify-otp"
+          parts: [
+            "auth"
+            "verify-otp"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

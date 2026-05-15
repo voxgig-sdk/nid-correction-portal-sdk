@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "authentication": {
+      "AUTHENTICATION00": {
+        "message": "s50",
+        "otp": "s51",
+        "password": "s52",
+        "session_id": "SESSION01",
+        "success": true,
+        "token": "s55",
+        "user": {},
+        "username": "s57"
+      },
+      "AUTHENTICATION01": {
+        "message": "sa0",
+        "otp": "sa1",
+        "password": "sa2",
+        "session_id": "SESSION01",
+        "success": true,
+        "token": "sa5",
+        "user": {},
+        "username": "sa7"
+      },
+      "AUTHENTICATION02": {
+        "message": "sf0",
+        "otp": "sf1",
+        "password": "sf2",
+        "session_id": "SESSION01",
+        "success": true,
+        "token": "sf5",
+        "user": {},
+        "username": "sf7"
+      }
+    }
+  },
+  "new": {
+    "authentication": {
+      "authentication_ref01": {
+        "message": "s140",
+        "otp": "s141",
+        "password": "s142",
+        "session_id": "SESSION01",
+        "success": true,
+        "token": "s145",
+        "user": {},
+        "username": "s147"
+      }
+    }
+  }
+}

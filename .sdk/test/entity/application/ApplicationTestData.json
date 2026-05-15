@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "application": {
+      "APPLICATION00": {
+        "data": "s32",
+        "message": "s33",
+        "note": "s34",
+        "reason": "s35",
+        "success": true
+      },
+      "APPLICATION01": {
+        "data": "s64",
+        "message": "s65",
+        "note": "s66",
+        "reason": "s67",
+        "success": true
+      },
+      "APPLICATION02": {
+        "data": "s96",
+        "message": "s97",
+        "note": "s98",
+        "reason": "s99",
+        "success": true
+      }
+    }
+  },
+  "new": {
+    "application": {
+      "application_ref01": {
+        "data": "sc8",
+        "message": "sc9",
+        "note": "sca",
+        "reason": "scb",
+        "success": true
+      }
+    }
+  }
+}

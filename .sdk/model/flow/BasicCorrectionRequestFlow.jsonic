@@ -1,0 +1,44 @@
+# BasicCorrectionRequestFlow
+
+main: kit: flow: BasicCorrectionRequestFlow:
+{
+  entity: "correction_request",
+  kind: "basic",
+  name: "BasicCorrectionRequestFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "correction_request_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "correction_request_ref01",
+        srcdatavar: "correction_request_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "correction_request01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-correction_request_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCorrectionRequestFlow"
+}

@@ -1,0 +1,48 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 9
+  metrics: count: method: 9
+
+  entity: application: {
+    path: "/applications/{id}/approve": {
+      action: "approve": {}
+      op: create: method: *POST
+    }
+    path: "/applications/{id}/download-pdf": {
+      action: "download_pdf": {}
+      op: load: method: *GET
+    }
+    path: "/applications/{id}/reject": {
+      action: "reject": {}
+      op: create: method: *POST
+    }
+    path: "/applications/{id}/rollback": {
+      action: "rollback": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: authentication: {
+    path: "/auth/login": {
+      op: create: method: *POST
+    }
+    path: "/auth/logout": {
+      op: create: method: *POST
+    }
+    path: "/auth/verify-otp": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: correction_request: {
+    path: "/correction-requests": {
+      op: list: method: *GET
+    }
+    path: "/correction-requests/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+}
