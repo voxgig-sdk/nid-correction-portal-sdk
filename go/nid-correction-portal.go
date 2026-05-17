@@ -1,10 +1,10 @@
 package voxgignidcorrectionportalsdk
 
 import (
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/entity"
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/feature"
-	_ "github.com/voxgig-sdk/nid-correction-portal-sdk/utility"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/entity"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/feature"
+	_ "github.com/voxgig-sdk/nid-correction-portal-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

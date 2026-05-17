@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk"
+	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk/go"
 )
 
 func TestExists(t *testing.T) {

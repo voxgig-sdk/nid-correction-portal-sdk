@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk"
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
+	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk/go"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 )
 
 func TestCorrectionRequestDirect(t *testing.T) {

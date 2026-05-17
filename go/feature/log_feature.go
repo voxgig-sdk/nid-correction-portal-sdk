@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 )
 
 type LogFeature struct {

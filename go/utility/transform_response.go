@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nid-correction-portal-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 )
 
 func transformResponseUtil(ctx *core.Context) any {

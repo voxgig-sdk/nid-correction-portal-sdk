@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nid-correction-portal-sdk/go/utility/struct"
 )
 
 type ApplicationEntity struct {

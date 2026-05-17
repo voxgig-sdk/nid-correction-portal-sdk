@@ -9,7 +9,8 @@
         "success": true,
         "token": "s55",
         "user": {},
-        "username": "s57"
+        "username": "s57",
+        "id": "AUTHENTICATION00"
       },
       "AUTHENTICATION01": {
         "message": "sa0",
@@ -19,7 +20,8 @@
         "success": true,
         "token": "sa5",
         "user": {},
-        "username": "sa7"
+        "username": "sa7",
+        "id": "AUTHENTICATION01"
       },
       "AUTHENTICATION02": {
         "message": "sf0",
@@ -29,7 +31,8 @@
         "success": true,
         "token": "sf5",
         "user": {},
-        "username": "sf7"
+        "username": "sf7",
+        "id": "AUTHENTICATION02"
       }
     }
   },

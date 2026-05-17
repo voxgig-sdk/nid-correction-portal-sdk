@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk"
-	"github.com/voxgig-sdk/nid-correction-portal-sdk/core"
+	sdk "github.com/voxgig-sdk/nid-correction-portal-sdk/go"
+	"github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nid-correction-portal-sdk/go/utility/struct"
 )
 
 func TestAuthenticationEntity(t *testing.T) {
