@@ -77,14 +77,12 @@ function application_direct_setup($mockres)
     $env = Runner::env_override([
         "NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID" => [],
         "NIDCORRECTIONPORTAL_TEST_LIVE" => "FALSE",
-        "NIDCORRECTIONPORTAL_APIKEY" => "NONE",
     ]);
 
     $live = $env["NIDCORRECTIONPORTAL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["NIDCORRECTIONPORTAL_APIKEY"],
         ];
         $client = new NidCorrectionPortalSDK($merged_opts);
         return [

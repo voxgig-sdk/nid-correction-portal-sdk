@@ -17,8 +17,29 @@ main: {
       ]
       title: "NID Correction Portal"
       version: "1.0.0"
+      tagline: "Manage Bangladesh Election Commission National ID correction requests, with login, search, review, and approval/rejection workflows"
+      homepage: "https://cms-card-management-system-nid-cms-steel.vercel.app/api"
+      license_short: "No licence information published."
+      license_md: `- No licence is published alongside the API.
+- The service appears to target authorised Bangladesh Election Commission officials, so unrestricted public use should not be assumed.
+- Confirm permitted use directly with the operator before integrating.`
+      about_md: `The NID Correction Portal API backs an internal-style workflow for the Bangladesh Election Commission, exposing operations used by officials to process citizen requests to correct details on their National ID (NID) records.
+
+What the SDK surfaces, based on the published catalogue entry:
+
+- Official login / authentication for portal users
+- Searching and listing of correction requests
+- Viewing the details of a specific correction request or application
+- Approving or rejecting submitted applications
+- Tracking the status of in-flight requests
+
+The service is hosted on Vercel at \`https://cms-card-management-system-nid-cms-steel.vercel.app/api\`. Community monitoring on freepublicapis.com reports CORS disabled and a low recent reliability score, so treat this as a workflow / back-office API rather than a stable public dataset, and expect transient errors.`
+      entity_desc: {
+        application: "An NID correction application submitted by a citizen, with operations for officials to view details and approve or reject the request."
+        authentication: "Login and session handling for authorised Election Commission officials accessing the correction portal."
+        correction_request: "A pending or processed request to amend information on a Bangladesh National ID record, supporting search, detail retrieval, and status tracking."
+      }
+      auth: false
     }
   }
-}
-
 }

@@ -15,9 +15,6 @@ module NidCorrectionPortalConfig
       },
       "options" => {
         "base" => "https://cms-card-management-system-nid-cms-steel.vercel.app/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

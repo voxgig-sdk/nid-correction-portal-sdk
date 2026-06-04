@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'nidcorrectionportal_sdk.php';
 
-$client = new NidCorrectionPortalSDK([
-    "apikey" => getenv("NID-CORRECTION-PORTAL_APIKEY"),
-]);
+$client = new NidCorrectionPortalSDK([]);
 ```
 
 ### 3. Load a application
@@ -121,7 +119,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NID-CORRECTION-PORTAL_TEST_LIVE=TRUE
-NID-CORRECTION-PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

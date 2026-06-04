@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "NidCorrectionPortal_sdk"
 
-client = NidCorrectionPortalSDK.new({
-  "apikey" => ENV["NID-CORRECTION-PORTAL_APIKEY"],
-})
+client = NidCorrectionPortalSDK.new({})
 ```
 
 ### 3. Load a application
@@ -129,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NID-CORRECTION-PORTAL_TEST_LIVE=TRUE
-NID-CORRECTION-PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +149,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

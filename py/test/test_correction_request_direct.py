@@ -109,14 +109,12 @@ def _correction_request_direct_setup(mockres):
     env = runner.env_override({
         "NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID": {},
         "NIDCORRECTIONPORTAL_TEST_LIVE": "FALSE",
-        "NIDCORRECTIONPORTAL_APIKEY": "NONE",
     })
 
     live = env.get("NIDCORRECTIONPORTAL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("NIDCORRECTIONPORTAL_APIKEY"),
         }
         client = NidCorrectionPortalSDK(merged_opts)
         return {

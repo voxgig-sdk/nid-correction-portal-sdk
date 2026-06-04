@@ -80,7 +80,6 @@ function authentication_basic_setup($extra)
         "NIDCORRECTIONPORTAL_TEST_AUTHENTICATION_ENTID" => $idmap,
         "NIDCORRECTIONPORTAL_TEST_LIVE" => "FALSE",
         "NIDCORRECTIONPORTAL_TEST_EXPLAIN" => "FALSE",
-        "NIDCORRECTIONPORTAL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +91,6 @@ function authentication_basic_setup($extra)
     if ($env["NIDCORRECTIONPORTAL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["NIDCORRECTIONPORTAL_APIKEY"],
             ],
             $extra ?? [],
         ]);

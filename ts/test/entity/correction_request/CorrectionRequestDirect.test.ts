@@ -136,14 +136,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID': {},
     'NIDCORRECTIONPORTAL_TEST_LIVE': 'FALSE',
-    'NIDCORRECTIONPORTAL_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NIDCORRECTIONPORTAL_TEST_LIVE
 
   if (live) {
     const client = new NidCorrectionPortalSDK({
-      apikey: env.NIDCORRECTIONPORTAL_APIKEY,
     })
 
     let idmap: any = env['NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID']

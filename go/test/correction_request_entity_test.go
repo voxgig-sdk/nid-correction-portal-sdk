@@ -135,7 +135,6 @@ func correction_requestBasicSetup(extra map[string]any) *entityTestSetup {
 		"NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID": idmap,
 		"NIDCORRECTIONPORTAL_TEST_LIVE":      "FALSE",
 		"NIDCORRECTIONPORTAL_TEST_EXPLAIN":   "FALSE",
-		"NIDCORRECTIONPORTAL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID"])
@@ -146,7 +145,6 @@ func correction_requestBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NIDCORRECTIONPORTAL_APIKEY"],
 			},
 			extra,
 		})

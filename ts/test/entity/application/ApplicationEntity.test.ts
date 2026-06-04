@@ -114,7 +114,6 @@ function basicSetup(extra?: any) {
     'NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID': idmap,
     'NID_CORRECTION_PORTAL_TEST_LIVE': 'FALSE',
     'NID_CORRECTION_PORTAL_TEST_EXPLAIN': 'FALSE',
-    'NID_CORRECTION_PORTAL_APIKEY': 'NONE',
   })
 
   idmap = env['NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID']
@@ -124,7 +123,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NidCorrectionPortalSDK(merge([
       {
-        apikey: env.NID_CORRECTION_PORTAL_APIKEY,
       },
       extra
     ]))

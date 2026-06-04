@@ -93,7 +93,6 @@ def _application_basic_setup(extra):
         "NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID": idmap,
         "NIDCORRECTIONPORTAL_TEST_LIVE": "FALSE",
         "NIDCORRECTIONPORTAL_TEST_EXPLAIN": "FALSE",
-        "NIDCORRECTIONPORTAL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ def _application_basic_setup(extra):
     if env.get("NIDCORRECTIONPORTAL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NIDCORRECTIONPORTAL_APIKEY"),
             },
             extra or {},
         ])

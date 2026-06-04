@@ -117,14 +117,12 @@ func applicationDirectSetup(mockres any) *applicationDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID": map[string]any{},
 		"NIDCORRECTIONPORTAL_TEST_LIVE":    "FALSE",
-		"NIDCORRECTIONPORTAL_APIKEY":       "NONE",
 	})
 
 	live := env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NIDCORRECTIONPORTAL_APIKEY"],
 		}
 		client := sdk.NewNidCorrectionPortalSDK(mergedOpts)
 
