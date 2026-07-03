@@ -10,7 +10,7 @@ The PHP SDK for the NidCorrectionPortal API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/nid-correction-portal-sdk
+composer require voxgig-sdk/nid-correction-portal
 ```
 
 

@@ -10,7 +10,7 @@ The Python SDK for the NidCorrectionPortal API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install nid-correction-portal-sdk
+pip install voxgig-sdk-nid-correction-portal
 ```
 
 Or install from source:

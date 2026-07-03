@@ -10,13 +10,13 @@ The Ruby SDK for the NidCorrectionPortal API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install nid-correction-portal-sdk
+gem install voxgig-sdk-nid-correction-portal
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "nid-correction-portal-sdk"
+gem "voxgig-sdk-nid-correction-portal"
 ```
 
 Then run:

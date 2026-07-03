@@ -8,12 +8,14 @@ source = {
   dir = "nid-correction-portal-sdk/lua"
 }
 description = {
-  summary = "NidCorrectionPortal SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the NID Correction Portal public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/nid-correction-portal-sdk",
+  issues_url = "https://github.com/voxgig-sdk/nid-correction-portal-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "nid-correction-portal" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

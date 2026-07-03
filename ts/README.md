@@ -10,7 +10,7 @@ The TypeScript SDK for the NidCorrectionPortal API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install nid-correction-portal
+npm install @voxgig-sdk/nid-correction-portal
 ```
 ## Tutorial: your first API call
 

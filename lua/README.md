@@ -10,7 +10,7 @@ The Lua SDK for the NidCorrectionPortal API — an entity-oriented client using 
 
 ## Install
 ```bash
-luarocks install nid-correction-portal-sdk
+luarocks install voxgig-sdk-nid-correction-portal
 ```
 
 If the module is not yet published, add the source directory to
