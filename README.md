@@ -1,22 +1,8 @@
 # NidCorrectionPortal SDK
 
-Manage Bangladesh Election Commission National ID correction requests, with login, search, review, and approval/rejection workflows
+NID Correction Portal client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About NID Correction Portal
-
-The NID Correction Portal API backs an internal-style workflow for the Bangladesh Election Commission, exposing operations used by officials to process citizen requests to correct details on their National ID (NID) records.
-
-What the SDK surfaces, based on the published catalogue entry:
-
-- Official login / authentication for portal users
-- Searching and listing of correction requests
-- Viewing the details of a specific correction request or application
-- Approving or rejecting submitted applications
-- Tracking the status of in-flight requests
-
-The service is hosted on Vercel at `https://cms-card-management-system-nid-cms-steel.vercel.app/api`. Community monitoring on freepublicapis.com reports CORS disabled and a low recent reliability score, so treat this as a workflow / back-office API rather than a stable public dataset, and expect transient errors.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install nid-correction-portal-sdk
 luarocks install nid-correction-portal-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NidCorrectionPortalSDK } from 'nid-correction-portal'
 
-const client = new NidCorrectionPortalSDK({})
+const client = new NidCorrectionPortalSDK({
+  apikey: process.env.NID-CORRECTION-PORTAL_APIKEY,
+})
 
+// Load application data
+const application = await client.Application().load({})
+console.log(application.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Application** | An NID correction application submitted by a citizen, with operations for officials to view details and approve or reject the request. | `/applications/{id}/approve` |
-| **Authentication** | Login and session handling for authorised Election Commission officials accessing the correction portal. | `/auth/login` |
-| **CorrectionRequest** | A pending or processed request to amend information on a Bangladesh National ID record, supporting search, detail retrieval, and status tracking. | `/correction-requests` |
+| **Application** |  | `/applications/{id}/approve` |
+| **Authentication** |  | `/auth/login` |
+| **CorrectionRequest** |  | `/correction-requests` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from nidcorrectionportal_sdk import NidCorrectionPortalSDK
 
-client = NidCorrectionPortalSDK({})
+client = NidCorrectionPortalSDK({
+    "apikey": os.environ.get("NID-CORRECTION-PORTAL_APIKEY"),
+})
 
 
 # Load a specific application
-application, err = client.Application(None).load(
-    {"id": "example_id"}, None
-)
+application, err = client.Application().load({"id": "example_id"})
+print(application)
 ```
 
 ### PHP
@@ -129,13 +121,14 @@ application, err = client.Application(None).load(
 <?php
 require_once 'nidcorrectionportal_sdk.php';
 
-$client = new NidCorrectionPortalSDK([]);
+$client = new NidCorrectionPortalSDK([
+    "apikey" => getenv("NID-CORRECTION-PORTAL_APIKEY"),
+]);
 
 
 // Load a specific application
-[$application, $err] = $client->Application(null)->load(
-    ["id" => "example_id"], null
-);
+[$application, $err] = $client->Application()->load(["id" => "example_id"]);
+print_r($application);
 ```
 
 ### Golang
@@ -143,8 +136,13 @@ $client = new NidCorrectionPortalSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/nid-correction-portal-sdk/go"
 
-client := sdk.NewNidCorrectionPortalSDK(map[string]any{})
+client := sdk.NewNidCorrectionPortalSDK(map[string]any{
+    "apikey": os.Getenv("NID-CORRECTION-PORTAL_APIKEY"),
+})
 
+// Load application data
+application, err := client.Application(nil).Load(map[string]any{}, nil)
+fmt.Println(application)
 ```
 
 ### Ruby
@@ -152,13 +150,14 @@ client := sdk.NewNidCorrectionPortalSDK(map[string]any{})
 ```ruby
 require_relative "NidCorrectionPortal_sdk"
 
-client = NidCorrectionPortalSDK.new({})
+client = NidCorrectionPortalSDK.new({
+  "apikey" => ENV["NID-CORRECTION-PORTAL_APIKEY"],
+})
 
 
 # Load a specific application
-application, err = client.Application(nil).load(
-  { "id" => "example_id" }, nil
-)
+application, err = client.Application().load({ "id" => "example_id" })
+puts application
 ```
 
 ### Lua
@@ -166,13 +165,14 @@ application, err = client.Application(nil).load(
 ```lua
 local sdk = require("nid-correction-portal_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NID-CORRECTION-PORTAL_APIKEY"),
+})
 
 
 -- Load a specific application
-local application, err = client:Application(nil):load(
-  { id = "example_id" }, nil
-)
+local application, err = client:Application():load({ id = "example_id" })
+print(application)
 ```
 
 ## Unit testing in offline mode
@@ -191,25 +191,21 @@ const result = await client.Application().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NidCorrectionPortalSDK.test(None, None)
-result, err = client.Application(None).load(
-    {"id": "test01"}, None
-)
+client = NidCorrectionPortalSDK.test()
+result, err = client.Application().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NidCorrectionPortalSDK::test(null, null);
-[$result, $err] = $client->Application(null)->load(
-    ["id" => "test01"], null
-);
+$client = NidCorrectionPortalSDK::test();
+[$result, $err] = $client->Application()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Application(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -218,19 +214,15 @@ result, err := client.Application(nil).Load(
 ### Ruby
 
 ```ruby
-client = NidCorrectionPortalSDK.test(nil, nil)
-result, err = client.Application(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NidCorrectionPortalSDK.test
+result, err = client.Application().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Application(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Application():load({ id = "test01" })
 ```
 
 ## How it works
@@ -334,14 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the NID Correction Portal
-
-- Upstream: [https://cms-card-management-system-nid-cms-steel.vercel.app/api](https://cms-card-management-system-nid-cms-steel.vercel.app/api)
-
-- No licence is published alongside the API.
-- The service appears to target authorised Bangladesh Election Commission officials, so unrestricted public use should not be assumed.
-- Confirm permitted use directly with the operator before integrating.
 
 ---
 

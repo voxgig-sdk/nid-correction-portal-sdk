@@ -72,12 +72,14 @@ function application_direct_setup(mockres)
   local env = runner.env_override({
     ["NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID"] = {},
     ["NIDCORRECTIONPORTAL_TEST_LIVE"] = "FALSE",
+    ["NIDCORRECTIONPORTAL_APIKEY"] = "NONE",
   })
 
   local live = env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["NIDCORRECTIONPORTAL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

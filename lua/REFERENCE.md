@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -112,9 +112,9 @@ local application = client:Application(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Application(nil):create({
+local result, err = client:Application():create({
   reason = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -122,7 +122,7 @@ local result, err = client:Application(nil):create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Application(nil):load({ id = "application_id" }, nil)
+local result, err = client:Application():load({ id = "application_id" })
 ```
 
 ### Common Methods
@@ -194,11 +194,11 @@ local authentication = client:Authentication(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Authentication(nil):create({
+local result, err = client:Authentication():create({
   otp = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
   username = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -259,7 +259,7 @@ local correction_request = client:CorrectionRequest(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CorrectionRequest(nil):list(nil, nil)
+local results, err = client:CorrectionRequest():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -267,7 +267,7 @@ local results, err = client:CorrectionRequest(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CorrectionRequest(nil):load({ id = "correction_request_id" }, nil)
+local result, err = client:CorrectionRequest():load({ id = "correction_request_id" })
 ```
 
 ### Common Methods
