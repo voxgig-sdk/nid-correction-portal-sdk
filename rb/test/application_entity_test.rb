@@ -36,15 +36,13 @@ class ApplicationEntityTest < Minitest::Test
     application_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.application"), "application_ref01"))
 
-    application_ref01_data_result, err = application_ref01_ent.create(application_ref01_data, nil)
-    assert_nil err
+    application_ref01_data_result = application_ref01_ent.create(application_ref01_data, nil)
     application_ref01_data = Helpers.to_map(application_ref01_data_result)
     assert !application_ref01_data.nil?
 
     # LOAD
     application_ref01_match_dt0 = {}
-    application_ref01_data_dt0_loaded, err = application_ref01_ent.load(application_ref01_match_dt0, nil)
-    assert_nil err
+    application_ref01_data_dt0_loaded = application_ref01_ent.load(application_ref01_match_dt0, nil)
     assert !application_ref01_data_dt0_loaded.nil?
 
   end

@@ -9,9 +9,10 @@ The PHP SDK for the NidCorrectionPortal API — an entity-oriented client using 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/nid-correction-portal
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,23 +27,26 @@ loading a specific record.
 require_once 'nidcorrectionportal_sdk.php';
 
 $client = new NidCorrectionPortalSDK([
-    "apikey" => getenv("NID-CORRECTION-PORTAL_APIKEY"),
+    "apikey" => getenv("NID_CORRECTION_PORTAL_APIKEY"),
 ]);
 ```
 
-### 3. Load a application
+### 3. Load an application
 
 ```php
-[$result, $err] = $client->Application()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->application()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Application()->create(["name" => "Example"]);
+$created = $client->application()->create(["name" => "Example"]);
 
 ```
 
@@ -54,28 +58,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -89,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = NidCorrectionPortalSDK::test();
 
-[$result, $err] = $client->NidCorrectionPortal()->load(["id" => "test01"]);
+$result = $client->application()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -123,8 +130,8 @@ $client = new NidCorrectionPortalSDK([
 Create a `.env.local` file at the project root:
 
 ```
-NID-CORRECTION-PORTAL_TEST_LIVE=TRUE
-NID-CORRECTION-PORTAL_APIKEY=<your-key>
+NID_CORRECTION_PORTAL_TEST_LIVE=TRUE
+NID_CORRECTION_PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -195,8 +202,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -266,7 +277,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.Application()`
+Create an instance: `const application = client.application`
 
 #### Operations
 
@@ -288,13 +299,13 @@ Create an instance: `const application = client.Application()`
 #### Example: Load
 
 ```ts
-const application = await client.Application().load({ id: 'application_id' })
+const application = await client.application.load({ id: 'application_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const application = await client.Application().create({
+const application = await client.application.create({
   reason: /* `$STRING` */,
 })
 ```
@@ -302,7 +313,7 @@ const application = await client.Application().create({
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -326,7 +337,7 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
   otp: /* `$STRING` */,
   password: /* `$STRING` */,
   username: /* `$STRING` */,
@@ -336,7 +347,7 @@ const authentication = await client.Authentication().create({
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.CorrectionRequest()`
+Create an instance: `const correction_request = client.correction_request`
 
 #### Operations
 
@@ -363,13 +374,13 @@ Create an instance: `const correction_request = client.CorrectionRequest()`
 #### Example: Load
 
 ```ts
-const correction_request = await client.CorrectionRequest().load({ id: 'correction_request_id' })
+const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
 ```
 
 #### Example: List
 
 ```ts
-const correction_requests = await client.CorrectionRequest().list()
+const correction_requests = await client.correction_request.list()
 ```
 
 
@@ -444,11 +455,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$application = $client->application();
+$application->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $application->dataGet() now returns the loaded application data
+// $application->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CorrectionRequestLoadMatch
+---@param ctrl? table
+---@return CorrectionRequest
+---@return string? err
 function CorrectionRequestEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch CorrectionRequestListMatch
+---@param ctrl? table
+---@return CorrectionRequest[]
+---@return string? err
 function CorrectionRequestEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

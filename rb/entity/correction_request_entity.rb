@@ -45,6 +45,7 @@ class CorrectionRequestEntity
     end
   end
 
+  # @return [CorrectionRequest, Hash] the current CorrectionRequest data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class CorrectionRequestEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CorrectionRequest fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single CorrectionRequest.
+  #
+  # @param reqmatch [CorrectionRequestLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [CorrectionRequest, Hash] the loaded CorrectionRequest; raises NidCorrectionPortalError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class CorrectionRequestEntity
 
 
   
+  # List CorrectionRequest items matching the given filter.
+  #
+  # @param reqmatch [CorrectionRequestListMatch, Hash, nil] match filter (any subset of CorrectionRequest fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<CorrectionRequest>, Array] the matching CorrectionRequest items; raises NidCorrectionPortalError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

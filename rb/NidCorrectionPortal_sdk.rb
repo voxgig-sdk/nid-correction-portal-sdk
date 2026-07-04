@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'NidCorrectionPortal_types'
+
 
 class NidCorrectionPortalSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class NidCorrectionPortalSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class NidCorrectionPortalSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue NidCorrectionPortalError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = NidCorrectionPortalHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class NidCorrectionPortalSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,28 +198,49 @@ class NidCorrectionPortalSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.application.list / client.application.load({ "id" => ... })
+  def application
+    require_relative 'entity/application_entity'
+    @application ||= ApplicationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.application instead.
   def Application(data = nil)
     require_relative 'entity/application_entity'
     ApplicationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.authentication.list / client.authentication.load({ "id" => ... })
+  def authentication
+    require_relative 'entity/authentication_entity'
+    @authentication ||= AuthenticationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.authentication instead.
   def Authentication(data = nil)
     require_relative 'entity/authentication_entity'
     AuthenticationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.correction_request.list / client.correction_request.load({ "id" => ... })
+  def correction_request
+    require_relative 'entity/correction_request_entity'
+    @correction_request ||= CorrectionRequestEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.correction_request instead.
   def CorrectionRequest(data = nil)
     require_relative 'entity/correction_request_entity'
     CorrectionRequestEntity.new(self, data)

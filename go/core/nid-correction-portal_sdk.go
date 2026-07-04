@@ -245,16 +245,25 @@ func (sdk *NidCorrectionPortalSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// Application returns a Application entity bound to this client.
+// Idiomatic usage: client.Application(nil).List(nil, nil) or
+// client.Application(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NidCorrectionPortalSDK) Application(data map[string]any) NidCorrectionPortalEntity {
 	return NewApplicationEntityFunc(sdk, data)
 }
 
 
+// Authentication returns a Authentication entity bound to this client.
+// Idiomatic usage: client.Authentication(nil).List(nil, nil) or
+// client.Authentication(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NidCorrectionPortalSDK) Authentication(data map[string]any) NidCorrectionPortalEntity {
 	return NewAuthenticationEntityFunc(sdk, data)
 }
 
 
+// CorrectionRequest returns a CorrectionRequest entity bound to this client.
+// Idiomatic usage: client.CorrectionRequest(nil).List(nil, nil) or
+// client.CorrectionRequest(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NidCorrectionPortalSDK) CorrectionRequest(data map[string]any) NidCorrectionPortalEntity {
 	return NewCorrectionRequestEntityFunc(sdk, data)
 }

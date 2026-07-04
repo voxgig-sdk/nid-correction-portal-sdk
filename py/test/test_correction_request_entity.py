@@ -50,16 +50,14 @@ class TestCorrectionRequestEntity:
         correction_request_ref01_ent = client.CorrectionRequest(None)
         correction_request_ref01_match = {}
 
-        correction_request_ref01_list_result, err = correction_request_ref01_ent.list(correction_request_ref01_match, None)
-        assert err is None
+        correction_request_ref01_list_result = correction_request_ref01_ent.list(correction_request_ref01_match, None)
         assert isinstance(correction_request_ref01_list_result, list)
 
         # LOAD
         correction_request_ref01_match_dt0 = {
             "id": correction_request_ref01_data["id"],
         }
-        correction_request_ref01_data_dt0_loaded, err = correction_request_ref01_ent.load(correction_request_ref01_match_dt0, None)
-        assert err is None
+        correction_request_ref01_data_dt0_loaded = correction_request_ref01_ent.load(correction_request_ref01_match_dt0, None)
         correction_request_ref01_data_dt0_load_result = helpers.to_map(correction_request_ref01_data_dt0_loaded)
         assert correction_request_ref01_data_dt0_load_result is not None
         assert correction_request_ref01_data_dt0_load_result["id"] == correction_request_ref01_data["id"]

@@ -64,7 +64,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -78,11 +81,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -90,7 +94,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## ApplicationEntity
 
 ```php
-$application = $client->Application();
+$application = $client->application();
 ```
 
 ### Fields
@@ -105,22 +109,22 @@ $application = $client->Application();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Application()->create([
+$result = $client->application()->create([
   "reason" => /* `$STRING` */,
 ]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Application()->load(["id" => "application_id"]);
+$result = $client->application()->load(["id" => "application_id"]);
 ```
 
 ### Common Methods
@@ -156,7 +160,7 @@ Return the entity name.
 ## AuthenticationEntity
 
 ```php
-$authentication = $client->Authentication();
+$authentication = $client->authentication();
 ```
 
 ### Fields
@@ -187,12 +191,12 @@ $authentication = $client->Authentication();
 
 ### Operations
 
-#### `create(array $reqdata, ?array $ctrl = null): array`
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Throws on error.
 
 ```php
-[$result, $err] = $client->Authentication()->create([
+$result = $client->authentication()->create([
   "otp" => /* `$STRING` */,
   "password" => /* `$STRING` */,
   "username" => /* `$STRING` */,
@@ -232,7 +236,7 @@ Return the entity name.
 ## CorrectionRequestEntity
 
 ```php
-$correction_request = $client->CorrectionRequest();
+$correction_request = $client->correction_request();
 ```
 
 ### Fields
@@ -252,20 +256,20 @@ $correction_request = $client->CorrectionRequest();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->CorrectionRequest()->list([]);
+$results = $client->correction_request()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->CorrectionRequest()->load(["id" => "correction_request_id"]);
+$result = $client->correction_request()->load(["id" => "correction_request_id"]);
 ```
 
 ### Common Methods

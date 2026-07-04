@@ -43,15 +43,13 @@ class ApplicationEntityTest extends TestCase
         $application_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.application"), "application_ref01"));
 
-        [$application_ref01_data_result, $err] = $application_ref01_ent->create($application_ref01_data, null);
-        $this->assertNull($err);
+        $application_ref01_data_result = $application_ref01_ent->create($application_ref01_data, null);
         $application_ref01_data = Helpers::to_map($application_ref01_data_result);
         $this->assertNotNull($application_ref01_data);
 
         // LOAD
         $application_ref01_match_dt0 = [];
-        [$application_ref01_data_dt0_loaded, $err] = $application_ref01_ent->load($application_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $application_ref01_data_dt0_loaded = $application_ref01_ent->load($application_ref01_match_dt0, null);
         $this->assertNotNull($application_ref01_data_dt0_loaded);
 
     }

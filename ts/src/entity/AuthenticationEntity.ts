@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Authentication,
+  AuthenticationCreateData,
+} from '../NidCorrectionPortalTypes'
 
 // TODO: needs Entity superclass
-class AuthenticationEntity extends NidCorrectionPortalEntityBase {
+class AuthenticationEntity extends NidCorrectionPortalEntityBase<Authentication> {
 
   constructor(client: NidCorrectionPortalSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class AuthenticationEntity extends NidCorrectionPortalEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: AuthenticationCreateData, ctrl?: Control): Promise<Authentication> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class AuthenticationEntity extends NidCorrectionPortalEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Authentication> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

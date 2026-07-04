@@ -9,12 +9,9 @@ The Lua SDK for the NidCorrectionPortal API — an entity-oriented client using 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-nid-correction-portal
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("nid-correction-portal_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("NID-CORRECTION-PORTAL_APIKEY"),
+  apikey = os.getenv("NID_CORRECTION_PORTAL_APIKEY"),
 })
 ```
 
-### 3. Load a application
+### 3. Load an application
 
 ```lua
-local result, err = client:Application():load({ id = "example_id" })
+local result, err = client:application():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -48,7 +45,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Application():create({ name = "Example" })
+local created, _ = client:application():create({ name = "Example" })
 
 ```
 
@@ -95,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:NidCorrectionPortal():load({ id = "test01" })
+local result, err = client:application():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -128,8 +125,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-NID-CORRECTION-PORTAL_TEST_LIVE=TRUE
-NID-CORRECTION-PORTAL_APIKEY=<your-key>
+NID_CORRECTION_PORTAL_TEST_LIVE=TRUE
+NID_CORRECTION_PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -271,7 +268,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.Application()`
+Create an instance: `const application = client.application`
 
 #### Operations
 
@@ -293,13 +290,13 @@ Create an instance: `const application = client.Application()`
 #### Example: Load
 
 ```ts
-const application = await client.Application().load({ id: 'application_id' })
+const application = await client.application.load({ id: 'application_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const application = await client.Application().create({
+const application = await client.application.create({
   reason: /* `$STRING` */,
 })
 ```
@@ -307,7 +304,7 @@ const application = await client.Application().create({
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -331,7 +328,7 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
   otp: /* `$STRING` */,
   password: /* `$STRING` */,
   username: /* `$STRING` */,
@@ -341,7 +338,7 @@ const authentication = await client.Authentication().create({
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.CorrectionRequest()`
+Create an instance: `const correction_request = client.correction_request`
 
 #### Operations
 
@@ -368,13 +365,13 @@ Create an instance: `const correction_request = client.CorrectionRequest()`
 #### Example: Load
 
 ```ts
-const correction_request = await client.CorrectionRequest().load({ id: 'correction_request_id' })
+const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
 ```
 
 #### Example: List
 
 ```ts
-const correction_requests = await client.CorrectionRequest().list()
+const correction_requests = await client.correction_request.list()
 ```
 
 
@@ -449,11 +446,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local application = client:application()
+application:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- application:data_get() now returns the loaded application data
+-- application:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -9,9 +9,12 @@ The TypeScript SDK for the NidCorrectionPortal API — a type-safe, entity-orien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/nid-correction-portal
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NidCorrectionPortalSDK } from 'nid-correction-portal'
+import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal'
 
 const client = new NidCorrectionPortalSDK({
-  apikey: process.env.NID-CORRECTION-PORTAL_APIKEY,
+  apikey: process.env.NID_CORRECTION_PORTAL_APIKEY,
 })
 ```
 
-### 3. Load a application
+### 3. Load an application
 
 ```ts
-const result = await client.Application().load({ id: 'example_id' })
+const result = await client.application.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -41,7 +44,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Application().create({
+const created = await client.application.create({
   name: 'Example',
 })
 
@@ -89,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NidCorrectionPortalSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.application.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -106,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.application
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -143,8 +146,8 @@ const client = new NidCorrectionPortalSDK({
 Create a `.env.local` file at the project root:
 
 ```
-NID-CORRECTION-PORTAL_TEST_LIVE=TRUE
-NID-CORRECTION-PORTAL_APIKEY=<your-key>
+NID_CORRECTION_PORTAL_TEST_LIVE=TRUE
+NID_CORRECTION_PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -318,7 +321,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.Application()`
+Create an instance: `const application = client.application`
 
 #### Operations
 
@@ -340,13 +343,13 @@ Create an instance: `const application = client.Application()`
 #### Example: Load
 
 ```ts
-const application = await client.Application().load({ id: 'application_id' })
+const application = await client.application.load({ id: 'application_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const application = await client.Application().create({
+const application = await client.application.create({
   reason: /* `$STRING` */,
 })
 ```
@@ -354,7 +357,7 @@ const application = await client.Application().create({
 
 ### Authentication
 
-Create an instance: `const authentication = client.Authentication()`
+Create an instance: `const authentication = client.authentication`
 
 #### Operations
 
@@ -378,7 +381,7 @@ Create an instance: `const authentication = client.Authentication()`
 #### Example: Create
 
 ```ts
-const authentication = await client.Authentication().create({
+const authentication = await client.authentication.create({
   otp: /* `$STRING` */,
   password: /* `$STRING` */,
   username: /* `$STRING` */,
@@ -388,7 +391,7 @@ const authentication = await client.Authentication().create({
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.CorrectionRequest()`
+Create an instance: `const correction_request = client.correction_request`
 
 #### Operations
 
@@ -415,13 +418,13 @@ Create an instance: `const correction_request = client.CorrectionRequest()`
 #### Example: Load
 
 ```ts
-const correction_request = await client.CorrectionRequest().load({ id: 'correction_request_id' })
+const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
 ```
 
 #### Example: List
 
 ```ts
-const correction_requests = await client.CorrectionRequest().list()
+const correction_requests = await client.correction_request.list()
 ```
 
 
@@ -482,7 +485,7 @@ nid-correction-portal/
 Import the SDK from the package root:
 
 ```ts
-import { NidCorrectionPortalSDK } from 'nid-correction-portal'
+import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal'
 ```
 
 ### Entity state
@@ -492,11 +495,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const application = client.application
+await application.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// application.data() now returns the loaded application data
+// application.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

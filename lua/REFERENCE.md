@@ -92,7 +92,7 @@ same parameters as `direct()`.
 ## ApplicationEntity
 
 ```lua
-local application = client:Application(nil)
+local application = client:application(nil)
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ local application = client:Application(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Application():create({
+local result, err = client:application():create({
   reason = --[[ `$STRING` ]],
 })
 ```
@@ -122,7 +122,7 @@ local result, err = client:Application():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Application():load({ id = "application_id" })
+local result, err = client:application():load({ id = "application_id" })
 ```
 
 ### Common Methods
@@ -158,7 +158,7 @@ Return the entity name.
 ## AuthenticationEntity
 
 ```lua
-local authentication = client:Authentication(nil)
+local authentication = client:authentication(nil)
 ```
 
 ### Fields
@@ -194,7 +194,7 @@ local authentication = client:Authentication(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Authentication():create({
+local result, err = client:authentication():create({
   otp = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
   username = --[[ `$STRING` ]],
@@ -234,7 +234,7 @@ Return the entity name.
 ## CorrectionRequestEntity
 
 ```lua
-local correction_request = client:CorrectionRequest(nil)
+local correction_request = client:correction_request(nil)
 ```
 
 ### Fields
@@ -259,7 +259,7 @@ local correction_request = client:CorrectionRequest(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CorrectionRequest():list()
+local results, err = client:correction_request():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -267,7 +267,7 @@ local results, err = client:CorrectionRequest():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CorrectionRequest():load({ id = "correction_request_id" })
+local result, err = client:correction_request():load({ id = "correction_request_id" })
 ```
 
 ### Common Methods

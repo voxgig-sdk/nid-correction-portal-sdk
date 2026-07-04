@@ -43,16 +43,14 @@ class CorrectionRequestEntityTest < Minitest::Test
     correction_request_ref01_ent = client.CorrectionRequest(nil)
     correction_request_ref01_match = {}
 
-    correction_request_ref01_list_result, err = correction_request_ref01_ent.list(correction_request_ref01_match, nil)
-    assert_nil err
+    correction_request_ref01_list_result = correction_request_ref01_ent.list(correction_request_ref01_match, nil)
     assert correction_request_ref01_list_result.is_a?(Array)
 
     # LOAD
     correction_request_ref01_match_dt0 = {
       "id" => correction_request_ref01_data["id"],
     }
-    correction_request_ref01_data_dt0_loaded, err = correction_request_ref01_ent.load(correction_request_ref01_match_dt0, nil)
-    assert_nil err
+    correction_request_ref01_data_dt0_loaded = correction_request_ref01_ent.load(correction_request_ref01_match_dt0, nil)
     correction_request_ref01_data_dt0_load_result = Helpers.to_map(correction_request_ref01_data_dt0_loaded)
     assert !correction_request_ref01_data_dt0_load_result.nil?
     assert_equal correction_request_ref01_data_dt0_load_result["id"], correction_request_ref01_data["id"]

@@ -55,6 +55,9 @@ class CorrectionRequestEntity
         return new CorrectionRequestEntity($this->_client, $opts);
     }
 
+    /**
+     * @param CorrectionRequest|array $args CorrectionRequest data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class CorrectionRequestEntity
         }
     }
 
+    /**
+     * @return CorrectionRequest|array The current CorrectionRequest data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of CorrectionRequest fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class CorrectionRequestEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of CorrectionRequest fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class CorrectionRequestEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single CorrectionRequest.
+     *
+     * @param CorrectionRequestLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed CorrectionRequestLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return CorrectionRequest|array The loaded CorrectionRequest as an assoc-array at the
+     *   SDK boundary; throws NidCorrectionPortalError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class CorrectionRequestEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List CorrectionRequest items matching the given filter.
+     *
+     * @param CorrectionRequestListMatch|array|null $reqmatch Match filter (any subset
+     *   of CorrectionRequest fields) as an assoc-array; CorrectionRequestListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return CorrectionRequest[]|array A list of CorrectionRequest items as assoc-arrays at
+     *   the SDK boundary; throws NidCorrectionPortalError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class CorrectionRequestEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -85,6 +85,27 @@ func (e *CorrectionRequestEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an CorrectionRequest; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CorrectionRequestEntity) DataTyped(data ...CorrectionRequest) CorrectionRequest {
+	if len(data) > 0 {
+		return typedFrom[CorrectionRequest](e.Data(asMap(data[0])))
+	}
+	return typedFrom[CorrectionRequest](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through CorrectionRequest (all fields
+// optional at the wire level).
+func (e *CorrectionRequestEntity) MatchTyped(match ...CorrectionRequest) CorrectionRequest {
+	if len(match) > 0 {
+		return typedFrom[CorrectionRequest](e.Match(asMap(match[0])))
+	}
+	return typedFrom[CorrectionRequest](e.Match())
+}
+
 
 func (e *CorrectionRequestEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *CorrectionRequestEntity) Load(reqmatch map[string]any, ctrl map[string]
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CorrectionRequestLoadMatch and returns an CorrectionRequest. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CorrectionRequestEntity) LoadTyped(reqmatch CorrectionRequestLoadMatch, ctrl map[string]any) (CorrectionRequest, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return CorrectionRequest{}, err
+	}
+	return typedFrom[CorrectionRequest](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *CorrectionRequestEntity) List(reqmatch map[string]any, ctrl map[string]
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CorrectionRequestListMatch and returns []CorrectionRequest. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CorrectionRequestEntity) ListTyped(reqmatch CorrectionRequestListMatch, ctrl map[string]any) ([]CorrectionRequest, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[CorrectionRequest](res), nil
 }
 
 

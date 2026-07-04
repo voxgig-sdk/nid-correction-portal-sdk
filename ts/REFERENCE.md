@@ -134,7 +134,7 @@ Alias for `NidCorrectionPortalSDK.test()`.
 ## ApplicationEntity
 
 ```ts
-const application = client.Application()
+const application = client.application
 ```
 
 ### Fields
@@ -154,7 +154,7 @@ const application = client.Application()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Application().create({
+const result = await client.application.create({
   reason: /* `$STRING` */,
 })
 ```
@@ -164,7 +164,7 @@ const result = await client.Application().create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Application().load({ id: 'application_id' })
+const result = await client.application.load({ id: 'application_id' })
 ```
 
 ### Common Methods
@@ -198,7 +198,7 @@ Return a copy of the entity options.
 ## AuthenticationEntity
 
 ```ts
-const authentication = client.Authentication()
+const authentication = client.authentication
 ```
 
 ### Fields
@@ -234,7 +234,7 @@ const authentication = client.Authentication()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Authentication().create({
+const result = await client.authentication.create({
   otp: /* `$STRING` */,
   password: /* `$STRING` */,
   username: /* `$STRING` */,
@@ -272,7 +272,7 @@ Return a copy of the entity options.
 ## CorrectionRequestEntity
 
 ```ts
-const correction_request = client.CorrectionRequest()
+const correction_request = client.correction_request
 ```
 
 ### Fields
@@ -297,7 +297,7 @@ const correction_request = client.CorrectionRequest()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CorrectionRequest().list()
+const results = await client.correction_request.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -305,7 +305,7 @@ const results = await client.CorrectionRequest().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CorrectionRequest().load({ id: 'correction_request_id' })
+const result = await client.correction_request.load({ id: 'correction_request_id' })
 ```
 
 ### Common Methods

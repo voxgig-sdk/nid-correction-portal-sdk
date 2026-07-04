@@ -85,6 +85,27 @@ func (e *ApplicationEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Application; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ApplicationEntity) DataTyped(data ...Application) Application {
+	if len(data) > 0 {
+		return typedFrom[Application](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Application](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Application (all fields
+// optional at the wire level).
+func (e *ApplicationEntity) MatchTyped(match ...Application) Application {
+	if len(match) > 0 {
+		return typedFrom[Application](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Application](e.Match())
+}
+
 
 func (e *ApplicationEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *ApplicationEntity) Load(reqmatch map[string]any, ctrl map[string]any) (
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// ApplicationLoadMatch and returns an Application. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *ApplicationEntity) LoadTyped(reqmatch ApplicationLoadMatch, ctrl map[string]any) (Application, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Application{}, err
+	}
+	return typedFrom[Application](res), nil
 }
 
 
@@ -139,6 +171,17 @@ func (e *ApplicationEntity) Create(reqdata map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// ApplicationCreateData and returns an Application. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *ApplicationEntity) CreateTyped(reqdata ApplicationCreateData, ctrl map[string]any) (Application, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return Application{}, err
+	}
+	return typedFrom[Application](res), nil
 }
 
 

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Application,
+  ApplicationLoadMatch,
+  ApplicationCreateData,
+} from '../NidCorrectionPortalTypes'
 
 // TODO: needs Entity superclass
-class ApplicationEntity extends NidCorrectionPortalEntityBase {
+class ApplicationEntity extends NidCorrectionPortalEntityBase<Application> {
 
   constructor(client: NidCorrectionPortalSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ApplicationEntity extends NidCorrectionPortalEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ApplicationLoadMatch, ctrl?: Control): Promise<Application> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class ApplicationEntity extends NidCorrectionPortalEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Application> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -144,7 +151,7 @@ class ApplicationEntity extends NidCorrectionPortalEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: ApplicationCreateData, ctrl?: Control): Promise<Application> {
 
     const utility = this._utility
     const {
@@ -243,7 +250,9 @@ class ApplicationEntity extends NidCorrectionPortalEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Application> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

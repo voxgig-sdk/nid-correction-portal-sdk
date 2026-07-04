@@ -50,16 +50,14 @@ class CorrectionRequestEntityTest extends TestCase
         $correction_request_ref01_ent = $client->CorrectionRequest(null);
         $correction_request_ref01_match = [];
 
-        [$correction_request_ref01_list_result, $err] = $correction_request_ref01_ent->list($correction_request_ref01_match, null);
-        $this->assertNull($err);
+        $correction_request_ref01_list_result = $correction_request_ref01_ent->list($correction_request_ref01_match, null);
         $this->assertIsArray($correction_request_ref01_list_result);
 
         // LOAD
         $correction_request_ref01_match_dt0 = [
             "id" => $correction_request_ref01_data["id"],
         ];
-        [$correction_request_ref01_data_dt0_loaded, $err] = $correction_request_ref01_ent->load($correction_request_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $correction_request_ref01_data_dt0_loaded = $correction_request_ref01_ent->load($correction_request_ref01_match_dt0, null);
         $correction_request_ref01_data_dt0_load_result = Helpers::to_map($correction_request_ref01_data_dt0_loaded);
         $this->assertNotNull($correction_request_ref01_data_dt0_load_result);
         $this->assertEquals($correction_request_ref01_data_dt0_load_result["id"], $correction_request_ref01_data["id"]);
