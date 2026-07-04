@@ -206,42 +206,21 @@ class NidCorrectionPortalSDK {
 
 
 
-  _application?: ApplicationEntity
-
-  // Idiomatic facade: `client.application.list()` / `client.application.load({ id })`.
-  get application(): ApplicationEntity {
-    return (this._application ??= new ApplicationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.application` instead. */
+  // Entity access: `client.Application().list()` / `client.Application().load({ id })`.
   Application(data?: any) {
     const self = this
     return new ApplicationEntity(self,data)
   }
 
 
-  _authentication?: AuthenticationEntity
-
-  // Idiomatic facade: `client.authentication.list()` / `client.authentication.load({ id })`.
-  get authentication(): AuthenticationEntity {
-    return (this._authentication ??= new AuthenticationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.authentication` instead. */
+  // Entity access: `client.Authentication().list()` / `client.Authentication().load({ id })`.
   Authentication(data?: any) {
     const self = this
     return new AuthenticationEntity(self,data)
   }
 
 
-  _correction_request?: CorrectionRequestEntity
-
-  // Idiomatic facade: `client.correction_request.list()` / `client.correction_request.load({ id })`.
-  get correction_request(): CorrectionRequestEntity {
-    return (this._correction_request ??= new CorrectionRequestEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.correction_request` instead. */
+  // Entity access: `client.CorrectionRequest().list()` / `client.CorrectionRequest().load({ id })`.
   CorrectionRequest(data?: any) {
     const self = this
     return new CorrectionRequestEntity(self,data)

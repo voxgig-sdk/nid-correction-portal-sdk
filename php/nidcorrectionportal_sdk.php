@@ -233,10 +233,10 @@ class NidCorrectionPortalSDK
 
     private $_application = null;
 
-    // Idiomatic facade: $client->application()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Application() (PHP method
-    // names are case-insensitive).
-    public function application($data = null)
+    // Canonical facade: $client->Application()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->application()
+    // resolves here too.
+    public function Application($data = null)
     {
         require_once __DIR__ . '/entity/application_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class NidCorrectionPortalSDK
 
     private $_authentication = null;
 
-    // Idiomatic facade: $client->authentication()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Authentication() (PHP method
-    // names are case-insensitive).
-    public function authentication($data = null)
+    // Canonical facade: $client->Authentication()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->authentication()
+    // resolves here too.
+    public function Authentication($data = null)
     {
         require_once __DIR__ . '/entity/authentication_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class NidCorrectionPortalSDK
 
     private $_correction_request = null;
 
-    // Idiomatic facade: $client->correction_request()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CorrectionRequest() (PHP method
-    // names are case-insensitive).
-    public function correction_request($data = null)
+    // Canonical facade: $client->CorrectionRequest()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->correction_request()
+    // resolves here too.
+    public function CorrectionRequest($data = null)
     {
         require_once __DIR__ . '/entity/correction_request_entity.php';
         if ($data === null) {

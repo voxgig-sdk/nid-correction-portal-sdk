@@ -34,8 +34,9 @@ client = NidCorrectionPortalSDK.new({
 
 ```ruby
 begin
-  result = client.application.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Application record (raises on error).
+  application = client.Application.load({ "id" => "example_id" })
+  puts application
 rescue => err
   warn "load failed: #{err}"
 end
@@ -44,8 +45,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.application.create({ "name" => "Example" })
+# create returns the bare created Application record.
+created = client.Application.create({ "name" => "Example" })
 
 ```
 
@@ -90,13 +91,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = NidCorrectionPortalSDK.test
+client = NidCorrectionPortalSDK.test({
+  "entity" => { "application" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.application.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+application = client.Application.load({ "id" => "test01" })
+puts application
 ```
 
 ### Use a custom fetch function
@@ -174,8 +179,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Application` | `(data) -> ApplicationEntity` | Create a Application entity instance. |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Application` | `(data) -> ApplicationEntity` | Create an Application entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest` | `(data) -> CorrectionRequestEntity` | Create a CorrectionRequest entity instance. |
 
 ### Entity interface
@@ -272,7 +277,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.application`
+Create an instance: `application = client.Application`
 
 #### Operations
 
@@ -293,22 +298,23 @@ Create an instance: `const application = client.application`
 
 #### Example: Load
 
-```ts
-const application = await client.application.load({ id: 'application_id' })
+```ruby
+# load returns the bare Application record (raises on error).
+application = client.Application.load({ "id" => "application_id" })
 ```
 
 #### Example: Create
 
-```ts
-const application = await client.application.create({
-  reason: /* `$STRING` */,
+```ruby
+application = client.Application.create({
+  "reason" => nil, # `$STRING`
 })
 ```
 
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `authentication = client.Authentication`
 
 #### Operations
 
@@ -331,18 +337,18 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
-  otp: /* `$STRING` */,
-  password: /* `$STRING` */,
-  username: /* `$STRING` */,
+```ruby
+authentication = client.Authentication.create({
+  "otp" => nil, # `$STRING`
+  "password" => nil, # `$STRING`
+  "username" => nil, # `$STRING`
 })
 ```
 
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.correction_request`
+Create an instance: `correction_request = client.CorrectionRequest`
 
 #### Operations
 
@@ -368,14 +374,16 @@ Create an instance: `const correction_request = client.correction_request`
 
 #### Example: Load
 
-```ts
-const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
+```ruby
+# load returns the bare CorrectionRequest record (raises on error).
+correction_request = client.CorrectionRequest.load({ "id" => "correction_request_id" })
 ```
 
 #### Example: List
 
-```ts
-const correction_requests = await client.correction_request.list()
+```ruby
+# list returns an Array of CorrectionRequest records (raises on error).
+correction_requests = client.CorrectionRequest.list
 ```
 
 
@@ -450,7 +458,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-application = client.application
+application = client.Application
 application.load({ "id" => "example_id" })
 
 # application.data_get now returns the loaded application data

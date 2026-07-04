@@ -36,10 +36,12 @@ client = NidCorrectionPortalSDK({
 
 ### 3. Load an application
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.application.load({"id": "example_id"})
-    print(result)
+    application = client.Application().load({"id": "example_id"})
+    print(application)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -47,8 +49,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.application.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Application().create({"name": "Example"})
 
 ```
 
@@ -95,8 +97,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NidCorrectionPortalSDK.test()
 
-result = client.application.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+application = client.Application().load({"id": "test01"})
+# application contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -174,8 +177,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Application` | `(data) -> ApplicationEntity` | Create a Application entity instance. |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Application` | `(data) -> ApplicationEntity` | Create an Application entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest` | `(data) -> CorrectionRequestEntity` | Create a CorrectionRequest entity instance. |
 
 ### Entity interface
@@ -273,7 +276,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.application`
+Create an instance: `application = client.Application()`
 
 #### Operations
 
@@ -294,22 +297,22 @@ Create an instance: `const application = client.application`
 
 #### Example: Load
 
-```ts
-const application = await client.application.load({ id: 'application_id' })
+```python
+application = client.Application().load({"id": "application_id"})
 ```
 
 #### Example: Create
 
-```ts
-const application = await client.application.create({
-  reason: /* `$STRING` */,
+```python
+application = client.Application().create({
+    "reason": ...,  # `$STRING`
 })
 ```
 
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `authentication = client.Authentication()`
 
 #### Operations
 
@@ -332,18 +335,18 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
-  otp: /* `$STRING` */,
-  password: /* `$STRING` */,
-  username: /* `$STRING` */,
+```python
+authentication = client.Authentication().create({
+    "otp": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
+    "username": ...,  # `$STRING`
 })
 ```
 
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.correction_request`
+Create an instance: `correction_request = client.CorrectionRequest()`
 
 #### Operations
 
@@ -369,14 +372,14 @@ Create an instance: `const correction_request = client.correction_request`
 
 #### Example: Load
 
-```ts
-const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
+```python
+correction_request = client.CorrectionRequest().load({"id": "correction_request_id"})
 ```
 
 #### Example: List
 
-```ts
-const correction_requests = await client.correction_request.list()
+```python
+correction_requests = client.CorrectionRequest().list({})
 ```
 
 
@@ -450,7 +453,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-application = client.application
+application = client.Application()
 application.load({"id": "example_id"})
 
 # application.data_get() now returns the loaded application data

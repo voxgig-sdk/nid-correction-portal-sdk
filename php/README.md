@@ -35,9 +35,10 @@ $client = new NidCorrectionPortalSDK([
 
 ```php
 try {
-    $result = $client->application()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Application record (throws on error).
+    $application = $client->Application()->load(["id" => "example_id"]);
+    print_r($application);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -45,8 +46,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->application()->create(["name" => "Example"]);
+// create() returns the bare created Application record.
+$created = $client->Application()->create(["name" => "Example"]);
 
 ```
 
@@ -91,13 +92,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NidCorrectionPortalSDK::test();
+$client = NidCorrectionPortalSDK::test([
+    "entity" => ["application" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->application()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$application = $client->Application()->load(["id" => "test01"]);
+print_r($application);
 ```
 
 ### Use a custom fetch function
@@ -178,8 +183,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Application` | `($data): ApplicationEntity` | Create a Application entity instance. |
-| `Authentication` | `($data): AuthenticationEntity` | Create a Authentication entity instance. |
+| `Application` | `($data): ApplicationEntity` | Create an Application entity instance. |
+| `Authentication` | `($data): AuthenticationEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest` | `($data): CorrectionRequestEntity` | Create a CorrectionRequest entity instance. |
 
 ### Entity interface
@@ -277,7 +282,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.application`
+Create an instance: `$application = $client->Application();`
 
 #### Operations
 
@@ -298,22 +303,23 @@ Create an instance: `const application = client.application`
 
 #### Example: Load
 
-```ts
-const application = await client.application.load({ id: 'application_id' })
+```php
+// load() returns the bare Application record (throws on error).
+$application = $client->Application()->load(["id" => "application_id"]);
 ```
 
 #### Example: Create
 
-```ts
-const application = await client.application.create({
-  reason: /* `$STRING` */,
-})
+```php
+$application = $client->Application()->create([
+    "reason" => null, // `$STRING`
+]);
 ```
 
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `$authentication = $client->Authentication();`
 
 #### Operations
 
@@ -336,18 +342,18 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
-  otp: /* `$STRING` */,
-  password: /* `$STRING` */,
-  username: /* `$STRING` */,
-})
+```php
+$authentication = $client->Authentication()->create([
+    "otp" => null, // `$STRING`
+    "password" => null, // `$STRING`
+    "username" => null, // `$STRING`
+]);
 ```
 
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.correction_request`
+Create an instance: `$correction_request = $client->CorrectionRequest();`
 
 #### Operations
 
@@ -373,14 +379,16 @@ Create an instance: `const correction_request = client.correction_request`
 
 #### Example: Load
 
-```ts
-const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
+```php
+// load() returns the bare CorrectionRequest record (throws on error).
+$correction_request = $client->CorrectionRequest()->load(["id" => "correction_request_id"]);
 ```
 
 #### Example: List
 
-```ts
-const correction_requests = await client.correction_request.list()
+```php
+// list() returns an array of CorrectionRequest records (throws on error).
+$correction_requests = $client->CorrectionRequest()->list();
 ```
 
 
@@ -455,7 +463,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$application = $client->application();
+$application = $client->Application();
 $application->load(["id" => "example_id"]);
 
 // $application->dataGet() now returns the loaded application data

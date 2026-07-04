@@ -32,19 +32,22 @@ const client = new NidCorrectionPortalSDK({
 
 ### 3. Load an application
 
-```ts
-const result = await client.application.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const application = await client.Application().load({ id: 'example_id' })
+  console.log(application)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
-// Create
-const created = await client.application.create({
+// Create — returns the created Application
+const created = await client.Application().create({
   name: 'Example',
 })
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NidCorrectionPortalSDK.test()
 
-const result = await client.application.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const application = await client.Application().load({ id: 'test01' })
+// application is a bare entity populated with mock response data
+console.log(application)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.application
+const entity = client.Application()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -191,8 +197,8 @@ new NidCorrectionPortalSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Application(data?)` | `ApplicationEntity` | Create a Application entity instance. |
-| `Authentication(data?)` | `AuthenticationEntity` | Create a Authentication entity instance. |
+| `Application(data?)` | `ApplicationEntity` | Create an Application entity instance. |
+| `Authentication(data?)` | `AuthenticationEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest(data?)` | `CorrectionRequestEntity` | Create a CorrectionRequest entity instance. |
 | `tester(testopts?, sdkopts?)` | `NidCorrectionPortalSDK` | Create a test-mode client instance. |
 
@@ -210,29 +216,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): NidCorrectionPortalSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -321,7 +328,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.application`
+Create an instance: `const application = client.Application()`
 
 #### Operations
 
@@ -343,13 +350,13 @@ Create an instance: `const application = client.application`
 #### Example: Load
 
 ```ts
-const application = await client.application.load({ id: 'application_id' })
+const application = await client.Application().load({ id: 'application_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const application = await client.application.create({
+const application = await client.Application().create({
   reason: /* `$STRING` */,
 })
 ```
@@ -357,7 +364,7 @@ const application = await client.application.create({
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `const authentication = client.Authentication()`
 
 #### Operations
 
@@ -381,7 +388,7 @@ Create an instance: `const authentication = client.authentication`
 #### Example: Create
 
 ```ts
-const authentication = await client.authentication.create({
+const authentication = await client.Authentication().create({
   otp: /* `$STRING` */,
   password: /* `$STRING` */,
   username: /* `$STRING` */,
@@ -391,7 +398,7 @@ const authentication = await client.authentication.create({
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.correction_request`
+Create an instance: `const correction_request = client.CorrectionRequest()`
 
 #### Operations
 
@@ -418,13 +425,13 @@ Create an instance: `const correction_request = client.correction_request`
 #### Example: Load
 
 ```ts
-const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
+const correction_request = await client.CorrectionRequest().load({ id: 'correction_request_id' })
 ```
 
 #### Example: List
 
 ```ts
-const correction_requests = await client.correction_request.list()
+const correction_requests = await client.CorrectionRequest().list()
 ```
 
 
@@ -495,7 +502,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const application = client.application
+const application = client.Application()
 await application.load({ id: "example_id" })
 
 // application.data() now returns the loaded application data

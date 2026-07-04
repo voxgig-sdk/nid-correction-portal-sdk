@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/nid-correction-portal-sdk/go=../nid-c
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,44 +43,28 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/nid-correction-portal-sdk/go"
-    "github.com/voxgig-sdk/nid-correction-portal-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewNidCorrectionPortalSDK(map[string]any{
         "apikey": os.Getenv("NID_CORRECTION_PORTAL_APIKEY"),
     })
-```
 
-### 3. Load an application
-
-```go
-    result, err = client.Application(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single application — the value is the loaded record.
+    application, err := client.Application(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
+    fmt.Println(application)
 
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
+    // Create a application.
+    created, err := client.Application(nil).Create(map[string]any{"name": "Example"}, nil)
+    if err != nil {
+        panic(err)
     }
+    fmt.Println(created)
 }
-```
-
-### 4. Create, update, and remove
-
-```go
-// Create
-created, _ := client.Application(nil).Create(
-    map[string]any{"name": "Example"}, nil,
-)
-cm := core.ToMapAny(created)
-newID := core.ToMapAny(cm["data"])["id"]
-
 ```
 
 
@@ -125,10 +114,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Application(nil).Load(
+application, err := client.Application(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(application) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -207,8 +199,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Application` | `(data map[string]any) NidCorrectionPortalEntity` | Create a Application entity instance. |
-| `Authentication` | `(data map[string]any) NidCorrectionPortalEntity` | Create a Authentication entity instance. |
+| `Application` | `(data map[string]any) NidCorrectionPortalEntity` | Create an Application entity instance. |
+| `Authentication` | `(data map[string]any) NidCorrectionPortalEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest` | `(data map[string]any) NidCorrectionPortalEntity` | Create a CorrectionRequest entity instance. |
 
 ### Entity interface (NidCorrectionPortalEntity)
@@ -229,17 +221,24 @@ All entities implement the `NidCorrectionPortalEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    application, err := client.Application(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // application is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -322,7 +321,11 @@ Create an instance: `application := client.Application(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Application(nil).Load(map[string]any{"id": "application_id"}, nil)
+application, err := client.Application(nil).Load(map[string]any{"id": "application_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(application) // the loaded record
 ```
 
 #### Example: Create
@@ -397,13 +400,21 @@ Create an instance: `correction_request := client.CorrectionRequest(nil)`
 #### Example: Load
 
 ```go
-result, err := client.CorrectionRequest(nil).Load(map[string]any{"id": "correction_request_id"}, nil)
+correction_request, err := client.CorrectionRequest(nil).Load(map[string]any{"id": "correction_request_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(correction_request) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.CorrectionRequest(nil).List(nil, nil)
+correction_requests, err := client.CorrectionRequest(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(correction_requests) // the array of records
 ```
 
 

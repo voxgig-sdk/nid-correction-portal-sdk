@@ -36,16 +36,17 @@ local client = sdk.new({
 ### 3. Load an application
 
 ```lua
-local result, err = client:application():load({ id = "example_id" })
+local application, err = client:Application():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(application)
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Create
-local created, _ = client:application():create({ name = "Example" })
+local created, err = client:Application():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -92,8 +93,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:application():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Application():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -173,8 +174,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Application` | `(data) -> ApplicationEntity` | Create a Application entity instance. |
-| `Authentication` | `(data) -> AuthenticationEntity` | Create a Authentication entity instance. |
+| `Application` | `(data) -> ApplicationEntity` | Create an Application entity instance. |
+| `Authentication` | `(data) -> AuthenticationEntity` | Create an Authentication entity instance. |
 | `CorrectionRequest` | `(data) -> CorrectionRequestEntity` | Create a CorrectionRequest entity instance. |
 
 ### Entity interface
@@ -197,17 +198,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local application, err = client:Application():load({ id = "example_id" })
+    if err then error(err) end
+    -- application is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -268,7 +274,7 @@ API path: `/correction-requests`
 
 ### Application
 
-Create an instance: `const application = client.application`
+Create an instance: `local application = client:Application(nil)`
 
 #### Operations
 
@@ -289,22 +295,22 @@ Create an instance: `const application = client.application`
 
 #### Example: Load
 
-```ts
-const application = await client.application.load({ id: 'application_id' })
+```lua
+local application, err = client:Application():load({ id = "application_id" })
 ```
 
 #### Example: Create
 
-```ts
-const application = await client.application.create({
-  reason: /* `$STRING` */,
+```lua
+local application, err = client:Application():create({
+  reason = nil, -- `$STRING`
 })
 ```
 
 
 ### Authentication
 
-Create an instance: `const authentication = client.authentication`
+Create an instance: `local authentication = client:Authentication(nil)`
 
 #### Operations
 
@@ -327,18 +333,18 @@ Create an instance: `const authentication = client.authentication`
 
 #### Example: Create
 
-```ts
-const authentication = await client.authentication.create({
-  otp: /* `$STRING` */,
-  password: /* `$STRING` */,
-  username: /* `$STRING` */,
+```lua
+local authentication, err = client:Authentication():create({
+  otp = nil, -- `$STRING`
+  password = nil, -- `$STRING`
+  username = nil, -- `$STRING`
 })
 ```
 
 
 ### CorrectionRequest
 
-Create an instance: `const correction_request = client.correction_request`
+Create an instance: `local correction_request = client:CorrectionRequest(nil)`
 
 #### Operations
 
@@ -364,14 +370,14 @@ Create an instance: `const correction_request = client.correction_request`
 
 #### Example: Load
 
-```ts
-const correction_request = await client.correction_request.load({ id: 'correction_request_id' })
+```lua
+local correction_request, err = client:CorrectionRequest():load({ id = "correction_request_id" })
 ```
 
 #### Example: List
 
-```ts
-const correction_requests = await client.correction_request.list()
+```lua
+local correction_requests, err = client:CorrectionRequest():list()
 ```
 
 
@@ -446,7 +452,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local application = client:application()
+local application = client:Application()
 application:load({ id = "example_id" })
 
 -- application:data_get() now returns the loaded application data

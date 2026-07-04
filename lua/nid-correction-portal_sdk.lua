@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:application():list() / client:application():load({ id = ... })
-function NidCorrectionPortalSDK:application(data)
+-- Idiomatic facade: client:Application():list() / client:Application():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NidCorrectionPortalSDK:Application(data)
   local EntityMod = require("entity.application_entity")
   if data == nil then
     if self._application == nil then
@@ -256,15 +257,10 @@ function NidCorrectionPortalSDK:application(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:application() instead.
-function NidCorrectionPortalSDK:Application(data)
-  local EntityMod = require("entity.application_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:authentication():list() / client:authentication():load({ id = ... })
-function NidCorrectionPortalSDK:authentication(data)
+-- Idiomatic facade: client:Authentication():list() / client:Authentication():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NidCorrectionPortalSDK:Authentication(data)
   local EntityMod = require("entity.authentication_entity")
   if data == nil then
     if self._authentication == nil then
@@ -275,15 +271,10 @@ function NidCorrectionPortalSDK:authentication(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:authentication() instead.
-function NidCorrectionPortalSDK:Authentication(data)
-  local EntityMod = require("entity.authentication_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:correction_request():list() / client:correction_request():load({ id = ... })
-function NidCorrectionPortalSDK:correction_request(data)
+-- Idiomatic facade: client:CorrectionRequest():list() / client:CorrectionRequest():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NidCorrectionPortalSDK:CorrectionRequest(data)
   local EntityMod = require("entity.correction_request_entity")
   if data == nil then
     if self._correction_request == nil then
@@ -291,12 +282,6 @@ function NidCorrectionPortalSDK:correction_request(data)
     end
     return self._correction_request
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:correction_request() instead.
-function NidCorrectionPortalSDK:CorrectionRequest(data)
-  local EntityMod = require("entity.correction_request_entity")
   return EntityMod.new(self, data)
 end
 

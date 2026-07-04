@@ -89,7 +89,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ApplicationEntity
 
 ```python
-application = client.application
+application = client.Application()
 ```
 
 ### Fields
@@ -109,8 +109,8 @@ application = client.application
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.application.create({
-    "reason": # `$STRING`,
+result = client.Application().create({
+    "reason": ...,  # `$STRING`
 })
 ```
 
@@ -119,7 +119,7 @@ result = client.application.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.application.load({"id": "application_id"})
+result = client.Application().load({"id": "application_id"})
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## AuthenticationEntity
 
 ```python
-authentication = client.authentication
+authentication = client.Authentication()
 ```
 
 ### Fields
@@ -190,10 +190,10 @@ authentication = client.authentication
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.authentication.create({
-    "otp": # `$STRING`,
-    "password": # `$STRING`,
-    "username": # `$STRING`,
+result = client.Authentication().create({
+    "otp": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
+    "username": ...,  # `$STRING`
 })
 ```
 
@@ -229,7 +229,7 @@ Return the entity name.
 ## CorrectionRequestEntity
 
 ```python
-correction_request = client.correction_request
+correction_request = client.CorrectionRequest()
 ```
 
 ### Fields
@@ -254,7 +254,9 @@ correction_request = client.correction_request
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.correction_request.list({})
+results = client.CorrectionRequest().list({})
+for correction_request in results:
+    print(correction_request)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -262,7 +264,7 @@ results = client.correction_request.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.correction_request.load({"id": "correction_request_id"})
+result = client.CorrectionRequest().load({"id": "correction_request_id"})
 ```
 
 ### Common Methods

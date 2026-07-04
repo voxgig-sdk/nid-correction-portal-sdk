@@ -28,9 +28,9 @@ const client = new NidCorrectionPortalSDK({
   apikey: process.env.NID_CORRECTION_PORTAL_APIKEY,
 })
 
-// Load application data
-const application = await client.application.load({})
-console.log(application.data)
+// Load application data (returns a Application)
+const application = await client.Application().load()
+console.log(application)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -91,8 +91,8 @@ client = NidCorrectionPortalSDK({
 })
 
 
-# Load a specific application
-application = client.application.load({"id": "example_id"})
+# Load a specific application (returns the record, raises on error)
+application = client.Application().load({"id": "example_id"})
 print(application)
 ```
 
@@ -107,8 +107,8 @@ $client = new NidCorrectionPortalSDK([
 ]);
 
 
-// Load a specific application
-$application = $client->application()->load(["id" => "example_id"]);
+// Load a specific application (returns the bare record; throws on error)
+$application = $client->Application()->load(["id" => "example_id"]);
 print_r($application);
 ```
 
@@ -136,8 +136,8 @@ client = NidCorrectionPortalSDK.new({
 })
 
 
-# Load a specific application
-application = client.application.load({ "id" => "example_id" })
+# Load a specific application (returns the bare record; raises on error)
+application = client.Application.load({ "id" => "example_id" })
 puts application
 ```
 
@@ -152,7 +152,7 @@ local client = sdk.new({
 
 
 -- Load a specific application
-local application, err = client:application():load({ id = "example_id" })
+local application, err = client:Application():load({ id = "example_id" })
 print(application)
 ```
 
@@ -165,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NidCorrectionPortalSDK.test()
-const result = await client.application.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const application = await client.Application().load({ id: 'test01' })
+// application is a bare Application populated with mock data
+console.log(application)
 ```
 
 ### Python
 
 ```python
 client = NidCorrectionPortalSDK.test()
-result = client.application.load({"id": "test01"})
+application = client.Application().load({"id": "test01"})
+print(application)
 ```
 
 ### PHP
 
 ```php
-$client = NidCorrectionPortalSDK::test();
-$result = $client->application()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NidCorrectionPortalSDK::test([
+    "entity" => ["application" => ["test01" => ["id" => "test01"]]],
+]);
+$application = $client->Application()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -195,15 +200,18 @@ result, err := client.Application(nil).Load(
 ### Ruby
 
 ```ruby
-client = NidCorrectionPortalSDK.test
-result = client.application.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NidCorrectionPortalSDK.test({
+  "entity" => { "application" => { "test01" => { "id" => "test01" } } },
+})
+application = client.Application.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:application():load({ id = "test01" })
+local result, err = client:Application():load({ id = "test01" })
 ```
 
 ## How it works
@@ -251,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

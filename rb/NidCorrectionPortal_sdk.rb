@@ -208,39 +208,21 @@ class NidCorrectionPortalSDK
   end
 
 
-  # Idiomatic facade: client.application.list / client.application.load({ "id" => ... })
-  def application
-    require_relative 'entity/application_entity'
-    @application ||= ApplicationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.application instead.
+  # Canonical facade: client.Application.list / client.Application.load({ "id" => ... })
   def Application(data = nil)
     require_relative 'entity/application_entity'
     ApplicationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.authentication.list / client.authentication.load({ "id" => ... })
-  def authentication
-    require_relative 'entity/authentication_entity'
-    @authentication ||= AuthenticationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.authentication instead.
+  # Canonical facade: client.Authentication.list / client.Authentication.load({ "id" => ... })
   def Authentication(data = nil)
     require_relative 'entity/authentication_entity'
     AuthenticationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.correction_request.list / client.correction_request.load({ "id" => ... })
-  def correction_request
-    require_relative 'entity/correction_request_entity'
-    @correction_request ||= CorrectionRequestEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.correction_request instead.
+  # Canonical facade: client.CorrectionRequest.list / client.CorrectionRequest.load({ "id" => ... })
   def CorrectionRequest(data = nil)
     require_relative 'entity/correction_request_entity'
     CorrectionRequestEntity.new(self, data)

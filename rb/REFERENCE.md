@@ -95,7 +95,7 @@ same parameters as `direct()`. Raises on error.
 ## ApplicationEntity
 
 ```ruby
-application = client.application
+application = client.Application
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ application = client.application
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.application.create({
+result = client.Application.create({
   "reason" => # `$STRING`,
 })
 ```
@@ -125,7 +125,7 @@ result = client.application.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.application.load({ "id" => "application_id" })
+result = client.Application.load({ "id" => "application_id" })
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## AuthenticationEntity
 
 ```ruby
-authentication = client.authentication
+authentication = client.Authentication
 ```
 
 ### Fields
@@ -197,7 +197,7 @@ authentication = client.authentication
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.authentication.create({
+result = client.Authentication.create({
   "otp" => # `$STRING`,
   "password" => # `$STRING`,
   "username" => # `$STRING`,
@@ -237,7 +237,7 @@ Return the entity name.
 ## CorrectionRequestEntity
 
 ```ruby
-correction_request = client.correction_request
+correction_request = client.CorrectionRequest
 ```
 
 ### Fields
@@ -262,7 +262,7 @@ correction_request = client.correction_request
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.correction_request.list(nil)
+results = client.CorrectionRequest.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -270,7 +270,7 @@ results = client.correction_request.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.correction_request.load({ "id" => "correction_request_id" })
+result = client.CorrectionRequest.load({ "id" => "correction_request_id" })
 ```
 
 ### Common Methods
