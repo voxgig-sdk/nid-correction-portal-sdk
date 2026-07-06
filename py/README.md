@@ -4,6 +4,11 @@
 
 The Python SDK for the NidCorrectionPortal API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Application()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -50,8 +55,36 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Application().create({"name": "Example"})
+created = client.Application().create({})
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    application = client.Application().load({"id": "example_id"})
+    print(application)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -72,7 +105,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -190,8 +226,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -289,11 +323,11 @@ Create an instance: `application = client.Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `message` | ``$STRING`` |  |
-| `note` | ``$STRING`` |  |
-| `reason` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Any` |  |
+| `message` | `str` |  |
+| `note` | `str` |  |
+| `reason` | `str` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -305,7 +339,7 @@ application = client.Application().load({"id": "application_id"})
 
 ```python
 application = client.Application().create({
-    "reason": ...,  # `$STRING`
+    "reason": "example",  # str
 })
 ```
 
@@ -324,22 +358,22 @@ Create an instance: `authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | ``$STRING`` |  |
-| `otp` | ``$STRING`` |  |
-| `password` | ``$STRING`` |  |
-| `session_id` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `token` | ``$STRING`` |  |
-| `user` | ``$OBJECT`` |  |
-| `username` | ``$STRING`` |  |
+| `message` | `str` |  |
+| `otp` | `str` |  |
+| `password` | `str` |  |
+| `session_id` | `str` |  |
+| `success` | `bool` |  |
+| `token` | `str` |  |
+| `user` | `dict` |  |
+| `username` | `str` |  |
 
 #### Example: Create
 
 ```python
 authentication = client.Authentication().create({
-    "otp": ...,  # `$STRING`
-    "password": ...,  # `$STRING`
-    "username": ...,  # `$STRING`
+    "otp": "example",  # str
+    "password": "example",  # str
+    "username": "example",  # str
 })
 ```
 
@@ -352,23 +386,23 @@ Create an instance: `correction_request = client.CorrectionRequest()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `nid` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `submitted_at` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `applicant_name` | `str` |  |
+| `category` | `str` |  |
+| `data` | `Any` |  |
+| `id` | `str` |  |
+| `nid` | `str` |  |
+| `source` | `str` |  |
+| `status` | `str` |  |
+| `submitted_at` | `str` |  |
+| `success` | `bool` |  |
+| `updated_at` | `str` |  |
 
 #### Example: Load
 
@@ -379,16 +413,20 @@ correction_request = client.CorrectionRequest().load({"id": "correction_request_
 #### Example: List
 
 ```python
-correction_requests = client.CorrectionRequest().list({})
+correction_requests = client.CorrectionRequest().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -405,8 +443,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -456,7 +495,7 @@ stores the returned data and match criteria internally.
 application = client.Application()
 application.load({"id": "example_id"})
 
-# application.data_get() now returns the loaded application data
+# application.data_get() now returns the application data from the last load
 # application.match_get() returns the last match criteria
 ```
 

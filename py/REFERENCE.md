@@ -8,7 +8,7 @@ Complete API reference for the NidCorrectionPortal Python SDK.
 ### Constructor
 
 ```python
-from nid-correction-portal_sdk import NidCorrectionPortalSDK
+from nidcorrectionportal_sdk import NidCorrectionPortalSDK
 
 client = NidCorrectionPortalSDK(options)
 ```
@@ -96,11 +96,11 @@ application = client.Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `note` | ``$STRING`` | No |  |
-| `reason` | ``$STRING`` | Yes |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Any` | No |  |
+| `message` | `str` | No |  |
+| `note` | `str` | No |  |
+| `reason` | `str` | Yes |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -110,7 +110,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Application().create({
-    "reason": ...,  # `$STRING`
+    "reason": "example",  # str
 })
 ```
 
@@ -161,27 +161,27 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `otp` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `session_id` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `username` | ``$STRING`` | Yes |  |
+| `message` | `str` | No |  |
+| `otp` | `str` | Yes |  |
+| `password` | `str` | Yes |  |
+| `session_id` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `str` | No |  |
+| `user` | `dict` | No |  |
+| `username` | `str` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `message` | - | - | - | - | - |
-| `otp` | - | - | - | - | - |
-| `password` | - | - | - | - | - |
-| `session_id` | - | - | Yes | - | - |
-| `success` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `user` | - | - | - | - | - |
-| `username` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `message` | - |
+| `otp` | - |
+| `password` | - |
+| `session_id` | Yes |
+| `success` | - |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 
@@ -191,9 +191,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Authentication().create({
-    "otp": ...,  # `$STRING`
-    "password": ...,  # `$STRING`
-    "username": ...,  # `$STRING`
+    "otp": "example",  # str
+    "password": "example",  # str
+    "username": "example",  # str
 })
 ```
 
@@ -236,25 +236,25 @@ correction_request = client.CorrectionRequest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `nid` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `submitted_at` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `applicant_name` | `str` | No |  |
+| `category` | `str` | No |  |
+| `data` | `Any` | No |  |
+| `id` | `str` | No |  |
+| `nid` | `str` | No |  |
+| `source` | `str` | No |  |
+| `status` | `str` | No |  |
+| `submitted_at` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `updated_at` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CorrectionRequest().list({})
+results = client.CorrectionRequest().list()
 for correction_request in results:
     print(correction_request)
 ```

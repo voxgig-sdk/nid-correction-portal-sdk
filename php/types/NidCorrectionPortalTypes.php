@@ -47,17 +47,17 @@ class Authentication
     public string $username;
 }
 
-/** Match filter for Authentication#create (any subset of Authentication fields). */
+/** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
     public ?string $message = null;
-    public ?string $otp = null;
-    public ?string $password = null;
+    public string $otp;
+    public string $password;
     public ?string $session_id = null;
     public ?bool $success = null;
     public ?string $token = null;
     public ?array $user = null;
-    public ?string $username = null;
+    public string $username;
 }
 
 /** CorrectionRequest entity data model. */
@@ -81,7 +81,7 @@ class CorrectionRequestLoadMatch
     public string $id;
 }
 
-/** Match filter for CorrectionRequest#list (any subset of CorrectionRequest fields). */
+/** Request payload for CorrectionRequest#list. */
 class CorrectionRequestListMatch
 {
     public ?string $applicant_name = null;

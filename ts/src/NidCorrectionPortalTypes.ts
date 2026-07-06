@@ -32,7 +32,16 @@ export interface Authentication {
   username: string
 }
 
-export type AuthenticationCreateData = Partial<Authentication>
+export interface AuthenticationCreateData {
+  message?: string
+  otp: string
+  password: string
+  session_id?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
+  username: string
+}
 
 export interface CorrectionRequest {
   applicant_name?: string
@@ -51,5 +60,16 @@ export interface CorrectionRequestLoadMatch {
   id: string
 }
 
-export type CorrectionRequestListMatch = Partial<CorrectionRequest>
+export interface CorrectionRequestListMatch {
+  applicant_name?: string
+  category?: string
+  data?: any
+  id?: string
+  nid?: string
+  source?: string
+  status?: string
+  submitted_at?: string
+  success?: boolean
+  updated_at?: string
+}
 

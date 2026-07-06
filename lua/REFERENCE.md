@@ -99,11 +99,11 @@ local application = client:Application(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `note` | ``$STRING`` | No |  |
-| `reason` | ``$STRING`` | Yes |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `any` | No |  |
+| `message` | `string` | No |  |
+| `note` | `string` | No |  |
+| `reason` | `string` | Yes |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -113,7 +113,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Application():create({
-  reason = --[[ `$STRING` ]],
+  reason = --[[ string ]],
 })
 ```
 
@@ -165,27 +165,27 @@ local authentication = client:Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `otp` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `session_id` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `username` | ``$STRING`` | Yes |  |
+| `message` | `string` | No |  |
+| `otp` | `string` | Yes |  |
+| `password` | `string` | Yes |  |
+| `session_id` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `token` | `string` | No |  |
+| `user` | `table` | No |  |
+| `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `message` | - | - | - | - | - |
-| `otp` | - | - | - | - | - |
-| `password` | - | - | - | - | - |
-| `session_id` | - | - | Yes | - | - |
-| `success` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `user` | - | - | - | - | - |
-| `username` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `message` | - |
+| `otp` | - |
+| `password` | - |
+| `session_id` | Yes |
+| `success` | - |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 
@@ -195,9 +195,9 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Authentication():create({
-  otp = --[[ `$STRING` ]],
-  password = --[[ `$STRING` ]],
-  username = --[[ `$STRING` ]],
+  otp = --[[ string ]],
+  password = --[[ string ]],
+  username = --[[ string ]],
 })
 ```
 
@@ -241,16 +241,16 @@ local correction_request = client:CorrectionRequest(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `nid` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `submitted_at` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `applicant_name` | `string` | No |  |
+| `category` | `string` | No |  |
+| `data` | `any` | No |  |
+| `id` | `string` | No |  |
+| `nid` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `submitted_at` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `updated_at` | `string` | No |  |
 
 ### Operations
 

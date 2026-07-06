@@ -4,6 +4,8 @@
 
 The Ruby SDK for the NidCorrectionPortal API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Application` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -46,8 +48,35 @@ end
 
 ```ruby
 # create returns the bare created Application record.
-created = client.Application.create({ "name" => "Example" })
+created = client.Application.create({  })
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  application = client.Application.load({ "id" => "example_id" })
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -68,7 +97,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -99,7 +130,7 @@ client = NidCorrectionPortalSDK.test({
   "entity" => { "application" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
+# Entity ops return the bare mock record (raises on error).
 application = client.Application.load({ "id" => "test01" })
 puts application
 ```
@@ -190,10 +221,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -290,11 +319,11 @@ Create an instance: `application = client.Application`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `message` | ``$STRING`` |  |
-| `note` | ``$STRING`` |  |
-| `reason` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Object` |  |
+| `message` | `String` |  |
+| `note` | `String` |  |
+| `reason` | `String` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
@@ -307,7 +336,7 @@ application = client.Application.load({ "id" => "application_id" })
 
 ```ruby
 application = client.Application.create({
-  "reason" => nil, # `$STRING`
+  "reason" => "example", # String
 })
 ```
 
@@ -326,22 +355,22 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | ``$STRING`` |  |
-| `otp` | ``$STRING`` |  |
-| `password` | ``$STRING`` |  |
-| `session_id` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `token` | ``$STRING`` |  |
-| `user` | ``$OBJECT`` |  |
-| `username` | ``$STRING`` |  |
+| `message` | `String` |  |
+| `otp` | `String` |  |
+| `password` | `String` |  |
+| `session_id` | `String` |  |
+| `success` | `Boolean` |  |
+| `token` | `String` |  |
+| `user` | `Hash` |  |
+| `username` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 authentication = client.Authentication.create({
-  "otp" => nil, # `$STRING`
-  "password" => nil, # `$STRING`
-  "username" => nil, # `$STRING`
+  "otp" => "example", # String
+  "password" => "example", # String
+  "username" => "example", # String
 })
 ```
 
@@ -361,16 +390,16 @@ Create an instance: `correction_request = client.CorrectionRequest`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `data` | ``$ANY`` |  |
-| `id` | ``$STRING`` |  |
-| `nid` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `submitted_at` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `applicant_name` | `String` |  |
+| `category` | `String` |  |
+| `data` | `Object` |  |
+| `id` | `String` |  |
+| `nid` | `String` |  |
+| `source` | `String` |  |
+| `status` | `String` |  |
+| `submitted_at` | `String` |  |
+| `success` | `Boolean` |  |
+| `updated_at` | `String` |  |
 
 #### Example: Load
 
@@ -387,12 +416,16 @@ correction_requests = client.CorrectionRequest.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -409,8 +442,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -461,7 +495,7 @@ stores the returned data and match criteria internally.
 application = client.Application
 application.load({ "id" => "example_id" })
 
-# application.data_get now returns the loaded application data
+# application.data_get now returns the application data from the last load
 # application.match_get returns the last match criteria
 ```
 

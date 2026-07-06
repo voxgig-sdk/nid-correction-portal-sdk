@@ -39,17 +39,16 @@ type Authentication struct {
 	Username string `json:"username"`
 }
 
-// AuthenticationCreateData mirrors the authentication fields as an all-optional match
-// filter (Go analog of Partial<Authentication>).
+// AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
 type AuthenticationCreateData struct {
 	Message *string `json:"message,omitempty"`
-	Otp *string `json:"otp,omitempty"`
-	Password *string `json:"password,omitempty"`
+	Otp string `json:"otp"`
+	Password string `json:"password"`
 	SessionId *string `json:"session_id,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Token *string `json:"token,omitempty"`
 	User *map[string]any `json:"user,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Username string `json:"username"`
 }
 
 // CorrectionRequest is the typed data model for the correction_request entity.
@@ -71,8 +70,7 @@ type CorrectionRequestLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CorrectionRequestListMatch mirrors the correction_request fields as an all-optional match
-// filter (Go analog of Partial<CorrectionRequest>).
+// CorrectionRequestListMatch is the typed request payload for CorrectionRequest.ListTyped.
 type CorrectionRequestListMatch struct {
 	ApplicantName *string `json:"applicant_name,omitempty"`
 	Category *string `json:"category,omitempty"`

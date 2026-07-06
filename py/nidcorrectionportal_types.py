@@ -49,15 +49,18 @@ class Authentication(AuthenticationRequired, total=False):
     user: dict
 
 
-class AuthenticationCreateData(TypedDict, total=False):
-    message: str
+class AuthenticationCreateDataRequired(TypedDict):
     otp: str
     password: str
+    username: str
+
+
+class AuthenticationCreateData(AuthenticationCreateDataRequired, total=False):
+    message: str
     session_id: str
     success: bool
     token: str
     user: dict
-    username: str
 
 
 class CorrectionRequest(TypedDict, total=False):

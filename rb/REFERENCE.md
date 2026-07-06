@@ -8,7 +8,7 @@ Complete API reference for the NidCorrectionPortal Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'nid-correction-portal_sdk'
+require_relative 'NidCorrectionPortal_sdk'
 
 client = NidCorrectionPortalSDK.new(options)
 ```
@@ -102,11 +102,11 @@ application = client.Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `note` | ``$STRING`` | No |  |
-| `reason` | ``$STRING`` | Yes |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Object` | No |  |
+| `message` | `String` | No |  |
+| `note` | `String` | No |  |
+| `reason` | `String` | Yes |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -116,7 +116,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Application.create({
-  "reason" => # `$STRING`,
+  "reason" => "example", # String
 })
 ```
 
@@ -168,27 +168,27 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `otp` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `session_id` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `username` | ``$STRING`` | Yes |  |
+| `message` | `String` | No |  |
+| `otp` | `String` | Yes |  |
+| `password` | `String` | Yes |  |
+| `session_id` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | No |  |
+| `user` | `Hash` | No |  |
+| `username` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `message` | - | - | - | - | - |
-| `otp` | - | - | - | - | - |
-| `password` | - | - | - | - | - |
-| `session_id` | - | - | Yes | - | - |
-| `success` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `user` | - | - | - | - | - |
-| `username` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `message` | - |
+| `otp` | - |
+| `password` | - |
+| `session_id` | Yes |
+| `success` | - |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 
@@ -198,9 +198,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Authentication.create({
-  "otp" => # `$STRING`,
-  "password" => # `$STRING`,
-  "username" => # `$STRING`,
+  "otp" => "example", # String
+  "password" => "example", # String
+  "username" => "example", # String
 })
 ```
 
@@ -244,25 +244,25 @@ correction_request = client.CorrectionRequest
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `nid` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `submitted_at` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `applicant_name` | `String` | No |  |
+| `category` | `String` | No |  |
+| `data` | `Object` | No |  |
+| `id` | `String` | No |  |
+| `nid` | `String` | No |  |
+| `source` | `String` | No |  |
+| `status` | `String` | No |  |
+| `submitted_at` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `updated_at` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CorrectionRequest.list(nil)
+results = client.CorrectionRequest.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

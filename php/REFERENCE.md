@@ -8,7 +8,7 @@ Complete API reference for the NidCorrectionPortal PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/nid-correction-portal_sdk.php';
+require_once __DIR__ . '/nidcorrectionportal_sdk.php';
 
 $client = new NidCorrectionPortalSDK($options);
 ```
@@ -54,11 +54,11 @@ Create a new `AuthenticationEntity` instance. Pass `null` for no initial data.
 
 Create a new `CorrectionRequestEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NidCorrectionPortalUtility`
 
 Return a copy of the SDK utility object.
 
@@ -101,11 +101,11 @@ $application = $client->Application();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `note` | ``$STRING`` | No |  |
-| `reason` | ``$STRING`` | Yes |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `mixed` | No |  |
+| `message` | `string` | No |  |
+| `note` | `string` | No |  |
+| `reason` | `string` | Yes |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -115,7 +115,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Application()->create([
-  "reason" => /* `$STRING` */,
+  "reason" => null, // string
 ]);
 ```
 
@@ -129,19 +129,19 @@ $result = $client->Application()->load(["id" => "application_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -150,7 +150,7 @@ Set the entity match criteria.
 Create a new `ApplicationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -167,27 +167,27 @@ $authentication = $client->Authentication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `otp` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `session_id` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
-| `username` | ``$STRING`` | Yes |  |
+| `message` | `string` | No |  |
+| `otp` | `string` | Yes |  |
+| `password` | `string` | Yes |  |
+| `session_id` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | No |  |
+| `user` | `array` | No |  |
+| `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `message` | - | - | - | - | - |
-| `otp` | - | - | - | - | - |
-| `password` | - | - | - | - | - |
-| `session_id` | - | - | Yes | - | - |
-| `success` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `user` | - | - | - | - | - |
-| `username` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `message` | - |
+| `otp` | - |
+| `password` | - |
+| `session_id` | Yes |
+| `success` | - |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 
@@ -197,27 +197,27 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Authentication()->create([
-  "otp" => /* `$STRING` */,
-  "password" => /* `$STRING` */,
-  "username" => /* `$STRING` */,
+  "otp" => null, // string
+  "password" => null, // string
+  "username" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -226,7 +226,7 @@ Set the entity match criteria.
 Create a new `AuthenticationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -243,25 +243,25 @@ $correction_request = $client->CorrectionRequest();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `data` | ``$ANY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `nid` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `submitted_at` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `applicant_name` | `string` | No |  |
+| `category` | `string` | No |  |
+| `data` | `mixed` | No |  |
+| `id` | `string` | No |  |
+| `nid` | `string` | No |  |
+| `source` | `string` | No |  |
+| `status` | `string` | No |  |
+| `submitted_at` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `updated_at` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->CorrectionRequest()->list([]);
+$results = $client->CorrectionRequest()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -274,19 +274,19 @@ $result = $client->CorrectionRequest()->load(["id" => "correction_request_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -295,7 +295,7 @@ Set the entity match criteria.
 Create a new `CorrectionRequestEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

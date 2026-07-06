@@ -30,6 +30,14 @@
 ---@field username string
 
 ---@class AuthenticationCreateData
+---@field message? string
+---@field otp string
+---@field password string
+---@field session_id? string
+---@field success? boolean
+---@field token? string
+---@field user? table
+---@field username string
 
 ---@class CorrectionRequest
 ---@field applicant_name? string
@@ -47,6 +55,16 @@
 ---@field id string
 
 ---@class CorrectionRequestListMatch
+---@field applicant_name? string
+---@field category? string
+---@field data? any
+---@field id? string
+---@field nid? string
+---@field source? string
+---@field status? string
+---@field submitted_at? string
+---@field success? boolean
+---@field updated_at? string
 
 local M = {}
 

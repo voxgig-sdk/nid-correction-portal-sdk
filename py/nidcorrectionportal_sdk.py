@@ -221,19 +221,19 @@ class NidCorrectionPortalSDK:
 
 
     def Application(self, data=None) -> "ApplicationEntity":
-        """Entity factory: client.Application().list({}) / client.Application().load({"id": ...})."""
+        """Entity factory: client.Application().list() / client.Application().load({"id": ...})."""
         from entity.application_entity import ApplicationEntity
         return ApplicationEntity(self, data)
 
 
     def Authentication(self, data=None) -> "AuthenticationEntity":
-        """Entity factory: client.Authentication().list({}) / client.Authentication().load({"id": ...})."""
+        """Entity factory: client.Authentication().list() / client.Authentication().load({"id": ...})."""
         from entity.authentication_entity import AuthenticationEntity
         return AuthenticationEntity(self, data)
 
 
     def CorrectionRequest(self, data=None) -> "CorrectionRequestEntity":
-        """Entity factory: client.CorrectionRequest().list({}) / client.CorrectionRequest().load({"id": ...})."""
+        """Entity factory: client.CorrectionRequest().list() / client.CorrectionRequest().load({"id": ...})."""
         from entity.correction_request_entity import CorrectionRequestEntity
         return CorrectionRequestEntity(self, data)
 

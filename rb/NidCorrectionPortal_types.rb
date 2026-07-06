@@ -88,16 +88,16 @@ Authentication = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Authentication#create (any subset of Authentication fields).
+# Request payload for Authentication#create.
 #
 # @!attribute [rw] message
 #   @return [String, nil]
 #
 # @!attribute [rw] otp
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] password
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] session_id
 #   @return [String, nil]
@@ -112,7 +112,7 @@ Authentication = Struct.new(
 #   @return [Hash, nil]
 #
 # @!attribute [rw] username
-#   @return [String, nil]
+#   @return [String]
 AuthenticationCreateData = Struct.new(
   :message,
   :otp,
@@ -179,7 +179,7 @@ CorrectionRequestLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CorrectionRequest#list (any subset of CorrectionRequest fields).
+# Request payload for CorrectionRequest#list.
 #
 # @!attribute [rw] applicant_name
 #   @return [String, nil]
