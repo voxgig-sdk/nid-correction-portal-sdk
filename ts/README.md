@@ -52,7 +52,9 @@ try {
 
 ```ts
 // Create — returns the created Application
-const created = await client.Application().create({})
+const created = await client.Application().create({
+  id: 'example_id',
+})
 
 ```
 
@@ -386,7 +388,7 @@ const application = await client.Application().load({ id: 'application_id' })
 
 ```ts
 const application = await client.Application().create({
-  reason: /* string */,
+  id: 'example_id',
 })
 ```
 
@@ -418,9 +420,9 @@ Create an instance: `const authentication = client.Authentication()`
 
 ```ts
 const authentication = await client.Authentication().create({
-  otp: /* string */,
-  password: /* string */,
-  username: /* string */,
+  otp: 'example_otp',
+  password: 'example_password',
+  username: 'example_username',
 })
 ```
 

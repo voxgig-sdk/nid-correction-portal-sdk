@@ -116,7 +116,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Application.create({
-  "reason" => "example", # String
+  "id" => "example_id", # String
 })
 ```
 
@@ -198,9 +198,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Authentication.create({
-  "otp" => "example", # String
-  "password" => "example", # String
-  "username" => "example", # String
+  "otp" => "example_otp", # String
+  "password" => "example_password", # String
+  "username" => "example_username", # String
 })
 ```
 

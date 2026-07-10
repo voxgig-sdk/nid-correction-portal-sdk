@@ -113,7 +113,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Application():create({
-  reason = --[[ string ]],
+  id = --[[ string ]],
 })
 ```
 

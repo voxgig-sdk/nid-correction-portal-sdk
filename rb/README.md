@@ -48,7 +48,7 @@ end
 
 ```ruby
 # create returns the bare created Application record.
-created = client.Application.create({  })
+created = client.Application.create({ "id" => "example_id" })
 
 ```
 
@@ -336,7 +336,7 @@ application = client.Application.load({ "id" => "application_id" })
 
 ```ruby
 application = client.Application.create({
-  "reason" => "example", # String
+  "id" => "example_id", # String
 })
 ```
 
@@ -368,9 +368,9 @@ Create an instance: `authentication = client.Authentication`
 
 ```ruby
 authentication = client.Authentication.create({
-  "otp" => "example", # String
-  "password" => "example", # String
-  "username" => "example", # String
+  "otp" => "example_otp", # String
+  "password" => "example_password", # String
+  "username" => "example_username", # String
 })
 ```
 

@@ -54,14 +54,14 @@ func main() {
     })
 
     // Load a single application — the value is the loaded record.
-    application, err := client.Application(nil).Load(map[string]any{"id": "example"}, nil)
+    application, err := client.Application(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(application)
 
     // Create a application.
-    created, err := client.Application(nil).Create(map[string]any{}, nil)
+    created, err := client.Application(nil).Create(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -334,8 +334,8 @@ Create an instance: `application := client.Application(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -361,8 +361,12 @@ fmt.Println(application) // the loaded record
 
 ```go
 result, err := client.Application(nil).Create(map[string]any{
-    "reason": /* string */,
+    "id": "example_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -393,16 +397,20 @@ Create an instance: `authentication := client.Authentication(nil)`
 
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
-    "otp": /* string */,
-    "password": /* string */,
-    "username": /* string */,
+    "otp": "example_otp",
+    "password": "example_password",
+    "username": "example_username",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### CorrectionRequest
 
-Create an instance: `correction_request := client.CorrectionRequest(nil)`
+Create an instance: `correctionRequest := client.CorrectionRequest(nil)`
 
 #### Operations
 
@@ -429,21 +437,21 @@ Create an instance: `correction_request := client.CorrectionRequest(nil)`
 #### Example: Load
 
 ```go
-correction_request, err := client.CorrectionRequest(nil).Load(map[string]any{"id": "correction_request_id"}, nil)
+correctionRequest, err := client.CorrectionRequest(nil).Load(map[string]any{"id": "correction_request_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(correction_request) // the loaded record
+fmt.Println(correctionRequest) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-correction_requests, err := client.CorrectionRequest(nil).List(nil, nil)
+correctionRequests, err := client.CorrectionRequest(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(correction_requests) // the array of records
+fmt.Println(correctionRequests) // the array of records
 ```
 
 

@@ -49,7 +49,7 @@ try {
 
 ```php
 // create() returns the bare created Application record.
-$created = $client->Application()->create([]);
+$created = $client->Application()->create(["id" => "example_id"]);
 
 ```
 
@@ -346,7 +346,7 @@ $application = $client->Application()->load(["id" => "application_id"]);
 
 ```php
 $application = $client->Application()->create([
-    "reason" => null, // string
+    "id" => null, // string
 ]);
 ```
 

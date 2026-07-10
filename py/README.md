@@ -55,7 +55,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Application().create({})
+created = client.Application().create({"id": "example_id"})
 
 ```
 
@@ -339,7 +339,7 @@ application = client.Application().load({"id": "application_id"})
 
 ```python
 application = client.Application().create({
-    "reason": "example",  # str
+    "id": "example_id",  # str
 })
 ```
 
@@ -371,9 +371,9 @@ Create an instance: `authentication = client.Authentication()`
 
 ```python
 authentication = client.Authentication().create({
-    "otp": "example",  # str
-    "password": "example",  # str
-    "username": "example",  # str
+    "otp": "example_otp",  # str
+    "password": "example_password",  # str
+    "username": "example_username",  # str
 })
 ```
 

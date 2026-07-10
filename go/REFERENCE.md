@@ -100,6 +100,7 @@ same parameters as `Direct()`.
 
 ```go
 application := client.Application(nil)
+fmt.Println(application.GetName()) // "application"
 ```
 
 ### Fields
@@ -114,22 +115,30 @@ application := client.Application(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Application(nil).Create(map[string]any{
-    "reason": /* string */,
-}, nil)
-```
-
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
 Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Application(nil).Load(map[string]any{"id": "application_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Application(nil).Create(map[string]any{
+    "id": "example_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -160,6 +169,7 @@ Return the entity name.
 
 ```go
 authentication := client.Authentication(nil)
+fmt.Println(authentication.GetName()) // "authentication"
 ```
 
 ### Fields
@@ -196,10 +206,14 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
-    "otp": /* string */,
-    "password": /* string */,
-    "username": /* string */,
+    "otp": "example_otp",
+    "password": "example_password",
+    "username": "example_username",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -229,7 +243,8 @@ Return the entity name.
 ## CorrectionRequestEntity
 
 ```go
-correction_request := client.CorrectionRequest(nil)
+correctionRequest := client.CorrectionRequest(nil)
+fmt.Println(correctionRequest.GetName()) // "correction_request"
 ```
 
 ### Fields
@@ -255,6 +270,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.CorrectionRequest(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -263,6 +282,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.CorrectionRequest(nil).Load(map[string]any{"id": "correction_request_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

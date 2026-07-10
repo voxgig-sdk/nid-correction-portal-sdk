@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -744,14 +741,24 @@
           "url": "https://cms-card-management-system-nid-cms-steel.vercel.app/"
         },
         "description": "This API provides a platform for users to manage and review National ID (NID) correction requests. Users can log in, search for requests, view details, approve or reject applications, and track status updates. It is designed specifically for authorized officials of the Bangladesh Election Commission.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "bearerAuth",
+          "type": "http"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://cms-card-management-system-nid-cms-steel.vercel.app/api"
           }
         ],
+        "summary": "This API provides a platform for users to manage and review National ID (NID) correction requests.",
         "title": "NID Correction Portal",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://cms-card-management-system-nid-cms-steel.vercel.app"
       },
       "option": {},
       "target": {
@@ -804,6 +811,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -854,6 +864,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

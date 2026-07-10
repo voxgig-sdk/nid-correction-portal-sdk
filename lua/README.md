@@ -47,7 +47,7 @@ print(application)
 
 ```lua
 -- Create
-local created, err = client:Application():create({  })
+local created, err = client:Application():create({ id = "example_id" })
 if err then error(err) end
 
 ```
@@ -325,7 +325,7 @@ local application, err = client:Application():load({ id = "application_id" })
 
 ```lua
 local application, err = client:Application():create({
-  reason = nil, -- string
+  id = "example_id", -- string
 })
 ```
 
@@ -357,9 +357,9 @@ Create an instance: `local authentication = client:Authentication(nil)`
 
 ```lua
 local authentication, err = client:Authentication():create({
-  otp = nil, -- string
-  password = nil, -- string
-  username = nil, -- string
+  otp = "example_otp", -- string
+  password = "example_password", -- string
+  username = "example_username", -- string
 })
 ```
 

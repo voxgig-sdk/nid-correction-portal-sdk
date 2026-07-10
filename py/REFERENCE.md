@@ -110,7 +110,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Application().create({
-    "reason": "example",  # str
+    "id": "example_id",  # str
 })
 ```
 
@@ -191,9 +191,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Authentication().create({
-    "otp": "example",  # str
-    "password": "example",  # str
-    "username": "example",  # str
+    "otp": "example_otp",  # str
+    "password": "example_password",  # str
+    "username": "example_username",  # str
 })
 ```
 

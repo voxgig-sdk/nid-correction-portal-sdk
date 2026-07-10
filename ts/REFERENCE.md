@@ -155,7 +155,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Application().create({
-  reason: /* string */,
+  id: 'example_id',
 })
 ```
 
@@ -235,9 +235,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Authentication().create({
-  otp: /* string */,
-  password: /* string */,
-  username: /* string */,
+  otp: 'example_otp',
+  password: 'example_password',
+  username: 'example_username',
 })
 ```
 
