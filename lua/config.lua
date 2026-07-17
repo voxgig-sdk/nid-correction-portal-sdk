@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- NidCorrectionPortal SDK configuration
 
 local function make_config()
   return {

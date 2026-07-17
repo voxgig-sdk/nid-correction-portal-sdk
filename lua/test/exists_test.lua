@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- NidCorrectionPortal SDK exists test
 
 local sdk = require("nid-correction-portal_sdk")
 
