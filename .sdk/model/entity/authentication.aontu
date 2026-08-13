@@ -6,7 +6,22 @@ main: kit: entity: authentication: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "message"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "organization"
       req: false
       type: "`$STRING`"
     }
@@ -21,7 +36,12 @@ main: kit: entity: authentication: {
       type: "`$STRING`"
     }
     {
-      name: "session_id"
+      name: "role"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sessionId"
       op: {
         create: {
           req: true
@@ -37,21 +57,22 @@ main: kit: entity: authentication: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "token"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "user"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "username"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
       req: true
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "authentication"
   op: {
@@ -91,7 +112,7 @@ main: kit: entity: authentication: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.user`"
           }
         }
       ]

@@ -36,7 +36,7 @@ client = NidCorrectionPortalSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Application record (raises on error).
+  # load returns the ENTITY — call data_get for the Application record (raises on error).
   application = client.Application.load({ "id" => "example_id" })
   puts application
 rescue => err
@@ -47,8 +47,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Application record.
-created = client.Application.create({ "id" => "example_id" })
+# create returns the ENTITY — call data_get for the created Application record.
+created = client.Application.create({ "id" => "example_id", "reason" => "example_reason" })
 
 ```
 
@@ -130,7 +130,8 @@ client = NidCorrectionPortalSDK.test({
   "entity" => { "application" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 application = client.Application.load({ "id" => "test01" })
 puts application
 ```
@@ -253,11 +254,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `message` |  |
-| `note` |  |
+| `notes` |  |
 | `reason` |  |
-| `success` |  |
 
 Operations: Create, Load.
 
@@ -267,13 +265,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `message` |  |
+| `name` |  |
+| `organization` |  |
 | `otp` |  |
 | `password` |  |
-| `session_id` |  |
+| `role` |  |
+| `sessionId` |  |
 | `success` |  |
-| `token` |  |
-| `user` |  |
 | `username` |  |
 
 Operations: Create.
@@ -284,16 +284,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicant_name` |  |
+| `applicantName` |  |
 | `category` |  |
-| `data` |  |
+| `changes` |  |
+| `documents` |  |
+| `history` |  |
 | `id` |  |
 | `nid` |  |
+| `notes` |  |
 | `source` |  |
 | `status` |  |
-| `submitted_at` |  |
-| `success` |  |
-| `updated_at` |  |
+| `submittedAt` |  |
+| `updatedAt` |  |
 
 Operations: List, Load.
 
@@ -319,16 +321,13 @@ Create an instance: `application = client.Application`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Object` |  |
-| `message` | `String` |  |
-| `note` | `String` |  |
+| `notes` | `String` |  |
 | `reason` | `String` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Application record (raises on error).
+# load returns the ENTITY — call data_get for the Application record (raises on error).
 application = client.Application.load({ "id" => "application_id" })
 ```
 
@@ -337,6 +336,7 @@ application = client.Application.load({ "id" => "application_id" })
 ```ruby
 application = client.Application.create({
   "id" => "example_id", # String
+  "reason" => "example_reason", # String
 })
 ```
 
@@ -355,13 +355,15 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `message` | `String` |  |
+| `name` | `String` |  |
+| `organization` | `String` |  |
 | `otp` | `String` |  |
 | `password` | `String` |  |
-| `session_id` | `String` |  |
+| `role` | `String` |  |
+| `sessionId` | `String` |  |
 | `success` | `Boolean` |  |
-| `token` | `String` |  |
-| `user` | `Hash` |  |
 | `username` | `String` |  |
 
 #### Example: Create
@@ -390,21 +392,23 @@ Create an instance: `correction_request = client.CorrectionRequest`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `String` |  |
+| `applicantName` | `String` |  |
 | `category` | `String` |  |
-| `data` | `Object` |  |
+| `changes` | `Array` |  |
+| `documents` | `Array` |  |
+| `history` | `Array` |  |
 | `id` | `String` |  |
 | `nid` | `String` |  |
+| `notes` | `String` |  |
 | `source` | `String` |  |
 | `status` | `String` |  |
-| `submitted_at` | `String` |  |
-| `success` | `Boolean` |  |
-| `updated_at` | `String` |  |
+| `submittedAt` | `String` |  |
+| `updatedAt` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare CorrectionRequest record (raises on error).
+# load returns the ENTITY — call data_get for the CorrectionRequest record (raises on error).
 correction_request = client.CorrectionRequest.load({ "id" => "correction_request_id" })
 ```
 

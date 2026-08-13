@@ -23,8 +23,8 @@ module NidCorrectionPortalTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("NIDCORRECTIONPORTAL_TEST_LIVE")
-    override = getenv("NIDCORRECTIONPORTAL_TEST_OVERRIDE")
+    live = getenv("NID_CORRECTION_PORTAL_TEST_LIVE")
+    override = getenv("NID_CORRECTION_PORTAL_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module NidCorrectionPortalTestRunner
       end
     end
 
-    explain = getenv("NIDCORRECTIONPORTAL_TEST_EXPLAIN")
-    m["NIDCORRECTIONPORTAL_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("NID_CORRECTION_PORTAL_TEST_EXPLAIN")
+    m["NID_CORRECTION_PORTAL_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

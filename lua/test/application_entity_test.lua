@@ -29,7 +29,7 @@ describe("ApplicationEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -41,7 +41,7 @@ describe("ApplicationEntity", function()
 
     local application_ref01_data_result, err = application_ref01_ent:create(application_ref01_data, nil)
     assert.is_nil(err)
-    application_ref01_data = helpers.to_map(application_ref01_data_result)
+    application_ref01_data = helpers.to_map(type(application_ref01_data_result) == 'table' and application_ref01_data_result.data_get and application_ref01_data_result:data_get() or application_ref01_data_result)
     assert.is_not_nil(application_ref01_data)
 
     -- LOAD
@@ -85,39 +85,39 @@ function application_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID")
+  local entid_env_raw = os.getenv("NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID"] = idmap,
-    ["NIDCORRECTIONPORTAL_TEST_LIVE"] = "FALSE",
-    ["NIDCORRECTIONPORTAL_TEST_EXPLAIN"] = "FALSE",
-    ["NIDCORRECTIONPORTAL_APIKEY"] = "NONE",
+    ["NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID"] = idmap,
+    ["NID_CORRECTION_PORTAL_TEST_LIVE"] = "FALSE",
+    ["NID_CORRECTION_PORTAL_TEST_EXPLAIN"] = "FALSE",
+    ["NID_CORRECTION_PORTAL_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID"])
+    env["NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE" then
+  if env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["NIDCORRECTIONPORTAL_APIKEY"],
+        apikey = env["NID_CORRECTION_PORTAL_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+  local live = env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["NIDCORRECTIONPORTAL_TEST_EXPLAIN"] == "TRUE",
+    explain = env["NID_CORRECTION_PORTAL_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

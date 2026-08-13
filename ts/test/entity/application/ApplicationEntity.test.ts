@@ -26,8 +26,8 @@ import {
 describe('ApplicationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NIDCORRECTIONPORTAL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NIDCORRECTIONPORTAL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NID_CORRECTION_PORTAL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NID_CORRECTION_PORTAL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NidCorrectionPortalSDK.test()
@@ -62,7 +62,7 @@ describe('ApplicationEntity', async () => {
     const application_ref01_ent = client.Application()
     let application_ref01_data = setup.data.new.application['application_ref01']
 
-    application_ref01_data = await application_ref01_ent.create(application_ref01_data)
+    application_ref01_data = (await application_ref01_ent.create(application_ref01_data)).data()
     assert(null != application_ref01_data)
 
 

@@ -37,38 +37,17 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'data',
+              'name' => 'notes',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$STRING`',
               'index$' => 0,
-            ],
-            [
-              'active' => true,
-              'name' => 'message',
-              'req' => false,
-              'type' => '`$STRING`',
-              'index$' => 1,
-            ],
-            [
-              'active' => true,
-              'name' => 'note',
-              'req' => false,
-              'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
               'active' => true,
               'name' => 'reason',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
-            ],
-            [
-              'active' => true,
-              'name' => 'success',
-              'req' => false,
-              'type' => '`$BOOLEAN`',
-              'index$' => 4,
+              'index$' => 1,
             ],
           ],
           'name' => 'application',
@@ -92,6 +71,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/approve',
                   'parts' => [
@@ -107,7 +87,7 @@ class NidCorrectionPortalConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 0,
                 ],
@@ -126,6 +106,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/reject',
                   'parts' => [
@@ -141,7 +122,7 @@ class NidCorrectionPortalConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 1,
                 ],
@@ -160,6 +141,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/rollback',
                   'parts' => [
@@ -175,7 +157,7 @@ class NidCorrectionPortalConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 2,
                 ],
@@ -201,6 +183,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/applications/{id}/download-pdf',
                   'parts' => [
@@ -232,28 +215,56 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'message',
+              'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
+              'name' => 'message',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 1,
+            ],
+            [
+              'active' => true,
+              'name' => 'name',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 2,
+            ],
+            [
+              'active' => true,
+              'name' => 'organization',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 3,
+            ],
+            [
+              'active' => true,
               'name' => 'otp',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
+              'index$' => 4,
             ],
             [
               'active' => true,
               'name' => 'password',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
+              'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'session_id',
+              'name' => 'role',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 6,
+            ],
+            [
+              'active' => true,
+              'name' => 'sessionId',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -262,35 +273,27 @@ class NidCorrectionPortalConfig
               ],
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
+              'index$' => 7,
             ],
             [
               'active' => true,
               'name' => 'success',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
-            ],
-            [
-              'active' => true,
-              'name' => 'token',
-              'req' => false,
-              'type' => '`$STRING`',
-              'index$' => 5,
-            ],
-            [
-              'active' => true,
-              'name' => 'user',
-              'req' => false,
-              'type' => '`$OBJECT`',
-              'index$' => 6,
+              'index$' => 8,
             ],
             [
               'active' => true,
               'name' => 'username',
+              'op' => [
+                'create' => [
+                  'req' => false,
+                  'type' => '`$STRING`',
+                ],
+              ],
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
+              'index$' => 9,
             ],
           ],
           'name' => 'authentication',
@@ -302,6 +305,7 @@ class NidCorrectionPortalConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/login',
                   'parts' => [
@@ -318,6 +322,7 @@ class NidCorrectionPortalConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/logout',
                   'parts' => [
@@ -334,6 +339,7 @@ class NidCorrectionPortalConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/verify-otp',
                   'parts' => [
@@ -343,7 +349,7 @@ class NidCorrectionPortalConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.user`',
                   ],
                   'index$' => 2,
                 ],
@@ -359,7 +365,7 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'applicant_name',
+              'name' => 'applicantName',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -373,59 +379,73 @@ class NidCorrectionPortalConfig
             ],
             [
               'active' => true,
-              'name' => 'data',
+              'name' => 'changes',
               'req' => false,
-              'type' => '`$ANY`',
+              'type' => '`$ARRAY`',
               'index$' => 2,
+            ],
+            [
+              'active' => true,
+              'name' => 'documents',
+              'req' => false,
+              'type' => '`$ARRAY`',
+              'index$' => 3,
+            ],
+            [
+              'active' => true,
+              'name' => 'history',
+              'req' => false,
+              'type' => '`$ARRAY`',
+              'index$' => 4,
             ],
             [
               'active' => true,
               'name' => 'id',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
+              'index$' => 5,
             ],
             [
               'active' => true,
               'name' => 'nid',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
-            ],
-            [
-              'active' => true,
-              'name' => 'source',
-              'req' => false,
-              'type' => '`$STRING`',
-              'index$' => 5,
-            ],
-            [
-              'active' => true,
-              'name' => 'status',
-              'req' => false,
-              'type' => '`$STRING`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'submitted_at',
+              'name' => 'notes',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'success',
+              'name' => 'source',
               'req' => false,
-              'type' => '`$BOOLEAN`',
+              'type' => '`$STRING`',
               'index$' => 8,
             ],
             [
               'active' => true,
-              'name' => 'updated_at',
+              'name' => 'status',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 9,
+            ],
+            [
+              'active' => true,
+              'name' => 'submittedAt',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 10,
+            ],
+            [
+              'active' => true,
+              'name' => 'updatedAt',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 11,
             ],
           ],
           'name' => 'correction_request',
@@ -498,6 +518,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/correction-requests',
                   'parts' => [
@@ -542,6 +563,7 @@ class NidCorrectionPortalConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/correction-requests/{id}',
                   'parts' => [
@@ -555,7 +577,7 @@ class NidCorrectionPortalConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 0,
                 ],

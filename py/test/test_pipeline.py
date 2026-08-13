@@ -16,11 +16,11 @@
 import pytest
 
 from nidcorrectionportal_sdk import NidCorrectionPortalSDK
-from core.error import NidCorrectionPortalError
-from core.result import NidCorrectionPortalResult
-from core.response import NidCorrectionPortalResponse
-from core.spec import NidCorrectionPortalSpec
-from feature.base_feature import NidCorrectionPortalBaseFeature
+from nidcorrectionportal_sdk.core.error import NidCorrectionPortalError
+from nidcorrectionportal_sdk.core.result import NidCorrectionPortalResult
+from nidcorrectionportal_sdk.core.response import NidCorrectionPortalResponse
+from nidcorrectionportal_sdk.core.spec import NidCorrectionPortalSpec
+from nidcorrectionportal_sdk.feature.base_feature import NidCorrectionPortalBaseFeature
 
 
 def _client():

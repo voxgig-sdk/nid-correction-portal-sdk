@@ -2,27 +2,18 @@
   "existing": {
     "application": {
       "APPLICATION00": {
-        "data": "s32",
-        "message": "s33",
-        "note": "s34",
-        "reason": "s35",
-        "success": true,
+        "notes": "s14",
+        "reason": "s15",
         "id": "APPLICATION00"
       },
       "APPLICATION01": {
-        "data": "s64",
-        "message": "s65",
-        "note": "s66",
-        "reason": "s67",
-        "success": true,
+        "notes": "s28",
+        "reason": "s29",
         "id": "APPLICATION01"
       },
       "APPLICATION02": {
-        "data": "s96",
-        "message": "s97",
-        "note": "s98",
-        "reason": "s99",
-        "success": true,
+        "notes": "s3c",
+        "reason": "s3d",
         "id": "APPLICATION02"
       }
     }
@@ -30,11 +21,8 @@
   "new": {
     "application": {
       "application_ref01": {
-        "data": "sc8",
-        "message": "sc9",
-        "note": "sca",
-        "reason": "scb",
-        "success": true
+        "notes": "s50",
+        "reason": "s51"
       }
     }
   }

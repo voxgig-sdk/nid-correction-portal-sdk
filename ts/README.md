@@ -51,9 +51,10 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Application
+// Create — returns the created Application ENTITY (.data() for the record)
 const created = await client.Application().create({
   id: 'example_id',
+  reason: 'example_reason',
 })
 
 ```
@@ -133,7 +134,8 @@ Create a mock client for unit testing — no server required:
 const client = NidCorrectionPortalSDK.test()
 
 const application = await client.Application().load({ id: 'test01' })
-// application is a bare entity populated with mock response data
+// application is the entity, populated with mock response data
+// — call application.data() for the record itself
 console.log(application)
 ```
 
@@ -306,11 +308,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `message` |  |
-| `note` |  |
+| `notes` |  |
 | `reason` |  |
-| `success` |  |
 
 Operations: create, load.
 
@@ -320,13 +319,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `message` |  |
+| `name` |  |
+| `organization` |  |
 | `otp` |  |
 | `password` |  |
-| `session_id` |  |
+| `role` |  |
+| `sessionId` |  |
 | `success` |  |
-| `token` |  |
-| `user` |  |
 | `username` |  |
 
 Operations: create.
@@ -337,16 +338,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicant_name` |  |
+| `applicantName` |  |
 | `category` |  |
-| `data` |  |
+| `changes` |  |
+| `documents` |  |
+| `history` |  |
 | `id` |  |
 | `nid` |  |
+| `notes` |  |
 | `source` |  |
 | `status` |  |
-| `submitted_at` |  |
-| `success` |  |
-| `updated_at` |  |
+| `submittedAt` |  |
+| `updatedAt` |  |
 
 Operations: list, load.
 
@@ -372,11 +375,8 @@ Create an instance: `const application = client.Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
-| `message` | `string` |  |
-| `note` | `string` |  |
+| `notes` | `string` |  |
 | `reason` | `string` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -389,6 +389,7 @@ const application = await client.Application().load({ id: 'application_id' })
 ```ts
 const application = await client.Application().create({
   id: 'example_id',
+  reason: 'example_reason',
 })
 ```
 
@@ -407,13 +408,15 @@ Create an instance: `const authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `message` | `string` |  |
+| `name` | `string` |  |
+| `organization` | `string` |  |
 | `otp` | `string` |  |
 | `password` | `string` |  |
-| `session_id` | `string` |  |
+| `role` | `string` |  |
+| `sessionId` | `string` |  |
 | `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `Record<string, any>` |  |
 | `username` | `string` |  |
 
 #### Example: Create
@@ -442,16 +445,18 @@ Create an instance: `const correction_request = client.CorrectionRequest()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `string` |  |
+| `applicantName` | `string` |  |
 | `category` | `string` |  |
-| `data` | `any` |  |
+| `changes` | `any[]` |  |
+| `documents` | `any[]` |  |
+| `history` | `any[]` |  |
 | `id` | `string` |  |
 | `nid` | `string` |  |
+| `notes` | `string` |  |
 | `source` | `string` |  |
 | `status` | `string` |  |
-| `submitted_at` | `string` |  |
-| `success` | `boolean` |  |
-| `updated_at` | `string` |  |
+| `submittedAt` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: Load
 

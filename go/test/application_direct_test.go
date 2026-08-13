@@ -50,7 +50,8 @@ func TestApplicationDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -115,21 +116,21 @@ func applicationDirectSetup(mockres any) *applicationDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID": map[string]any{},
-		"NIDCORRECTIONPORTAL_TEST_LIVE":    "FALSE",
-		"NIDCORRECTIONPORTAL_APIKEY":       "NONE",
+		"NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID": map[string]any{},
+		"NID_CORRECTION_PORTAL_TEST_LIVE":    "FALSE",
+		"NID_CORRECTION_PORTAL_APIKEY":       "NONE",
 	})
 
-	live := env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+	live := env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NIDCORRECTIONPORTAL_APIKEY"],
+			"apikey": env["NID_CORRECTION_PORTAL_APIKEY"],
 		}
 		client := sdk.NewNidCorrectionPortalSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID"]; ok {
+		if entidRaw, ok := env["NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

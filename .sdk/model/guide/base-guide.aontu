@@ -9,6 +9,7 @@ guide: {
     path: "/applications/{id}/approve": {
       action: "approve": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
     path: "/applications/{id}/download-pdf": {
       action: "download_pdf": {}
@@ -17,10 +18,12 @@ guide: {
     path: "/applications/{id}/reject": {
       action: "reject": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
     path: "/applications/{id}/rollback": {
       action: "rollback": {}
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 
@@ -33,6 +36,7 @@ guide: {
     }
     path: "/auth/verify-otp": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
     }
   }
 
@@ -42,6 +46,7 @@ guide: {
     }
     path: "/correction-requests/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 

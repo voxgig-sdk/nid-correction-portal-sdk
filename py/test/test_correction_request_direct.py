@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from nidcorrectionportal_sdk.utility.voxgig_struct import voxgig_struct as vs
 from nidcorrectionportal_sdk import NidCorrectionPortalSDK
-from core import helpers
+from nidcorrectionportal_sdk.core import helpers
 from test import runner
 
 
@@ -105,16 +105,16 @@ def _correction_request_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID": {},
-        "NIDCORRECTIONPORTAL_TEST_LIVE": "FALSE",
-        "NIDCORRECTIONPORTAL_APIKEY": "NONE",
+        "NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID": {},
+        "NID_CORRECTION_PORTAL_TEST_LIVE": "FALSE",
+        "NID_CORRECTION_PORTAL_APIKEY": "NONE",
     })
 
-    live = env.get("NIDCORRECTIONPORTAL_TEST_LIVE") == "TRUE"
+    live = env.get("NID_CORRECTION_PORTAL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("NIDCORRECTIONPORTAL_APIKEY"),
+            "apikey": env.get("NID_CORRECTION_PORTAL_APIKEY"),
         }
         client = NidCorrectionPortalSDK(merged_opts)
         return {

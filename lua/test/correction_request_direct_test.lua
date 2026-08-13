@@ -115,16 +115,16 @@ function correction_request_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID"] = {},
-    ["NIDCORRECTIONPORTAL_TEST_LIVE"] = "FALSE",
-    ["NIDCORRECTIONPORTAL_APIKEY"] = "NONE",
+    ["NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID"] = {},
+    ["NID_CORRECTION_PORTAL_TEST_LIVE"] = "FALSE",
+    ["NID_CORRECTION_PORTAL_APIKEY"] = "NONE",
   })
 
-  local live = env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+  local live = env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["NIDCORRECTIONPORTAL_APIKEY"],
+      apikey = env["NID_CORRECTION_PORTAL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

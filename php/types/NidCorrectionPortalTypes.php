@@ -15,11 +15,8 @@ declare(strict_types=1);
 /** Application entity data model. */
 class Application
 {
-    public mixed $data = null;
-    public ?string $message = null;
-    public ?string $note = null;
+    public ?string $notes = null;
     public string $reason;
-    public ?bool $success = null;
 }
 
 /** Request payload for Application#load. */
@@ -32,47 +29,55 @@ class ApplicationLoadMatch
 class ApplicationCreateData
 {
     public string $id;
+    public ?string $notes = null;
+    public string $reason;
 }
 
 /** Authentication entity data model. */
 class Authentication
 {
+    public ?string $id = null;
     public ?string $message = null;
+    public ?string $name = null;
+    public ?string $organization = null;
     public string $otp;
     public string $password;
-    public ?string $session_id = null;
+    public ?string $role = null;
+    public ?string $sessionId = null;
     public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
     public string $username;
 }
 
 /** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
+    public ?string $id = null;
     public ?string $message = null;
+    public ?string $name = null;
+    public ?string $organization = null;
     public string $otp;
     public string $password;
-    public ?string $session_id = null;
+    public ?string $role = null;
+    public ?string $sessionId = null;
     public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
     public string $username;
 }
 
 /** CorrectionRequest entity data model. */
 class CorrectionRequest
 {
-    public ?string $applicant_name = null;
+    public ?string $applicantName = null;
     public ?string $category = null;
-    public mixed $data = null;
+    public ?array $changes = null;
+    public ?array $documents = null;
+    public ?array $history = null;
     public ?string $id = null;
     public ?string $nid = null;
+    public ?string $notes = null;
     public ?string $source = null;
     public ?string $status = null;
-    public ?string $submitted_at = null;
-    public ?bool $success = null;
-    public ?string $updated_at = null;
+    public ?string $submittedAt = null;
+    public ?string $updatedAt = null;
 }
 
 /** Request payload for CorrectionRequest#load. */
@@ -84,15 +89,17 @@ class CorrectionRequestLoadMatch
 /** Request payload for CorrectionRequest#list. */
 class CorrectionRequestListMatch
 {
-    public ?string $applicant_name = null;
+    public ?string $applicantName = null;
     public ?string $category = null;
-    public mixed $data = null;
+    public ?array $changes = null;
+    public ?array $documents = null;
+    public ?array $history = null;
     public ?string $id = null;
     public ?string $nid = null;
+    public ?string $notes = null;
     public ?string $source = null;
     public ?string $status = null;
-    public ?string $submitted_at = null;
-    public ?bool $success = null;
-    public ?string $updated_at = null;
+    public ?string $submittedAt = null;
+    public ?string $updatedAt = null;
 }
 

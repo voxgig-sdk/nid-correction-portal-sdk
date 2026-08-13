@@ -37,7 +37,7 @@ $client = new NidCorrectionPortalSDK([
 
 ```php
 try {
-    // load() returns the bare Application record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Application record (throws on error).
     $application = $client->Application()->load(["id" => "example_id"]);
     print_r($application);
 } catch (\Throwable $err) {
@@ -48,8 +48,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Application record.
-$created = $client->Application()->create(["id" => "example_id"]);
+// create() returns the ENTITY — call data_get() for the created Application record.
+$created = $client->Application()->create(["id" => "example_id", "reason" => "example_reason"]);
 
 ```
 
@@ -136,7 +136,8 @@ $client = NidCorrectionPortalSDK::test([
     "entity" => ["application" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $application = $client->Application()->load(["id" => "test01"]);
 print_r($application);
 ```
@@ -241,7 +242,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -263,11 +264,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `message` |  |
-| `note` |  |
+| `notes` |  |
 | `reason` |  |
-| `success` |  |
 
 Operations: Create, Load.
 
@@ -277,13 +275,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `message` |  |
+| `name` |  |
+| `organization` |  |
 | `otp` |  |
 | `password` |  |
-| `session_id` |  |
+| `role` |  |
+| `sessionId` |  |
 | `success` |  |
-| `token` |  |
-| `user` |  |
 | `username` |  |
 
 Operations: Create.
@@ -294,16 +294,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicant_name` |  |
+| `applicantName` |  |
 | `category` |  |
-| `data` |  |
+| `changes` |  |
+| `documents` |  |
+| `history` |  |
 | `id` |  |
 | `nid` |  |
+| `notes` |  |
 | `source` |  |
 | `status` |  |
-| `submitted_at` |  |
-| `success` |  |
-| `updated_at` |  |
+| `submittedAt` |  |
+| `updatedAt` |  |
 
 Operations: List, Load.
 
@@ -329,16 +331,13 @@ Create an instance: `$application = $client->Application();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `mixed` |  |
-| `message` | `string` |  |
-| `note` | `string` |  |
+| `notes` | `string` |  |
 | `reason` | `string` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Application record (throws on error).
+// load() returns the ENTITY — call data_get() for the Application record (throws on error).
 $application = $client->Application()->load(["id" => "application_id"]);
 ```
 
@@ -347,6 +346,7 @@ $application = $client->Application()->load(["id" => "application_id"]);
 ```php
 $application = $client->Application()->create([
     "id" => null, // string
+    "reason" => null, // string
 ]);
 ```
 
@@ -365,13 +365,15 @@ Create an instance: `$authentication = $client->Authentication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `message` | `string` |  |
+| `name` | `string` |  |
+| `organization` | `string` |  |
 | `otp` | `string` |  |
 | `password` | `string` |  |
-| `session_id` | `string` |  |
+| `role` | `string` |  |
+| `sessionId` | `string` |  |
 | `success` | `bool` |  |
-| `token` | `string` |  |
-| `user` | `array` |  |
 | `username` | `string` |  |
 
 #### Example: Create
@@ -400,21 +402,23 @@ Create an instance: `$correction_request = $client->CorrectionRequest();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `string` |  |
+| `applicantName` | `string` |  |
 | `category` | `string` |  |
-| `data` | `mixed` |  |
+| `changes` | `array` |  |
+| `documents` | `array` |  |
+| `history` | `array` |  |
 | `id` | `string` |  |
 | `nid` | `string` |  |
+| `notes` | `string` |  |
 | `source` | `string` |  |
 | `status` | `string` |  |
-| `submitted_at` | `string` |  |
-| `success` | `bool` |  |
-| `updated_at` | `string` |  |
+| `submittedAt` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare CorrectionRequest record (throws on error).
+// load() returns the ENTITY — call data_get() for the CorrectionRequest record (throws on error).
 $correction_request = $client->CorrectionRequest()->load(["id" => "correction_request_id"]);
 ```
 

@@ -6,7 +6,7 @@ main: kit: entity: correction_request: {
 
   fields: [
     {
-      name: "applicant_name"
+      name: "applicantName"
       req: false
       type: "`$STRING`"
     }
@@ -16,9 +16,19 @@ main: kit: entity: correction_request: {
       type: "`$STRING`"
     }
     {
-      name: "data"
+      name: "changes"
       req: false
-      type: "`$ANY`"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "documents"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "history"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "id"
@@ -27,6 +37,11 @@ main: kit: entity: correction_request: {
     }
     {
       name: "nid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "notes"
       req: false
       type: "`$STRING`"
     }
@@ -41,17 +56,12 @@ main: kit: entity: correction_request: {
       type: "`$STRING`"
     }
     {
-      name: "submitted_at"
+      name: "submittedAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: "`$STRING`"
     }
@@ -174,7 +184,7 @@ main: kit: entity: correction_request: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

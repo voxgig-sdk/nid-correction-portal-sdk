@@ -101,11 +101,8 @@ $application = $client->Application();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `mixed` | No |  |
-| `message` | `string` | No |  |
-| `note` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `reason` | `string` | Yes |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -116,6 +113,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Application()->create([
   "id" => null, // string
+  "reason" => null, // string
 ]);
 ```
 
@@ -167,27 +165,31 @@ $authentication = $client->Authentication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `message` | `string` | No |  |
+| `name` | `string` | No |  |
+| `organization` | `string` | No |  |
 | `otp` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
-| `session_id` | `string` | No |  |
+| `role` | `string` | No |  |
+| `sessionId` | `string` | No |  |
 | `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `array` | No |  |
 | `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -243,16 +245,18 @@ $correction_request = $client->CorrectionRequest();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `string` | No |  |
+| `applicantName` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `mixed` | No |  |
+| `changes` | `array` | No |  |
+| `documents` | `array` | No |  |
+| `history` | `array` | No |  |
 | `id` | `string` | No |  |
 | `nid` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `source` | `string` | No |  |
 | `status` | `string` | No |  |
-| `submitted_at` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `updated_at` | `string` | No |  |
+| `submittedAt` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

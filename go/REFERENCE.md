@@ -107,11 +107,8 @@ fmt.Println(application.GetName()) // "application"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | No |  |
-| `message` | `string` | No |  |
-| `note` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `reason` | `string` | Yes |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -134,6 +131,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.Application(nil).Create(map[string]any{
     "id": "example_id",
+    "reason": "example_reason",
 }, nil)
 if err != nil {
     panic(err)
@@ -176,27 +174,31 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `message` | `string` | No |  |
+| `name` | `string` | No |  |
+| `organization` | `string` | No |  |
 | `otp` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
-| `session_id` | `string` | No |  |
+| `role` | `string` | No |  |
+| `sessionId` | `string` | No |  |
 | `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `map[string]any` | No |  |
 | `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -251,16 +253,18 @@ fmt.Println(correctionRequest.GetName()) // "correction_request"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `string` | No |  |
+| `applicantName` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `any` | No |  |
+| `changes` | `[]any` | No |  |
+| `documents` | `[]any` | No |  |
+| `history` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `nid` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `source` | `string` | No |  |
 | `status` | `string` | No |  |
-| `submitted_at` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `updated_at` | `string` | No |  |
+| `submittedAt` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

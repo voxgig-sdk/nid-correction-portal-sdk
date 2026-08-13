@@ -141,11 +141,31 @@ const application = client.Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | No |  |
-| `message` | `string` | No |  |
-| `note` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `reason` | `string` | Yes |  |
-| `success` | `boolean` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `approve` | `/applications/{id}/approve` | `client.Application().create({ $action: 'approve', ... })` |
+| `reject` | `/applications/{id}/reject` | `client.Application().create({ $action: 'reject', ... })` |
+| `rollback` | `/applications/{id}/rollback` | `client.Application().create({ $action: 'rollback', ... })` |
+| `download_pdf` | `/applications/{id}/download-pdf` | `client.Application().load({ $action: 'download_pdf', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Application record — check the API definition for its shape.
+
+```ts
+const result = await client.Application().create({
+  $action: 'approve',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -156,6 +176,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Application().create({
   id: 'example_id',
+  reason: 'example_reason',
 })
 ```
 
@@ -205,27 +226,31 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `message` | `string` | No |  |
+| `name` | `string` | No |  |
+| `organization` | `string` | No |  |
 | `otp` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
-| `session_id` | `string` | No |  |
+| `role` | `string` | No |  |
+| `sessionId` | `string` | No |  |
 | `success` | `boolean` | No |  |
-| `token` | `string` | No |  |
-| `user` | `Record<string, any>` | No |  |
 | `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -279,16 +304,18 @@ const correction_request = client.CorrectionRequest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `string` | No |  |
+| `applicantName` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `any` | No |  |
+| `changes` | `any[]` | No |  |
+| `documents` | `any[]` | No |  |
+| `history` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `nid` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `source` | `string` | No |  |
 | `status` | `string` | No |  |
-| `submitted_at` | `string` | No |  |
-| `success` | `boolean` | No |  |
-| `updated_at` | `string` | No |  |
+| `submittedAt` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

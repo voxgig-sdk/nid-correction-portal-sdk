@@ -62,7 +62,7 @@ class CorrectionRequestEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class CorrectionRequestEntityTest < Minitest::Test
       "id" => correction_request_ref01_data["id"],
     }
     correction_request_ref01_data_dt0_loaded = correction_request_ref01_ent.load(correction_request_ref01_match_dt0, nil)
-    correction_request_ref01_data_dt0_load_result = Helpers.to_map(correction_request_ref01_data_dt0_loaded)
+    correction_request_ref01_data_dt0_load_result = Helpers.to_map(correction_request_ref01_data_dt0_loaded.respond_to?(:data_get) ? correction_request_ref01_data_dt0_loaded.data_get : correction_request_ref01_data_dt0_loaded)
     assert !correction_request_ref01_data_dt0_load_result.nil?
     assert_equal correction_request_ref01_data_dt0_load_result["id"], correction_request_ref01_data["id"]
 
@@ -120,39 +120,39 @@ def correction_request_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID"]
+  entid_env_raw = ENV["NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID" => idmap,
-    "NIDCORRECTIONPORTAL_TEST_LIVE" => "FALSE",
-    "NIDCORRECTIONPORTAL_TEST_EXPLAIN" => "FALSE",
-    "NIDCORRECTIONPORTAL_APIKEY" => "NONE",
+    "NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID" => idmap,
+    "NID_CORRECTION_PORTAL_TEST_LIVE" => "FALSE",
+    "NID_CORRECTION_PORTAL_TEST_EXPLAIN" => "FALSE",
+    "NID_CORRECTION_PORTAL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["NIDCORRECTIONPORTAL_TEST_CORRECTION_REQUEST_ENTID"])
+    env["NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+  if env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NIDCORRECTIONPORTAL_APIKEY"],
+        "apikey" => env["NID_CORRECTION_PORTAL_APIKEY"],
       },
       extra || {},
     ])
     client = NidCorrectionPortalSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+  live = env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["NIDCORRECTIONPORTAL_TEST_EXPLAIN"] == "TRUE",
+    explain: env["NID_CORRECTION_PORTAL_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

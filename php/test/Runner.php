@@ -43,8 +43,8 @@ class NidCorrectionPortalTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('NIDCORRECTIONPORTAL_TEST_LIVE');
-        $override = self::getenv('NIDCORRECTIONPORTAL_TEST_OVERRIDE');
+        $live = self::getenv('NID_CORRECTION_PORTAL_TEST_LIVE');
+        $override = self::getenv('NID_CORRECTION_PORTAL_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class NidCorrectionPortalTestRunner
             }
         }
 
-        $explain = self::getenv('NIDCORRECTIONPORTAL_TEST_EXPLAIN');
+        $explain = self::getenv('NID_CORRECTION_PORTAL_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['NIDCORRECTIONPORTAL_TEST_EXPLAIN'] = $explain;
+            $m['NID_CORRECTION_PORTAL_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

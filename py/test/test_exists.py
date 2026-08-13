@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# NidCorrectionPortal SDK exists test
 
 import pytest
 from nidcorrectionportal_sdk import NidCorrectionPortalSDK

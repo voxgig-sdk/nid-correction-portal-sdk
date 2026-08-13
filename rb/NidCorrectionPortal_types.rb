@@ -10,26 +10,14 @@
 
 # Application entity data model.
 #
-# @!attribute [rw] data
-#   @return [Object, nil]
-#
-# @!attribute [rw] message
-#   @return [String, nil]
-#
-# @!attribute [rw] note
+# @!attribute [rw] notes
 #   @return [String, nil]
 #
 # @!attribute [rw] reason
 #   @return [String]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 Application = Struct.new(
-  :data,
-  :message,
-  :note,
+  :notes,
   :reason,
-  :success,
   keyword_init: true
 )
 
@@ -46,14 +34,31 @@ ApplicationLoadMatch = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] notes
+#   @return [String, nil]
+#
+# @!attribute [rw] reason
+#   @return [String]
 ApplicationCreateData = Struct.new(
   :id,
+  :notes,
+  :reason,
   keyword_init: true
 )
 
 # Authentication entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] message
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] organization
 #   @return [String, nil]
 #
 # @!attribute [rw] otp
@@ -62,35 +67,43 @@ ApplicationCreateData = Struct.new(
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] session_id
+# @!attribute [rw] role
+#   @return [String, nil]
+#
+# @!attribute [rw] sessionId
 #   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
-#
 # @!attribute [rw] username
 #   @return [String]
 Authentication = Struct.new(
+  :id,
   :message,
+  :name,
+  :organization,
   :otp,
   :password,
-  :session_id,
+  :role,
+  :sessionId,
   :success,
-  :token,
-  :user,
   :username,
   keyword_init: true
 )
 
 # Request payload for Authentication#create.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] message
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] organization
 #   @return [String, nil]
 #
 # @!attribute [rw] otp
@@ -99,47 +112,55 @@ Authentication = Struct.new(
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] session_id
+# @!attribute [rw] role
+#   @return [String, nil]
+#
+# @!attribute [rw] sessionId
 #   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
-#
 # @!attribute [rw] username
 #   @return [String]
 AuthenticationCreateData = Struct.new(
+  :id,
   :message,
+  :name,
+  :organization,
   :otp,
   :password,
-  :session_id,
+  :role,
+  :sessionId,
   :success,
-  :token,
-  :user,
   :username,
   keyword_init: true
 )
 
 # CorrectionRequest entity data model.
 #
-# @!attribute [rw] applicant_name
+# @!attribute [rw] applicantName
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Object, nil]
+# @!attribute [rw] changes
+#   @return [Array, nil]
+#
+# @!attribute [rw] documents
+#   @return [Array, nil]
+#
+# @!attribute [rw] history
+#   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] nid
+#   @return [String, nil]
+#
+# @!attribute [rw] notes
 #   @return [String, nil]
 #
 # @!attribute [rw] source
@@ -148,25 +169,24 @@ AuthenticationCreateData = Struct.new(
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] submitted_at
+# @!attribute [rw] submittedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 CorrectionRequest = Struct.new(
-  :applicant_name,
+  :applicantName,
   :category,
-  :data,
+  :changes,
+  :documents,
+  :history,
   :id,
   :nid,
+  :notes,
   :source,
   :status,
-  :submitted_at,
-  :success,
-  :updated_at,
+  :submittedAt,
+  :updatedAt,
   keyword_init: true
 )
 
@@ -181,19 +201,28 @@ CorrectionRequestLoadMatch = Struct.new(
 
 # Request payload for CorrectionRequest#list.
 #
-# @!attribute [rw] applicant_name
+# @!attribute [rw] applicantName
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Object, nil]
+# @!attribute [rw] changes
+#   @return [Array, nil]
+#
+# @!attribute [rw] documents
+#   @return [Array, nil]
+#
+# @!attribute [rw] history
+#   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
 # @!attribute [rw] nid
+#   @return [String, nil]
+#
+# @!attribute [rw] notes
 #   @return [String, nil]
 #
 # @!attribute [rw] source
@@ -202,25 +231,24 @@ CorrectionRequestLoadMatch = Struct.new(
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] submitted_at
+# @!attribute [rw] submittedAt
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [String, nil]
 CorrectionRequestListMatch = Struct.new(
-  :applicant_name,
+  :applicantName,
   :category,
-  :data,
+  :changes,
+  :documents,
+  :history,
   :id,
   :nid,
+  :notes,
   :source,
   :status,
-  :submitted_at,
-  :success,
-  :updated_at,
+  :submittedAt,
+  :updatedAt,
   keyword_init: true
 )
 

@@ -6,54 +6,71 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Application {
-  data?: any
-  message?: string
-  note?: string
+  notes?: string
   reason: string
-  success?: boolean
 }
 
 export interface ApplicationLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'download_pdf'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface ApplicationCreateData {
   id: string
+  notes?: string
+  reason: string
+
+  // Selects a custom action instead of the plain create:
+  //   'approve' | 'reject' | 'rollback'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Authentication {
+  id?: string
   message?: string
+  name?: string
+  organization?: string
   otp: string
   password: string
-  session_id?: string
+  role?: string
+  sessionId?: string
   success?: boolean
-  token?: string
-  user?: Record<string, any>
   username: string
 }
 
 export interface AuthenticationCreateData {
+  id?: string
   message?: string
+  name?: string
+  organization?: string
   otp: string
   password: string
-  session_id?: string
+  role?: string
+  sessionId?: string
   success?: boolean
-  token?: string
-  user?: Record<string, any>
   username: string
 }
 
 export interface CorrectionRequest {
-  applicant_name?: string
+  applicantName?: string
   category?: string
-  data?: any
+  changes?: any[]
+  documents?: any[]
+  history?: any[]
   id?: string
   nid?: string
+  notes?: string
   source?: string
   status?: string
-  submitted_at?: string
-  success?: boolean
-  updated_at?: string
+  submittedAt?: string
+  updatedAt?: string
 }
 
 export interface CorrectionRequestLoadMatch {
@@ -61,15 +78,17 @@ export interface CorrectionRequestLoadMatch {
 }
 
 export interface CorrectionRequestListMatch {
-  applicant_name?: string
+  applicantName?: string
   category?: string
-  data?: any
+  changes?: any[]
+  documents?: any[]
+  history?: any[]
   id?: string
   nid?: string
+  notes?: string
   source?: string
   status?: string
-  submitted_at?: string
-  success?: boolean
-  updated_at?: string
+  submittedAt?: string
+  updatedAt?: string
 }
 

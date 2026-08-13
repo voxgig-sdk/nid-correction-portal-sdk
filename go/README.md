@@ -61,7 +61,7 @@ func main() {
     fmt.Println(application)
 
     // Create a application.
-    created, err := client.Application(nil).Create(map[string]any{"id": "example_id"}, nil)
+    created, err := client.Application(nil).Create(map[string]any{"id": "example_id", "reason": "example_reason"}, nil)
     if err != nil {
         panic(err)
     }
@@ -275,11 +275,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"message"` |  |
-| `"note"` |  |
+| `"notes"` |  |
 | `"reason"` |  |
-| `"success"` |  |
 
 Operations: Create, Load.
 
@@ -289,13 +286,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"message"` |  |
+| `"name"` |  |
+| `"organization"` |  |
 | `"otp"` |  |
 | `"password"` |  |
-| `"session_id"` |  |
+| `"role"` |  |
+| `"sessionId"` |  |
 | `"success"` |  |
-| `"token"` |  |
-| `"user"` |  |
 | `"username"` |  |
 
 Operations: Create.
@@ -306,16 +305,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `"applicant_name"` |  |
+| `"applicantName"` |  |
 | `"category"` |  |
-| `"data"` |  |
+| `"changes"` |  |
+| `"documents"` |  |
+| `"history"` |  |
 | `"id"` |  |
 | `"nid"` |  |
+| `"notes"` |  |
 | `"source"` |  |
 | `"status"` |  |
-| `"submitted_at"` |  |
-| `"success"` |  |
-| `"updated_at"` |  |
+| `"submittedAt"` |  |
+| `"updatedAt"` |  |
 
 Operations: List, Load.
 
@@ -341,11 +342,8 @@ Create an instance: `application := client.Application(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
-| `message` | `string` |  |
-| `note` | `string` |  |
+| `notes` | `string` |  |
 | `reason` | `string` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -362,6 +360,7 @@ fmt.Println(application) // the loaded record
 ```go
 result, err := client.Application(nil).Create(map[string]any{
     "id": "example_id",
+    "reason": "example_reason",
 }, nil)
 if err != nil {
     panic(err)
@@ -384,13 +383,15 @@ Create an instance: `authentication := client.Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `message` | `string` |  |
+| `name` | `string` |  |
+| `organization` | `string` |  |
 | `otp` | `string` |  |
 | `password` | `string` |  |
-| `session_id` | `string` |  |
+| `role` | `string` |  |
+| `sessionId` | `string` |  |
 | `success` | `bool` |  |
-| `token` | `string` |  |
-| `user` | `map[string]any` |  |
 | `username` | `string` |  |
 
 #### Example: Create
@@ -423,16 +424,18 @@ Create an instance: `correctionRequest := client.CorrectionRequest(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `string` |  |
+| `applicantName` | `string` |  |
 | `category` | `string` |  |
-| `data` | `any` |  |
+| `changes` | `[]any` |  |
+| `documents` | `[]any` |  |
+| `history` | `[]any` |  |
 | `id` | `string` |  |
 | `nid` | `string` |  |
+| `notes` | `string` |  |
 | `source` | `string` |  |
 | `status` | `string` |  |
-| `submitted_at` | `string` |  |
-| `success` | `bool` |  |
-| `updated_at` | `string` |  |
+| `submittedAt` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: Load
 

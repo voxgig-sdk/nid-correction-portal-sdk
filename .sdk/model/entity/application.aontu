@@ -6,17 +6,7 @@ main: kit: entity: application: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$ANY`"
-    }
-    {
-      name: "message"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "note"
+      name: "notes"
       req: false
       type: "`$STRING`"
     }
@@ -24,11 +14,6 @@ main: kit: entity: application: {
       name: "reason"
       req: true
       type: "`$STRING`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
   ]
 
@@ -64,7 +49,7 @@ main: kit: entity: application: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -94,7 +79,7 @@ main: kit: entity: application: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -124,7 +109,7 @@ main: kit: entity: application: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

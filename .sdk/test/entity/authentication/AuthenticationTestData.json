@@ -2,51 +2,55 @@
   "existing": {
     "authentication": {
       "AUTHENTICATION00": {
-        "message": "s50",
-        "otp": "s51",
-        "password": "s52",
-        "session_id": "SESSION01",
+        "id": "AUTHENTICATION00",
+        "message": "s65",
+        "name": "s66",
+        "organization": "s67",
+        "otp": "s68",
+        "password": "s69",
+        "role": "s6a",
+        "sessionId": "s6b",
         "success": true,
-        "token": "s55",
-        "user": {},
-        "username": "s57",
-        "id": "AUTHENTICATION00"
+        "username": "s6d"
       },
       "AUTHENTICATION01": {
-        "message": "sa0",
-        "otp": "sa1",
-        "password": "sa2",
-        "session_id": "SESSION01",
+        "id": "AUTHENTICATION01",
+        "message": "sc9",
+        "name": "sca",
+        "organization": "scb",
+        "otp": "scc",
+        "password": "scd",
+        "role": "sce",
+        "sessionId": "scf",
         "success": true,
-        "token": "sa5",
-        "user": {},
-        "username": "sa7",
-        "id": "AUTHENTICATION01"
+        "username": "sd1"
       },
       "AUTHENTICATION02": {
-        "message": "sf0",
-        "otp": "sf1",
-        "password": "sf2",
-        "session_id": "SESSION01",
+        "id": "AUTHENTICATION02",
+        "message": "s12d",
+        "name": "s12e",
+        "organization": "s12f",
+        "otp": "s130",
+        "password": "s131",
+        "role": "s132",
+        "sessionId": "s133",
         "success": true,
-        "token": "sf5",
-        "user": {},
-        "username": "sf7",
-        "id": "AUTHENTICATION02"
+        "username": "s135"
       }
     }
   },
   "new": {
     "authentication": {
       "authentication_ref01": {
-        "message": "s140",
-        "otp": "s141",
-        "password": "s142",
-        "session_id": "SESSION01",
+        "message": "s191",
+        "name": "s192",
+        "organization": "s193",
+        "otp": "s194",
+        "password": "s195",
+        "role": "s196",
+        "sessionId": "s197",
         "success": true,
-        "token": "s145",
-        "user": {},
-        "username": "s147"
+        "username": "s199"
       }
     }
   }

@@ -47,7 +47,7 @@ print(application)
 
 ```lua
 -- Create
-local created, err = client:Application():create({ id = "example_id" })
+local created, err = client:Application():create({ id = "example_id", reason = "example_reason" })
 if err then error(err) end
 
 ```
@@ -243,11 +243,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `message` |  |
-| `note` |  |
+| `notes` |  |
 | `reason` |  |
-| `success` |  |
 
 Operations: Create, Load.
 
@@ -257,13 +254,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `message` |  |
+| `name` |  |
+| `organization` |  |
 | `otp` |  |
 | `password` |  |
-| `session_id` |  |
+| `role` |  |
+| `sessionId` |  |
 | `success` |  |
-| `token` |  |
-| `user` |  |
 | `username` |  |
 
 Operations: Create.
@@ -274,16 +273,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicant_name` |  |
+| `applicantName` |  |
 | `category` |  |
-| `data` |  |
+| `changes` |  |
+| `documents` |  |
+| `history` |  |
 | `id` |  |
 | `nid` |  |
+| `notes` |  |
 | `source` |  |
 | `status` |  |
-| `submitted_at` |  |
-| `success` |  |
-| `updated_at` |  |
+| `submittedAt` |  |
+| `updatedAt` |  |
 
 Operations: List, Load.
 
@@ -309,11 +310,8 @@ Create an instance: `local application = client:Application(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any` |  |
-| `message` | `string` |  |
-| `note` | `string` |  |
+| `notes` | `string` |  |
 | `reason` | `string` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -326,6 +324,7 @@ local application, err = client:Application():load({ id = "application_id" })
 ```lua
 local application, err = client:Application():create({
   id = "example_id", -- string
+  reason = "example_reason", -- string
 })
 ```
 
@@ -344,13 +343,15 @@ Create an instance: `local authentication = client:Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `message` | `string` |  |
+| `name` | `string` |  |
+| `organization` | `string` |  |
 | `otp` | `string` |  |
 | `password` | `string` |  |
-| `session_id` | `string` |  |
+| `role` | `string` |  |
+| `sessionId` | `string` |  |
 | `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `table` |  |
 | `username` | `string` |  |
 
 #### Example: Create
@@ -379,16 +380,18 @@ Create an instance: `local correction_request = client:CorrectionRequest(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `string` |  |
+| `applicantName` | `string` |  |
 | `category` | `string` |  |
-| `data` | `any` |  |
+| `changes` | `table` |  |
+| `documents` | `table` |  |
+| `history` | `table` |  |
 | `id` | `string` |  |
 | `nid` | `string` |  |
+| `notes` | `string` |  |
 | `source` | `string` |  |
 | `status` | `string` |  |
-| `submitted_at` | `string` |  |
-| `success` | `boolean` |  |
-| `updated_at` | `string` |  |
+| `submittedAt` | `string` |  |
+| `updatedAt` | `string` |  |
 
 #### Example: Load
 

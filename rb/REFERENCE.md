@@ -102,11 +102,8 @@ application = client.Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Object` | No |  |
-| `message` | `String` | No |  |
-| `note` | `String` | No |  |
+| `notes` | `String` | No |  |
 | `reason` | `String` | Yes |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -117,6 +114,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Application.create({
   "id" => "example_id", # String
+  "reason" => "example_reason", # String
 })
 ```
 
@@ -168,27 +166,31 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `message` | `String` | No |  |
+| `name` | `String` | No |  |
+| `organization` | `String` | No |  |
 | `otp` | `String` | Yes |  |
 | `password` | `String` | Yes |  |
-| `session_id` | `String` | No |  |
+| `role` | `String` | No |  |
+| `sessionId` | `String` | No |  |
 | `success` | `Boolean` | No |  |
-| `token` | `String` | No |  |
-| `user` | `Hash` | No |  |
 | `username` | `String` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -244,16 +246,18 @@ correction_request = client.CorrectionRequest
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `String` | No |  |
+| `applicantName` | `String` | No |  |
 | `category` | `String` | No |  |
-| `data` | `Object` | No |  |
+| `changes` | `Array` | No |  |
+| `documents` | `Array` | No |  |
+| `history` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `nid` | `String` | No |  |
+| `notes` | `String` | No |  |
 | `source` | `String` | No |  |
 | `status` | `String` | No |  |
-| `submitted_at` | `String` | No |  |
-| `success` | `Boolean` | No |  |
-| `updated_at` | `String` | No |  |
+| `submittedAt` | `String` | No |  |
+| `updatedAt` | `String` | No |  |
 
 ### Operations
 

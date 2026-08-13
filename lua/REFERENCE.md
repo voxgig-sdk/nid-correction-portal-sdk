@@ -99,11 +99,8 @@ local application = client:Application(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any` | No |  |
-| `message` | `string` | No |  |
-| `note` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `reason` | `string` | Yes |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -114,6 +111,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Application():create({
   id = --[[ string ]],
+  reason = --[[ string ]],
 })
 ```
 
@@ -165,27 +163,31 @@ local authentication = client:Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `message` | `string` | No |  |
+| `name` | `string` | No |  |
+| `organization` | `string` | No |  |
 | `otp` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
-| `session_id` | `string` | No |  |
+| `role` | `string` | No |  |
+| `sessionId` | `string` | No |  |
 | `success` | `boolean` | No |  |
-| `token` | `string` | No |  |
-| `user` | `table` | No |  |
 | `username` | `string` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -241,16 +243,18 @@ local correction_request = client:CorrectionRequest(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `string` | No |  |
+| `applicantName` | `string` | No |  |
 | `category` | `string` | No |  |
-| `data` | `any` | No |  |
+| `changes` | `table` | No |  |
+| `documents` | `table` | No |  |
+| `history` | `table` | No |  |
 | `id` | `string` | No |  |
 | `nid` | `string` | No |  |
+| `notes` | `string` | No |  |
 | `source` | `string` | No |  |
 | `status` | `string` | No |  |
-| `submitted_at` | `string` | No |  |
-| `success` | `boolean` | No |  |
-| `updated_at` | `string` | No |  |
+| `submittedAt` | `string` | No |  |
+| `updatedAt` | `string` | No |  |
 
 ### Operations
 

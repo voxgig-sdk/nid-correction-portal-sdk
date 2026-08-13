@@ -69,16 +69,16 @@ def application_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "NIDCORRECTIONPORTAL_TEST_APPLICATION_ENTID" => {},
-    "NIDCORRECTIONPORTAL_TEST_LIVE" => "FALSE",
-    "NIDCORRECTIONPORTAL_APIKEY" => "NONE",
+    "NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID" => {},
+    "NID_CORRECTION_PORTAL_TEST_LIVE" => "FALSE",
+    "NID_CORRECTION_PORTAL_APIKEY" => "NONE",
   })
 
-  live = env["NIDCORRECTIONPORTAL_TEST_LIVE"] == "TRUE"
+  live = env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["NIDCORRECTIONPORTAL_APIKEY"],
+      "apikey" => env["NID_CORRECTION_PORTAL_APIKEY"],
     }
     client = NidCorrectionPortalSDK.new(merged_opts)
     return {

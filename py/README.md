@@ -41,7 +41,7 @@ client = NidCorrectionPortalSDK({
 
 ### 3. Load an application
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -54,8 +54,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Application().create({"id": "example_id"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Application().create({"id": "example_id", "reason": "example_reason"})
 
 ```
 
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NidCorrectionPortalSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 application = client.Application().load({"id": "test01"})
 # application contains the mock response record
 ```
@@ -235,7 +236,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -257,11 +258,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `message` |  |
-| `note` |  |
+| `notes` |  |
 | `reason` |  |
-| `success` |  |
 
 Operations: Create, Load.
 
@@ -271,13 +269,15 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `message` |  |
+| `name` |  |
+| `organization` |  |
 | `otp` |  |
 | `password` |  |
-| `session_id` |  |
+| `role` |  |
+| `sessionId` |  |
 | `success` |  |
-| `token` |  |
-| `user` |  |
 | `username` |  |
 
 Operations: Create.
@@ -288,16 +288,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicant_name` |  |
+| `applicantName` |  |
 | `category` |  |
-| `data` |  |
+| `changes` |  |
+| `documents` |  |
+| `history` |  |
 | `id` |  |
 | `nid` |  |
+| `notes` |  |
 | `source` |  |
 | `status` |  |
-| `submitted_at` |  |
-| `success` |  |
-| `updated_at` |  |
+| `submittedAt` |  |
+| `updatedAt` |  |
 
 Operations: List, Load.
 
@@ -323,11 +325,8 @@ Create an instance: `application = client.Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Any` |  |
-| `message` | `str` |  |
-| `note` | `str` |  |
+| `notes` | `str` |  |
 | `reason` | `str` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -340,6 +339,7 @@ application = client.Application().load({"id": "application_id"})
 ```python
 application = client.Application().create({
     "id": "example_id",  # str
+    "reason": "example_reason",  # str
 })
 ```
 
@@ -358,13 +358,15 @@ Create an instance: `authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `message` | `str` |  |
+| `name` | `str` |  |
+| `organization` | `str` |  |
 | `otp` | `str` |  |
 | `password` | `str` |  |
-| `session_id` | `str` |  |
+| `role` | `str` |  |
+| `sessionId` | `str` |  |
 | `success` | `bool` |  |
-| `token` | `str` |  |
-| `user` | `dict` |  |
 | `username` | `str` |  |
 
 #### Example: Create
@@ -393,16 +395,18 @@ Create an instance: `correction_request = client.CorrectionRequest()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicant_name` | `str` |  |
+| `applicantName` | `str` |  |
 | `category` | `str` |  |
-| `data` | `Any` |  |
+| `changes` | `list` |  |
+| `documents` | `list` |  |
+| `history` | `list` |  |
 | `id` | `str` |  |
 | `nid` | `str` |  |
+| `notes` | `str` |  |
 | `source` | `str` |  |
 | `status` | `str` |  |
-| `submitted_at` | `str` |  |
-| `success` | `bool` |  |
-| `updated_at` | `str` |  |
+| `submittedAt` | `str` |  |
+| `updatedAt` | `str` |  |
 
 #### Example: Load
 

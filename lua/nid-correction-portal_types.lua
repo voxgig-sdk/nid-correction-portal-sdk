@@ -7,64 +7,71 @@
 -- edit by hand.
 
 ---@class Application
----@field data? any
----@field message? string
----@field note? string
+---@field notes? string
 ---@field reason string
----@field success? boolean
 
 ---@class ApplicationLoadMatch
 ---@field id string
 
 ---@class ApplicationCreateData
 ---@field id string
+---@field notes? string
+---@field reason string
 
 ---@class Authentication
+---@field id? string
 ---@field message? string
+---@field name? string
+---@field organization? string
 ---@field otp string
 ---@field password string
----@field session_id? string
+---@field role? string
+---@field sessionId? string
 ---@field success? boolean
----@field token? string
----@field user? table
 ---@field username string
 
 ---@class AuthenticationCreateData
+---@field id? string
 ---@field message? string
+---@field name? string
+---@field organization? string
 ---@field otp string
 ---@field password string
----@field session_id? string
+---@field role? string
+---@field sessionId? string
 ---@field success? boolean
----@field token? string
----@field user? table
 ---@field username string
 
 ---@class CorrectionRequest
----@field applicant_name? string
+---@field applicantName? string
 ---@field category? string
----@field data? any
+---@field changes? table
+---@field documents? table
+---@field history? table
 ---@field id? string
 ---@field nid? string
+---@field notes? string
 ---@field source? string
 ---@field status? string
----@field submitted_at? string
----@field success? boolean
----@field updated_at? string
+---@field submittedAt? string
+---@field updatedAt? string
 
 ---@class CorrectionRequestLoadMatch
 ---@field id string
 
 ---@class CorrectionRequestListMatch
----@field applicant_name? string
+---@field applicantName? string
 ---@field category? string
----@field data? any
+---@field changes? table
+---@field documents? table
+---@field history? table
 ---@field id? string
 ---@field nid? string
+---@field notes? string
 ---@field source? string
 ---@field status? string
----@field submitted_at? string
----@field success? boolean
----@field updated_at? string
+---@field submittedAt? string
+---@field updatedAt? string
 
 local M = {}
 

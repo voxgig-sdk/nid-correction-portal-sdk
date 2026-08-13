@@ -23,7 +23,7 @@ support (`list`, `load`, `create`):
 
 ```ts
 const client = new NidCorrectionPortalSDK()
-const application = await client.Application().load()
+const application = await client.Application().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NidCorrectionPortalSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NidCorrectionPortalSDK.test({
+  entity: {
+    application: {
+      test01: { id: 'test01', reason: 'example_reason' },
+    },
+  },
+})
 const application = await client.Application().load({ id: 'test01' })
-// application is a bare Application populated with mock data
+// application is the Application entity, populated with mock data
+// — call application.data() for the record itself
 console.log(application)
 ```
 
@@ -155,7 +164,7 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Application** | The Application entity (create, load). | `/applications/{id}/approve` |
+| **Application** | The Application entity (create, load). | `/applications/{id}/download-pdf` |
 | **Authentication** | The Authentication entity (create). | `/auth/login` |
 | **CorrectionRequest** | The CorrectionRequest entity (list, load). | `/correction-requests` |
 
@@ -191,7 +200,7 @@ $client = new NidCorrectionPortalSDK([
 ]);
 
 
-// Load a specific application (returns the bare record; throws on error)
+// Load a specific application (returns the ENTITY; call data_get() for the record; throws on error)
 $application = $client->Application()->load(["id" => "example_id"]);
 print_r($application);
 ```
@@ -223,7 +232,7 @@ client = NidCorrectionPortalSDK.new({
 })
 
 
-# Load a specific application (returns the bare record; raises on error)
+# Load a specific application (returns the ENTITY; call data_get for the record)
 application = client.Application.load({ "id" => "example_id" })
 puts application
 ```
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://cms-card-management-system-nid-cms-steel.vercel.app/](https://cms-card-management-system-nid-cms-steel.vercel.app/)
 

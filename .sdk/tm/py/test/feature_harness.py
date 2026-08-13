@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NidCorrectionPortalControl
-from core.error import NidCorrectionPortalError
-from core.result import NidCorrectionPortalResult
-from core.spec import NidCorrectionPortalSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import NidCorrectionPortalControl
+from projectname_sdk.core.error import NidCorrectionPortalError
+from projectname_sdk.core.result import NidCorrectionPortalResult
+from projectname_sdk.core.spec import NidCorrectionPortalSpec
 
 
 # True when this SDK was generated with the named feature.

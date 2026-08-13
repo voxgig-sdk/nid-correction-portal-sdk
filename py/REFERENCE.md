@@ -96,11 +96,8 @@ application = client.Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Any` | No |  |
-| `message` | `str` | No |  |
-| `note` | `str` | No |  |
+| `notes` | `str` | No |  |
 | `reason` | `str` | Yes |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -111,6 +108,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Application().create({
     "id": "example_id",  # str
+    "reason": "example_reason",  # str
 })
 ```
 
@@ -161,27 +159,31 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `message` | `str` | No |  |
+| `name` | `str` | No |  |
+| `organization` | `str` | No |  |
 | `otp` | `str` | Yes |  |
 | `password` | `str` | Yes |  |
-| `session_id` | `str` | No |  |
+| `role` | `str` | No |  |
+| `sessionId` | `str` | No |  |
 | `success` | `bool` | No |  |
-| `token` | `str` | No |  |
-| `user` | `dict` | No |  |
 | `username` | `str` | Yes |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
+| `id` | - |
 | `message` | - |
+| `name` | - |
+| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `session_id` | Yes |
+| `role` | - |
+| `sessionId` | Yes |
 | `success` | - |
-| `token` | - |
-| `user` | - |
-| `username` | - |
+| `username` | Yes |
 
 ### Operations
 
@@ -236,16 +238,18 @@ correction_request = client.CorrectionRequest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicant_name` | `str` | No |  |
+| `applicantName` | `str` | No |  |
 | `category` | `str` | No |  |
-| `data` | `Any` | No |  |
+| `changes` | `list` | No |  |
+| `documents` | `list` | No |  |
+| `history` | `list` | No |  |
 | `id` | `str` | No |  |
 | `nid` | `str` | No |  |
+| `notes` | `str` | No |  |
 | `source` | `str` | No |  |
 | `status` | `str` | No |  |
-| `submitted_at` | `str` | No |  |
-| `success` | `bool` | No |  |
-| `updated_at` | `str` | No |  |
+| `submittedAt` | `str` | No |  |
+| `updatedAt` | `str` | No |  |
 
 ### Operations
 

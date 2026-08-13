@@ -26,8 +26,8 @@ import {
 describe('CorrectionRequestEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NIDCORRECTIONPORTAL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NIDCORRECTIONPORTAL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NID_CORRECTION_PORTAL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NID_CORRECTION_PORTAL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NidCorrectionPortalSDK.test()
@@ -63,13 +63,13 @@ describe('CorrectionRequestEntity', async () => {
     const correction_request_ref01_ent = client.CorrectionRequest()
     const correction_request_ref01_match: any = {}
 
-    const correction_request_ref01_list = await correction_request_ref01_ent.list(correction_request_ref01_match)
+    const correction_request_ref01_list = (await correction_request_ref01_ent.list(correction_request_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const correction_request_ref01_match_dt0: any = {}
     correction_request_ref01_match_dt0.id = correction_request_ref01_data.id
-    const correction_request_ref01_data_dt0 = await correction_request_ref01_ent.load(correction_request_ref01_match_dt0)
+    const correction_request_ref01_data_dt0 = (await correction_request_ref01_ent.load(correction_request_ref01_match_dt0)).data()
     assert(correction_request_ref01_data_dt0.id === correction_request_ref01_data.id)
 
 
