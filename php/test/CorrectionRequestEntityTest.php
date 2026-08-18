@@ -40,7 +40,7 @@ class CorrectionRequestEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = NidCorrectionPortalConfig::make_config();
+        $cfg = NidCorrectionPortalConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = NidCorrectionPortalSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

@@ -40,7 +40,7 @@ class NidCorrectionPortalSDK
         $utility = new NidCorrectionPortalUtility();
         $this->_utility = $utility;
 
-        $config = NidCorrectionPortalConfig::make_config();
+        $config = NidCorrectionPortalConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

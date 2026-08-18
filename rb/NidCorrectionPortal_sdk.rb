@@ -28,7 +28,7 @@ class NidCorrectionPortalSDK
     utility = NidCorrectionPortalUtility.new
     @_utility = utility
 
-    config = NidCorrectionPortalConfig.make_config
+    config = NidCorrectionPortalConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

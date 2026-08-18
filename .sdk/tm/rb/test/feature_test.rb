@@ -15,7 +15,7 @@ require_relative "../NidCorrectionPortal_sdk"
 module NidCorrectionPortalFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = NidCorrectionPortalConfig.make_config["feature"]
+    f = NidCorrectionPortalConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
