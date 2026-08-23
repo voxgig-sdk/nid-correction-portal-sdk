@@ -8,6 +8,7 @@ main: kit: entity: authentication: {
     {
       name: "id"
       req: false
+      short: "User ID"
       type: "`$STRING`"
     }
     {
@@ -18,26 +19,31 @@ main: kit: entity: authentication: {
     {
       name: "name"
       req: false
+      short: "Full name"
       type: "`$STRING`"
     }
     {
       name: "organization"
       req: false
+      short: "Organization name"
       type: "`$STRING`"
     }
     {
       name: "otp"
       req: true
+      short: "6-digit OTP code"
       type: "`$STRING`"
     }
     {
       name: "password"
       req: true
+      short: "User password"
       type: "`$STRING`"
     }
     {
       name: "role"
       req: false
+      short: "User role"
       type: "`$STRING`"
     }
     {
@@ -49,6 +55,7 @@ main: kit: entity: authentication: {
         }
       }
       req: false
+      short: "Session identifier for OTP verification"
       type: "`$STRING`"
     }
     {
@@ -65,6 +72,7 @@ main: kit: entity: authentication: {
         }
       }
       req: true
+      short: "Username or employee ID"
       type: "`$STRING`"
     }
   ]

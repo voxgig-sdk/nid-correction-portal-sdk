@@ -254,8 +254,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `notes` |  |
-| `reason` |  |
+| `notes` | Approval notes or comments |
+| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -265,16 +265,16 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | User ID |
 | `message` |  |
-| `name` |  |
-| `organization` |  |
-| `otp` |  |
-| `password` |  |
-| `role` |  |
-| `sessionId` |  |
+| `name` | Full name |
+| `organization` | Organization name |
+| `otp` | 6-digit OTP code |
+| `password` | User password |
+| `role` | User role |
+| `sessionId` | Session identifier for OTP verification |
 | `success` |  |
-| `username` |  |
+| `username` | Username or employee ID |
 
 Operations: Create.
 
@@ -284,18 +284,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicantName` |  |
-| `category` |  |
-| `changes` |  |
-| `documents` |  |
-| `history` |  |
-| `id` |  |
-| `nid` |  |
-| `notes` |  |
-| `source` |  |
-| `status` |  |
-| `submittedAt` |  |
-| `updatedAt` |  |
+| `applicantName` | Name of the applicant |
+| `category` | Category of correction |
+| `changes` | List of field changes |
+| `documents` | Supporting documents |
+| `history` | Status change history |
+| `id` | Correction request ID |
+| `nid` | National ID number |
+| `notes` | Additional notes |
+| `source` | Source of the request |
+| `status` | Current status of the request |
+| `submittedAt` | Submission timestamp |
+| `updatedAt` | Last update timestamp |
 
 Operations: List, Load.
 
@@ -321,8 +321,8 @@ Create an instance: `application = client.Application`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `notes` | `String` |  |
-| `reason` | `String` |  |
+| `notes` | `String` | Approval notes or comments |
+| `reason` | `String` | Reason for rejection |
 
 #### Example: Load
 
@@ -355,16 +355,16 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `String` |  |
+| `id` | `String` | User ID |
 | `message` | `String` |  |
-| `name` | `String` |  |
-| `organization` | `String` |  |
-| `otp` | `String` |  |
-| `password` | `String` |  |
-| `role` | `String` |  |
-| `sessionId` | `String` |  |
+| `name` | `String` | Full name |
+| `organization` | `String` | Organization name |
+| `otp` | `String` | 6-digit OTP code |
+| `password` | `String` | User password |
+| `role` | `String` | User role |
+| `sessionId` | `String` | Session identifier for OTP verification |
 | `success` | `Boolean` |  |
-| `username` | `String` |  |
+| `username` | `String` | Username or employee ID |
 
 #### Example: Create
 
@@ -392,18 +392,18 @@ Create an instance: `correction_request = client.CorrectionRequest`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicantName` | `String` |  |
-| `category` | `String` |  |
-| `changes` | `Array` |  |
-| `documents` | `Array` |  |
-| `history` | `Array` |  |
-| `id` | `String` |  |
-| `nid` | `String` |  |
-| `notes` | `String` |  |
-| `source` | `String` |  |
-| `status` | `String` |  |
-| `submittedAt` | `String` |  |
-| `updatedAt` | `String` |  |
+| `applicantName` | `String` | Name of the applicant |
+| `category` | `String` | Category of correction |
+| `changes` | `Array` | List of field changes |
+| `documents` | `Array` | Supporting documents |
+| `history` | `Array` | Status change history |
+| `id` | `String` | Correction request ID |
+| `nid` | `String` | National ID number |
+| `notes` | `String` | Additional notes |
+| `source` | `String` | Source of the request |
+| `status` | `String` | Current status of the request |
+| `submittedAt` | `String` | Submission timestamp |
+| `updatedAt` | `String` | Last update timestamp |
 
 #### Example: Load
 

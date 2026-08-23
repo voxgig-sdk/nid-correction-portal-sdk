@@ -96,8 +96,8 @@ application = client.Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `notes` | `str` | No |  |
-| `reason` | `str` | Yes |  |
+| `notes` | `str` | No | Approval notes or comments |
+| `reason` | `str` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -159,16 +159,16 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
+| `id` | `str` | No | User ID |
 | `message` | `str` | No |  |
-| `name` | `str` | No |  |
-| `organization` | `str` | No |  |
-| `otp` | `str` | Yes |  |
-| `password` | `str` | Yes |  |
-| `role` | `str` | No |  |
-| `sessionId` | `str` | No |  |
+| `name` | `str` | No | Full name |
+| `organization` | `str` | No | Organization name |
+| `otp` | `str` | Yes | 6-digit OTP code |
+| `password` | `str` | Yes | User password |
+| `role` | `str` | No | User role |
+| `sessionId` | `str` | No | Session identifier for OTP verification |
 | `success` | `bool` | No |  |
-| `username` | `str` | Yes |  |
+| `username` | `str` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
@@ -238,18 +238,18 @@ correction_request = client.CorrectionRequest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicantName` | `str` | No |  |
-| `category` | `str` | No |  |
-| `changes` | `list` | No |  |
-| `documents` | `list` | No |  |
-| `history` | `list` | No |  |
-| `id` | `str` | No |  |
-| `nid` | `str` | No |  |
-| `notes` | `str` | No |  |
-| `source` | `str` | No |  |
-| `status` | `str` | No |  |
-| `submittedAt` | `str` | No |  |
-| `updatedAt` | `str` | No |  |
+| `applicantName` | `str` | No | Name of the applicant |
+| `category` | `str` | No | Category of correction |
+| `changes` | `list` | No | List of field changes |
+| `documents` | `list` | No | Supporting documents |
+| `history` | `list` | No | Status change history |
+| `id` | `str` | No | Correction request ID |
+| `nid` | `str` | No | National ID number |
+| `notes` | `str` | No | Additional notes |
+| `source` | `str` | No | Source of the request |
+| `status` | `str` | No | Current status of the request |
+| `submittedAt` | `str` | No | Submission timestamp |
+| `updatedAt` | `str` | No | Last update timestamp |
 
 ### Operations
 

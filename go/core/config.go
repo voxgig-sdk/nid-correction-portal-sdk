@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "NidCorrectionPortal",
+			"slug": "nid-correction-portal",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -38,11 +41,13 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "notes",
+						"short": "Approval notes or comments",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reason",
 						"req": true,
+						"short": "Reason for rejection",
 						"type": "`$STRING`",
 					},
 				},
@@ -193,6 +198,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "User ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -201,24 +207,29 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Full name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "organization",
+						"short": "Organization name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "otp",
 						"req": true,
+						"short": "6-digit OTP code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "password",
 						"req": true,
+						"short": "User password",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "role",
+						"short": "User role",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -229,6 +240,7 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Session identifier for OTP verification",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -243,6 +255,7 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"req": true,
+						"short": "Username or employee ID",
 						"type": "`$STRING`",
 					},
 				},
@@ -308,50 +321,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "applicantName",
+						"short": "Name of the applicant",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "category",
+						"short": "Category of correction",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "changes",
+						"short": "List of field changes",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "documents",
+						"short": "Supporting documents",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "history",
+						"short": "Status change history",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Correction request ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nid",
+						"short": "National ID number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "notes",
+						"short": "Additional notes",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "source",
+						"short": "Source of the request",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Current status of the request",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "submittedAt",
+						"short": "Submission timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updatedAt",
+						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
 				},

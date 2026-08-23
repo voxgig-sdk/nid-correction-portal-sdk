@@ -36,12 +36,14 @@
               "active": true,
               "name": "notes",
               "req": false,
+              "short": "Approval notes or comments",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "reason",
               "req": true,
+              "short": "Reason for rejection",
               "type": "`$STRING`"
             }
           ],
@@ -206,6 +208,7 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "User ID",
               "type": "`$STRING`"
             },
             {
@@ -218,30 +221,35 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Full name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "organization",
               "req": false,
+              "short": "Organization name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "otp",
               "req": true,
+              "short": "6-digit OTP code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "password",
               "req": true,
+              "short": "User password",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "role",
               "req": false,
+              "short": "User role",
               "type": "`$STRING`"
             },
             {
@@ -254,6 +262,7 @@
                 }
               },
               "req": false,
+              "short": "Session identifier for OTP verification",
               "type": "`$STRING`"
             },
             {
@@ -272,6 +281,7 @@
                 }
               },
               "req": true,
+              "short": "Username or employee ID",
               "type": "`$STRING`"
             }
           ],
@@ -350,72 +360,84 @@
               "active": true,
               "name": "applicantName",
               "req": false,
+              "short": "Name of the applicant",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "category",
               "req": false,
+              "short": "Category of correction",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "changes",
               "req": false,
+              "short": "List of field changes",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "documents",
               "req": false,
+              "short": "Supporting documents",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "history",
               "req": false,
+              "short": "Status change history",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Correction request ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nid",
               "req": false,
+              "short": "National ID number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "notes",
               "req": false,
+              "short": "Additional notes",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "source",
               "req": false,
+              "short": "Source of the request",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Current status of the request",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "submittedAt",
               "req": false,
+              "short": "Submission timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updatedAt",
               "req": false,
+              "short": "Last update timestamp",
               "type": "`$STRING`"
             }
           ],

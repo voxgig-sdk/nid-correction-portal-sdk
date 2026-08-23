@@ -8,61 +8,73 @@ main: kit: entity: correction_request: {
     {
       name: "applicantName"
       req: false
+      short: "Name of the applicant"
       type: "`$STRING`"
     }
     {
       name: "category"
       req: false
+      short: "Category of correction"
       type: "`$STRING`"
     }
     {
       name: "changes"
       req: false
+      short: "List of field changes"
       type: "`$ARRAY`"
     }
     {
       name: "documents"
       req: false
+      short: "Supporting documents"
       type: "`$ARRAY`"
     }
     {
       name: "history"
       req: false
+      short: "Status change history"
       type: "`$ARRAY`"
     }
     {
       name: "id"
       req: false
+      short: "Correction request ID"
       type: "`$STRING`"
     }
     {
       name: "nid"
       req: false
+      short: "National ID number"
       type: "`$STRING`"
     }
     {
       name: "notes"
       req: false
+      short: "Additional notes"
       type: "`$STRING`"
     }
     {
       name: "source"
       req: false
+      short: "Source of the request"
       type: "`$STRING`"
     }
     {
       name: "status"
       req: false
+      short: "Current status of the request"
       type: "`$STRING`"
     }
     {
       name: "submittedAt"
       req: false
+      short: "Submission timestamp"
       type: "`$STRING`"
     }
     {
       name: "updatedAt"
       req: false
+      short: "Last update timestamp"
       type: "`$STRING`"
     }
   ]

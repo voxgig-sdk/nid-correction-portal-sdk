@@ -102,8 +102,8 @@ application = client.Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `notes` | `String` | No |  |
-| `reason` | `String` | Yes |  |
+| `notes` | `String` | No | Approval notes or comments |
+| `reason` | `String` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -166,16 +166,16 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `String` | No |  |
+| `id` | `String` | No | User ID |
 | `message` | `String` | No |  |
-| `name` | `String` | No |  |
-| `organization` | `String` | No |  |
-| `otp` | `String` | Yes |  |
-| `password` | `String` | Yes |  |
-| `role` | `String` | No |  |
-| `sessionId` | `String` | No |  |
+| `name` | `String` | No | Full name |
+| `organization` | `String` | No | Organization name |
+| `otp` | `String` | Yes | 6-digit OTP code |
+| `password` | `String` | Yes | User password |
+| `role` | `String` | No | User role |
+| `sessionId` | `String` | No | Session identifier for OTP verification |
 | `success` | `Boolean` | No |  |
-| `username` | `String` | Yes |  |
+| `username` | `String` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
@@ -246,18 +246,18 @@ correction_request = client.CorrectionRequest
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicantName` | `String` | No |  |
-| `category` | `String` | No |  |
-| `changes` | `Array` | No |  |
-| `documents` | `Array` | No |  |
-| `history` | `Array` | No |  |
-| `id` | `String` | No |  |
-| `nid` | `String` | No |  |
-| `notes` | `String` | No |  |
-| `source` | `String` | No |  |
-| `status` | `String` | No |  |
-| `submittedAt` | `String` | No |  |
-| `updatedAt` | `String` | No |  |
+| `applicantName` | `String` | No | Name of the applicant |
+| `category` | `String` | No | Category of correction |
+| `changes` | `Array` | No | List of field changes |
+| `documents` | `Array` | No | Supporting documents |
+| `history` | `Array` | No | Status change history |
+| `id` | `String` | No | Correction request ID |
+| `nid` | `String` | No | National ID number |
+| `notes` | `String` | No | Additional notes |
+| `source` | `String` | No | Source of the request |
+| `status` | `String` | No | Current status of the request |
+| `submittedAt` | `String` | No | Submission timestamp |
+| `updatedAt` | `String` | No | Last update timestamp |
 
 ### Operations
 

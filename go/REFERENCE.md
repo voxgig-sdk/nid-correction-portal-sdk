@@ -107,8 +107,8 @@ fmt.Println(application.GetName()) // "application"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `notes` | `string` | No |  |
-| `reason` | `string` | Yes |  |
+| `notes` | `string` | No | Approval notes or comments |
+| `reason` | `string` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -174,16 +174,16 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `id` | `string` | No | User ID |
 | `message` | `string` | No |  |
-| `name` | `string` | No |  |
-| `organization` | `string` | No |  |
-| `otp` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-| `role` | `string` | No |  |
-| `sessionId` | `string` | No |  |
+| `name` | `string` | No | Full name |
+| `organization` | `string` | No | Organization name |
+| `otp` | `string` | Yes | 6-digit OTP code |
+| `password` | `string` | Yes | User password |
+| `role` | `string` | No | User role |
+| `sessionId` | `string` | No | Session identifier for OTP verification |
 | `success` | `bool` | No |  |
-| `username` | `string` | Yes |  |
+| `username` | `string` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
@@ -253,18 +253,18 @@ fmt.Println(correctionRequest.GetName()) // "correction_request"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicantName` | `string` | No |  |
-| `category` | `string` | No |  |
-| `changes` | `[]any` | No |  |
-| `documents` | `[]any` | No |  |
-| `history` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `nid` | `string` | No |  |
-| `notes` | `string` | No |  |
-| `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `submittedAt` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
+| `applicantName` | `string` | No | Name of the applicant |
+| `category` | `string` | No | Category of correction |
+| `changes` | `[]any` | No | List of field changes |
+| `documents` | `[]any` | No | Supporting documents |
+| `history` | `[]any` | No | Status change history |
+| `id` | `string` | No | Correction request ID |
+| `nid` | `string` | No | National ID number |
+| `notes` | `string` | No | Additional notes |
+| `source` | `string` | No | Source of the request |
+| `status` | `string` | No | Current status of the request |
+| `submittedAt` | `string` | No | Submission timestamp |
+| `updatedAt` | `string` | No | Last update timestamp |
 
 ### Operations
 

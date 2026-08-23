@@ -264,8 +264,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `notes` |  |
-| `reason` |  |
+| `notes` | Approval notes or comments |
+| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -275,16 +275,16 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | User ID |
 | `message` |  |
-| `name` |  |
-| `organization` |  |
-| `otp` |  |
-| `password` |  |
-| `role` |  |
-| `sessionId` |  |
+| `name` | Full name |
+| `organization` | Organization name |
+| `otp` | 6-digit OTP code |
+| `password` | User password |
+| `role` | User role |
+| `sessionId` | Session identifier for OTP verification |
 | `success` |  |
-| `username` |  |
+| `username` | Username or employee ID |
 
 Operations: Create.
 
@@ -294,18 +294,18 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `applicantName` |  |
-| `category` |  |
-| `changes` |  |
-| `documents` |  |
-| `history` |  |
-| `id` |  |
-| `nid` |  |
-| `notes` |  |
-| `source` |  |
-| `status` |  |
-| `submittedAt` |  |
-| `updatedAt` |  |
+| `applicantName` | Name of the applicant |
+| `category` | Category of correction |
+| `changes` | List of field changes |
+| `documents` | Supporting documents |
+| `history` | Status change history |
+| `id` | Correction request ID |
+| `nid` | National ID number |
+| `notes` | Additional notes |
+| `source` | Source of the request |
+| `status` | Current status of the request |
+| `submittedAt` | Submission timestamp |
+| `updatedAt` | Last update timestamp |
 
 Operations: List, Load.
 
@@ -331,8 +331,8 @@ Create an instance: `$application = $client->Application();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `notes` | `string` |  |
-| `reason` | `string` |  |
+| `notes` | `string` | Approval notes or comments |
+| `reason` | `string` | Reason for rejection |
 
 #### Example: Load
 
@@ -365,16 +365,16 @@ Create an instance: `$authentication = $client->Authentication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
+| `id` | `string` | User ID |
 | `message` | `string` |  |
-| `name` | `string` |  |
-| `organization` | `string` |  |
-| `otp` | `string` |  |
-| `password` | `string` |  |
-| `role` | `string` |  |
-| `sessionId` | `string` |  |
+| `name` | `string` | Full name |
+| `organization` | `string` | Organization name |
+| `otp` | `string` | 6-digit OTP code |
+| `password` | `string` | User password |
+| `role` | `string` | User role |
+| `sessionId` | `string` | Session identifier for OTP verification |
 | `success` | `bool` |  |
-| `username` | `string` |  |
+| `username` | `string` | Username or employee ID |
 
 #### Example: Create
 
@@ -402,18 +402,18 @@ Create an instance: `$correction_request = $client->CorrectionRequest();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `applicantName` | `string` |  |
-| `category` | `string` |  |
-| `changes` | `array` |  |
-| `documents` | `array` |  |
-| `history` | `array` |  |
-| `id` | `string` |  |
-| `nid` | `string` |  |
-| `notes` | `string` |  |
-| `source` | `string` |  |
-| `status` | `string` |  |
-| `submittedAt` | `string` |  |
-| `updatedAt` | `string` |  |
+| `applicantName` | `string` | Name of the applicant |
+| `category` | `string` | Category of correction |
+| `changes` | `array` | List of field changes |
+| `documents` | `array` | Supporting documents |
+| `history` | `array` | Status change history |
+| `id` | `string` | Correction request ID |
+| `nid` | `string` | National ID number |
+| `notes` | `string` | Additional notes |
+| `source` | `string` | Source of the request |
+| `status` | `string` | Current status of the request |
+| `submittedAt` | `string` | Submission timestamp |
+| `updatedAt` | `string` | Last update timestamp |
 
 #### Example: Load
 

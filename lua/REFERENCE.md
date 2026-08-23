@@ -99,8 +99,8 @@ local application = client:Application(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `notes` | `string` | No |  |
-| `reason` | `string` | Yes |  |
+| `notes` | `string` | No | Approval notes or comments |
+| `reason` | `string` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -163,16 +163,16 @@ local authentication = client:Authentication(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `id` | `string` | No | User ID |
 | `message` | `string` | No |  |
-| `name` | `string` | No |  |
-| `organization` | `string` | No |  |
-| `otp` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-| `role` | `string` | No |  |
-| `sessionId` | `string` | No |  |
+| `name` | `string` | No | Full name |
+| `organization` | `string` | No | Organization name |
+| `otp` | `string` | Yes | 6-digit OTP code |
+| `password` | `string` | Yes | User password |
+| `role` | `string` | No | User role |
+| `sessionId` | `string` | No | Session identifier for OTP verification |
 | `success` | `boolean` | No |  |
-| `username` | `string` | Yes |  |
+| `username` | `string` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
@@ -243,18 +243,18 @@ local correction_request = client:CorrectionRequest(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `applicantName` | `string` | No |  |
-| `category` | `string` | No |  |
-| `changes` | `table` | No |  |
-| `documents` | `table` | No |  |
-| `history` | `table` | No |  |
-| `id` | `string` | No |  |
-| `nid` | `string` | No |  |
-| `notes` | `string` | No |  |
-| `source` | `string` | No |  |
-| `status` | `string` | No |  |
-| `submittedAt` | `string` | No |  |
-| `updatedAt` | `string` | No |  |
+| `applicantName` | `string` | No | Name of the applicant |
+| `category` | `string` | No | Category of correction |
+| `changes` | `table` | No | List of field changes |
+| `documents` | `table` | No | Supporting documents |
+| `history` | `table` | No | Status change history |
+| `id` | `string` | No | Correction request ID |
+| `nid` | `string` | No | National ID number |
+| `notes` | `string` | No | Additional notes |
+| `source` | `string` | No | Source of the request |
+| `status` | `string` | No | Current status of the request |
+| `submittedAt` | `string` | No | Submission timestamp |
+| `updatedAt` | `string` | No | Last update timestamp |
 
 ### Operations
 

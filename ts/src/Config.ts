@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'NidCorrectionPortal',
+        slug: "nid-correction-portal",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -66,11 +77,13 @@ class Config {
       "fields": [
         {
           "name": "notes",
+          "short": "Approval notes or comments",
           "type": "`$STRING`"
         },
         {
           "name": "reason",
           "req": true,
+          "short": "Reason for rejection",
           "type": "`$STRING`"
         }
       ],
@@ -221,6 +234,7 @@ class Config {
       "fields": [
         {
           "name": "id",
+          "short": "User ID",
           "type": "`$STRING`"
         },
         {
@@ -229,24 +243,29 @@ class Config {
         },
         {
           "name": "name",
+          "short": "Full name",
           "type": "`$STRING`"
         },
         {
           "name": "organization",
+          "short": "Organization name",
           "type": "`$STRING`"
         },
         {
           "name": "otp",
           "req": true,
+          "short": "6-digit OTP code",
           "type": "`$STRING`"
         },
         {
           "name": "password",
           "req": true,
+          "short": "User password",
           "type": "`$STRING`"
         },
         {
           "name": "role",
+          "short": "User role",
           "type": "`$STRING`"
         },
         {
@@ -257,6 +276,7 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "Session identifier for OTP verification",
           "type": "`$STRING`"
         },
         {
@@ -271,6 +291,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Username or employee ID",
           "type": "`$STRING`"
         }
       ],
@@ -336,50 +357,62 @@ class Config {
       "fields": [
         {
           "name": "applicantName",
+          "short": "Name of the applicant",
           "type": "`$STRING`"
         },
         {
           "name": "category",
+          "short": "Category of correction",
           "type": "`$STRING`"
         },
         {
           "name": "changes",
+          "short": "List of field changes",
           "type": "`$ARRAY`"
         },
         {
           "name": "documents",
+          "short": "Supporting documents",
           "type": "`$ARRAY`"
         },
         {
           "name": "history",
+          "short": "Status change history",
           "type": "`$ARRAY`"
         },
         {
           "name": "id",
+          "short": "Correction request ID",
           "type": "`$STRING`"
         },
         {
           "name": "nid",
+          "short": "National ID number",
           "type": "`$STRING`"
         },
         {
           "name": "notes",
+          "short": "Additional notes",
           "type": "`$STRING`"
         },
         {
           "name": "source",
+          "short": "Source of the request",
           "type": "`$STRING`"
         },
         {
           "name": "status",
+          "short": "Current status of the request",
           "type": "`$STRING`"
         },
         {
           "name": "submittedAt",
+          "short": "Submission timestamp",
           "type": "`$STRING`"
         },
         {
           "name": "updatedAt",
+          "short": "Last update timestamp",
           "type": "`$STRING`"
         }
       ],

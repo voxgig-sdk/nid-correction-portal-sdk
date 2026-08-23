@@ -8,11 +8,13 @@ main: kit: entity: application: {
     {
       name: "notes"
       req: false
+      short: "Approval notes or comments"
       type: "`$STRING`"
     }
     {
       name: "reason"
       req: true
+      short: "Reason for rejection"
       type: "`$STRING`"
     }
   ]
