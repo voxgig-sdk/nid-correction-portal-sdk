@@ -96,6 +96,7 @@ application = client.Application()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `notes` | `str` | No | Approval notes or comments |
 | `reason` | `str` | Yes | Reason for rejection |
 

@@ -7,6 +7,7 @@
 -- edit by hand.
 
 ---@class Application
+---@field id? string
 ---@field notes? string
 ---@field reason string
 

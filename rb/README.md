@@ -254,6 +254,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `notes` | Approval notes or comments |
 | `reason` | Reason for rejection |
 
@@ -321,6 +322,7 @@ Create an instance: `application = client.Application`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `notes` | `String` | Approval notes or comments |
 | `reason` | `String` | Reason for rejection |
 

@@ -243,6 +243,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `notes` | Approval notes or comments |
 | `reason` | Reason for rejection |
 
@@ -310,6 +311,7 @@ Create an instance: `local application = client:Application(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `notes` | `string` | Approval notes or comments |
 | `reason` | `string` | Reason for rejection |
 

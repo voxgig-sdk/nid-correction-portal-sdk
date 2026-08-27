@@ -101,6 +101,7 @@ $application = $client->Application();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `notes` | `string` | No | Approval notes or comments |
 | `reason` | `string` | Yes | Reason for rejection |
 

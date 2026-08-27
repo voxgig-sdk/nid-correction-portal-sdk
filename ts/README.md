@@ -158,7 +158,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -308,6 +308,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `notes` | Approval notes or comments |
 | `reason` | Reason for rejection |
 
@@ -375,6 +376,7 @@ Create an instance: `const application = client.Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `notes` | `string` | Approval notes or comments |
 | `reason` | `string` | Reason for rejection |
 

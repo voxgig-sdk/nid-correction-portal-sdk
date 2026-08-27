@@ -28,6 +28,7 @@ module NidCorrectionPortalConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -47,6 +48,10 @@ module NidCorrectionPortalConfig
       "entity" => {
         "application" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "notes",
               "short" => "Approval notes or comments",

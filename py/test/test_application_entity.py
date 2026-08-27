@@ -46,11 +46,16 @@ class TestApplicationEntity:
 
         application_ref01_data = helpers.to_map(runner.entity_data(application_ref01_ent.create(application_ref01_data, None)))
         assert application_ref01_data is not None
+        assert application_ref01_data["id"] is not None
 
         # LOAD
-        application_ref01_match_dt0 = {}
+        application_ref01_match_dt0 = {
+            "id": application_ref01_data["id"],
+        }
         application_ref01_data_dt0_loaded = application_ref01_ent.load(application_ref01_match_dt0, None)
-        assert application_ref01_data_dt0_loaded is not None
+        application_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(application_ref01_data_dt0_loaded))
+        assert application_ref01_data_dt0_load_result is not None
+        assert application_ref01_data_dt0_load_result["id"] == application_ref01_data["id"]
 
 
 

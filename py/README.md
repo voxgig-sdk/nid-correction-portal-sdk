@@ -258,6 +258,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `notes` | Approval notes or comments |
 | `reason` | Reason for rejection |
 
@@ -325,6 +326,7 @@ Create an instance: `application = client.Application()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `notes` | `str` | Approval notes or comments |
 | `reason` | `str` | Reason for rejection |
 

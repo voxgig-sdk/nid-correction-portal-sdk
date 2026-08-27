@@ -21,6 +21,7 @@ class ApplicationRequired(TypedDict):
 
 
 class Application(ApplicationRequired, total=False):
+    id: str
     notes: str
 
 

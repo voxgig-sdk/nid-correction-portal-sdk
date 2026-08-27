@@ -39,11 +39,16 @@ class ApplicationEntityTest < Minitest::Test
     application_ref01_data_result = application_ref01_ent.create(application_ref01_data, nil)
     application_ref01_data = Helpers.to_map(application_ref01_data_result.respond_to?(:data_get) ? application_ref01_data_result.data_get : application_ref01_data_result)
     assert !application_ref01_data.nil?
+    assert !application_ref01_data["id"].nil?
 
     # LOAD
-    application_ref01_match_dt0 = {}
+    application_ref01_match_dt0 = {
+      "id" => application_ref01_data["id"],
+    }
     application_ref01_data_dt0_loaded = application_ref01_ent.load(application_ref01_match_dt0, nil)
-    assert !application_ref01_data_dt0_loaded.nil?
+    application_ref01_data_dt0_load_result = Helpers.to_map(application_ref01_data_dt0_loaded.respond_to?(:data_get) ? application_ref01_data_dt0_loaded.data_get : application_ref01_data_dt0_loaded)
+    assert !application_ref01_data_dt0_load_result.nil?
+    assert_equal application_ref01_data_dt0_load_result["id"], application_ref01_data["id"]
 
   end
 end

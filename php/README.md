@@ -264,6 +264,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `notes` | Approval notes or comments |
 | `reason` | Reason for rejection |
 
@@ -331,6 +332,7 @@ Create an instance: `$application = $client->Application();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `notes` | `string` | Approval notes or comments |
 | `reason` | `string` | Reason for rejection |
 

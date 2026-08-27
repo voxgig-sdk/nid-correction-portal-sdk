@@ -15,6 +15,7 @@ declare(strict_types=1);
 /** Application entity data model. */
 class Application
 {
+    public ?string $id = null;
     public ?string $notes = null;
     public string $reason;
 }

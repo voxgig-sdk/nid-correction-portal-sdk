@@ -14,6 +14,7 @@ import (
 
 // Application is the typed data model for the application entity.
 type Application struct {
+	Id *string `json:"id,omitempty"`
 	Notes *string `json:"notes,omitempty"`
 	Reason string `json:"reason"`
 }

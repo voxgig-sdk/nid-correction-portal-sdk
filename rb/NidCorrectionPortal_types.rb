@@ -10,12 +10,16 @@
 
 # Application entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] notes
 #   @return [String, nil]
 #
 # @!attribute [rw] reason
 #   @return [String]
 Application = Struct.new(
+  :id,
   :notes,
   :reason,
   keyword_init: true

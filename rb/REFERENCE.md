@@ -102,6 +102,7 @@ application = client.Application
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `notes` | `String` | No | Approval notes or comments |
 | `reason` | `String` | Yes | Reason for rejection |
 

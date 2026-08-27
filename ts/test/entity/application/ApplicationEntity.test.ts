@@ -63,8 +63,14 @@ describe('ApplicationEntity', async () => {
     let application_ref01_data = setup.data.new.application['application_ref01']
 
     application_ref01_data = (await application_ref01_ent.create(application_ref01_data)).data()
-    assert(null != application_ref01_data)
+    assert(null != application_ref01_data.id)
 
+
+    // LOAD
+    const application_ref01_match_dt0: any = {}
+    application_ref01_match_dt0.id = application_ref01_data.id
+    const application_ref01_data_dt0 = (await application_ref01_ent.load(application_ref01_match_dt0)).data()
+    assert(application_ref01_data_dt0.id === application_ref01_data.id)
 
 
   })

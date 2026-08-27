@@ -275,6 +275,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"notes"` | Approval notes or comments |
 | `"reason"` | Reason for rejection |
 
@@ -342,6 +343,7 @@ Create an instance: `application := client.Application(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `notes` | `string` | Approval notes or comments |
 | `reason` | `string` | Reason for rejection |
 
