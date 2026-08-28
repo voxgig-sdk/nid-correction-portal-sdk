@@ -79,17 +79,12 @@ export interface CorrectionRequestLoadMatch {
 }
 
 export interface CorrectionRequestListMatch {
-  applicantName?: string
+  applicant_name?: string
   category?: string
-  changes?: any[]
-  documents?: any[]
-  history?: any[]
-  id?: string
+  limit?: number
   nid?: string
-  notes?: string
+  page?: number
   source?: string
   status?: string
-  submittedAt?: string
-  updatedAt?: string
 }
 

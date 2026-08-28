@@ -90,17 +90,12 @@ class CorrectionRequestLoadMatch
 /** Request payload for CorrectionRequest#list. */
 class CorrectionRequestListMatch
 {
-    public ?string $applicantName = null;
+    public ?string $applicant_name = null;
     public ?string $category = null;
-    public ?array $changes = null;
-    public ?array $documents = null;
-    public ?array $history = null;
-    public ?string $id = null;
+    public ?int $limit = null;
     public ?string $nid = null;
-    public ?string $notes = null;
+    public ?int $page = null;
     public ?string $source = null;
     public ?string $status = null;
-    public ?string $submittedAt = null;
-    public ?string $updatedAt = null;
 }
 

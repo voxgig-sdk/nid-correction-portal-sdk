@@ -90,15 +90,10 @@ class CorrectionRequestLoadMatch(TypedDict):
 
 
 class CorrectionRequestListMatch(TypedDict, total=False):
-    applicantName: str
+    applicant_name: str
     category: str
-    changes: list
-    documents: list
-    history: list
-    id: str
+    limit: int
     nid: str
-    notes: str
+    page: int
     source: str
     status: str
-    submittedAt: str
-    updatedAt: str

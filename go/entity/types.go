@@ -82,18 +82,13 @@ type CorrectionRequestLoadMatch struct {
 
 // CorrectionRequestListMatch is the typed request payload for CorrectionRequest.ListTyped.
 type CorrectionRequestListMatch struct {
-	ApplicantName *string `json:"applicantName,omitempty"`
+	ApplicantName *string `json:"applicant_name,omitempty"`
 	Category *string `json:"category,omitempty"`
-	Changes *[]any `json:"changes,omitempty"`
-	Documents *[]any `json:"documents,omitempty"`
-	History *[]any `json:"history,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 	Nid *string `json:"nid,omitempty"`
-	Notes *string `json:"notes,omitempty"`
+	Page *int `json:"page,omitempty"`
 	Source *string `json:"source,omitempty"`
 	Status *string `json:"status,omitempty"`
-	SubmittedAt *string `json:"submittedAt,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

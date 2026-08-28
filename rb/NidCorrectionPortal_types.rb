@@ -205,54 +205,34 @@ CorrectionRequestLoadMatch = Struct.new(
 
 # Request payload for CorrectionRequest#list.
 #
-# @!attribute [rw] applicantName
+# @!attribute [rw] applicant_name
 #   @return [String, nil]
 #
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] changes
-#   @return [Array, nil]
-#
-# @!attribute [rw] documents
-#   @return [Array, nil]
-#
-# @!attribute [rw] history
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
 # @!attribute [rw] nid
 #   @return [String, nil]
 #
-# @!attribute [rw] notes
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
 # @!attribute [rw] source
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
-#
-# @!attribute [rw] submittedAt
-#   @return [String, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [String, nil]
 CorrectionRequestListMatch = Struct.new(
-  :applicantName,
+  :applicant_name,
   :category,
-  :changes,
-  :documents,
-  :history,
-  :id,
+  :limit,
   :nid,
-  :notes,
+  :page,
   :source,
   :status,
-  :submittedAt,
-  :updatedAt,
   keyword_init: true
 )
 

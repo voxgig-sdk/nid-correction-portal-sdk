@@ -61,18 +61,13 @@
 ---@field id string
 
 ---@class CorrectionRequestListMatch
----@field applicantName? string
+---@field applicant_name? string
 ---@field category? string
----@field changes? table
----@field documents? table
----@field history? table
----@field id? string
+---@field limit? number
 ---@field nid? string
----@field notes? string
+---@field page? number
 ---@field source? string
 ---@field status? string
----@field submittedAt? string
----@field updatedAt? string
 
 local M = {}
 
