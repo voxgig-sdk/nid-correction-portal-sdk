@@ -77,7 +77,7 @@ def authentication_basic_setup(extra)
     "NID_CORRECTION_PORTAL_TEST_AUTHENTICATION_ENTID" => idmap,
     "NID_CORRECTION_PORTAL_TEST_LIVE" => "FALSE",
     "NID_CORRECTION_PORTAL_TEST_EXPLAIN" => "FALSE",
-    "NID_CORRECTION_PORTAL_APIKEY" => "NONE",
+    "NID_CORRECTION_PORTAL_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -88,6 +88,9 @@ def authentication_basic_setup(extra)
 
   if env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["NID_CORRECTION_PORTAL_APIKEY"],
       },

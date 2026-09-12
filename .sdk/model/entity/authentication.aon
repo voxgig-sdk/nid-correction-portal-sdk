@@ -35,6 +35,7 @@ main: kit: entity: authentication: {
       type: "`$STRING`"
     }
     {
+      format: "password"
       name: "password"
       req: true
       short: "User password"
@@ -90,9 +91,13 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/auth/login"
-          parts: [
-            "auth"
-            "login"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "login"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -102,9 +107,13 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/auth/logout"
-          parts: [
-            "auth"
-            "logout"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "logout"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -114,9 +123,13 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/auth/verify-otp"
-          parts: [
-            "auth"
-            "verify-otp"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "verify-otp"
+            }
           ]
           transform: {
             req: "`reqdata`"

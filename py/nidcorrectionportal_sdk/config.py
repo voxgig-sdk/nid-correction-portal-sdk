@@ -1,6 +1,14 @@
 # NidCorrectionPortal SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -73,6 +81,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "application",
         "op": {
           "create": {
@@ -94,10 +106,16 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/applications/{id}/approve",
-                "parts": [
-                  "applications",
-                  "{id}",
-                  "approve",
+                "segments": [
+                  {
+                    "lit": "applications",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "approve",
+                  },
                 ],
                 "select": {
                   "$action": "approve",
@@ -109,6 +127,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "applications",
+                  "{id}",
+                  "approve",
+                ],
               },
               {
                 "args": {
@@ -125,10 +148,16 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/applications/{id}/reject",
-                "parts": [
-                  "applications",
-                  "{id}",
-                  "reject",
+                "segments": [
+                  {
+                    "lit": "applications",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "reject",
+                  },
                 ],
                 "select": {
                   "$action": "reject",
@@ -140,6 +169,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "applications",
+                  "{id}",
+                  "reject",
+                ],
               },
               {
                 "args": {
@@ -156,10 +190,16 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/applications/{id}/rollback",
-                "parts": [
-                  "applications",
-                  "{id}",
-                  "rollback",
+                "segments": [
+                  {
+                    "lit": "applications",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "rollback",
+                  },
                 ],
                 "select": {
                   "$action": "rollback",
@@ -171,6 +211,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "applications",
+                  "{id}",
+                  "rollback",
+                ],
               },
             ],
           },
@@ -193,10 +238,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/applications/{id}/download-pdf",
-                "parts": [
-                  "applications",
-                  "{id}",
-                  "download-pdf",
+                "segments": [
+                  {
+                    "lit": "applications",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "download-pdf",
+                  },
                 ],
                 "select": {
                   "$action": "download_pdf",
@@ -208,6 +259,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "applications",
+                  "{id}",
+                  "download-pdf",
+                ],
               },
             ],
           },
@@ -244,6 +300,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "password",
             "name": "password",
             "req": True,
             "short": "User password",
@@ -281,6 +338,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "authentication",
         "op": {
           "create": {
@@ -292,45 +353,69 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/login",
-                "parts": [
-                  "auth",
-                  "login",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "login",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "auth",
+                  "login",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/logout",
-                "parts": [
-                  "auth",
-                  "logout",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "logout",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "auth",
+                  "logout",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/verify-otp",
-                "parts": [
-                  "auth",
-                  "verify-otp",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "verify-otp",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.user`",
                 },
+                "parts": [
+                  "auth",
+                  "verify-otp",
+                ],
               },
             ],
           },
@@ -392,16 +477,22 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "submittedAt",
             "short": "Submission timestamp",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "updatedAt",
             "short": "Last update timestamp",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "correction_request",
         "op": {
           "list": {
@@ -460,8 +551,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/correction-requests",
-                "parts": [
-                  "correction-requests",
+                "segments": [
+                  {
+                    "lit": "correction-requests",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -478,6 +571,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "correction-requests",
+                ],
               },
             ],
           },
@@ -500,9 +596,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/correction-requests/{id}",
-                "parts": [
-                  "correction-requests",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "correction-requests",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -513,6 +613,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "correction-requests",
+                  "{id}",
+                ],
               },
             ],
           },

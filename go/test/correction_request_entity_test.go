@@ -98,7 +98,7 @@ func TestCorrectionRequestEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		correctionRequestRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.correction_request", setup.data)))
+		correctionRequestRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.correction_request")))
 		var correctionRequestRef01Data map[string]any
 		if len(correctionRequestRef01DataRaw) > 0 {
 			correctionRequestRef01Data = core.ToMapAny(correctionRequestRef01DataRaw[0][1])
@@ -163,7 +163,7 @@ func correction_requestBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"correction_request01", "correction_request02", "correction_request03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -183,7 +183,7 @@ func correction_requestBasicSetup(extra map[string]any) *entityTestSetup {
 		"NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID": idmap,
 		"NID_CORRECTION_PORTAL_TEST_LIVE":      "FALSE",
 		"NID_CORRECTION_PORTAL_TEST_EXPLAIN":   "FALSE",
-		"NID_CORRECTION_PORTAL_APIKEY":         "NONE",
+		"NID_CORRECTION_PORTAL_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID"])
@@ -192,11 +192,23 @@ func correction_requestBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["NID_CORRECTION_PORTAL_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewNidCorrectionPortalSDK(core.ToMapAny(mergedOpts))
 	}

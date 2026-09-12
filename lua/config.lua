@@ -52,6 +52,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "application",
         ["op"] = {
           ["create"] = {
@@ -73,10 +77,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/applications/{id}/approve",
-                ["parts"] = {
-                  "applications",
-                  "{id}",
-                  "approve",
+                ["segments"] = {
+                  {
+                    ["lit"] = "applications",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "approve",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "approve",
@@ -87,6 +97,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "applications",
+                  "{id}",
+                  "approve",
                 },
               },
               {
@@ -104,10 +119,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/applications/{id}/reject",
-                ["parts"] = {
-                  "applications",
-                  "{id}",
-                  "reject",
+                ["segments"] = {
+                  {
+                    ["lit"] = "applications",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "reject",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "reject",
@@ -118,6 +139,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "applications",
+                  "{id}",
+                  "reject",
                 },
               },
               {
@@ -135,10 +161,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/applications/{id}/rollback",
-                ["parts"] = {
-                  "applications",
-                  "{id}",
-                  "rollback",
+                ["segments"] = {
+                  {
+                    ["lit"] = "applications",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "rollback",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "rollback",
@@ -149,6 +181,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "applications",
+                  "{id}",
+                  "rollback",
                 },
               },
             },
@@ -172,10 +209,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/applications/{id}/download-pdf",
-                ["parts"] = {
-                  "applications",
-                  "{id}",
-                  "download-pdf",
+                ["segments"] = {
+                  {
+                    ["lit"] = "applications",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "download-pdf",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "download_pdf",
@@ -186,6 +229,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "applications",
+                  "{id}",
+                  "download-pdf",
                 },
               },
             },
@@ -223,6 +271,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "password",
             ["name"] = "password",
             ["req"] = true,
             ["short"] = "User password",
@@ -260,6 +309,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "authentication",
         ["op"] = {
           ["create"] = {
@@ -271,14 +324,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/login",
-                ["parts"] = {
-                  "auth",
-                  "login",
+                ["segments"] = {
+                  {
+                    ["lit"] = "auth",
+                  },
+                  {
+                    ["lit"] = "login",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "auth",
+                  "login",
                 },
               },
               {
@@ -286,14 +347,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/logout",
-                ["parts"] = {
-                  "auth",
-                  "logout",
+                ["segments"] = {
+                  {
+                    ["lit"] = "auth",
+                  },
+                  {
+                    ["lit"] = "logout",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "auth",
+                  "logout",
                 },
               },
               {
@@ -301,14 +370,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/verify-otp",
-                ["parts"] = {
-                  "auth",
-                  "verify-otp",
+                ["segments"] = {
+                  {
+                    ["lit"] = "auth",
+                  },
+                  {
+                    ["lit"] = "verify-otp",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.user`",
+                },
+                ["parts"] = {
+                  "auth",
+                  "verify-otp",
                 },
               },
             },
@@ -371,15 +448,21 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "submittedAt",
             ["short"] = "Submission timestamp",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updatedAt",
             ["short"] = "Last update timestamp",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "correction_request",
         ["op"] = {
@@ -439,8 +522,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/correction-requests",
-                ["parts"] = {
-                  "correction-requests",
+                ["segments"] = {
+                  {
+                    ["lit"] = "correction-requests",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -456,6 +541,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "correction-requests",
                 },
               },
             },
@@ -479,9 +567,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/correction-requests/{id}",
-                ["parts"] = {
-                  "correction-requests",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "correction-requests",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -491,6 +583,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "correction-requests",
+                  "{id}",
                 },
               },
             },

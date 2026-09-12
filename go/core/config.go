@@ -56,6 +56,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "application",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -77,10 +81,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/approve",
-								"parts": []any{
-									"applications",
-									"{id}",
-									"approve",
+								"segments": []any{
+									map[string]any{
+										"lit": "applications",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "approve",
+									},
 								},
 								"select": map[string]any{
 									"$action": "approve",
@@ -91,6 +101,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"approve",
 								},
 							},
 							map[string]any{
@@ -108,10 +123,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/reject",
-								"parts": []any{
-									"applications",
-									"{id}",
-									"reject",
+								"segments": []any{
+									map[string]any{
+										"lit": "applications",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "reject",
+									},
 								},
 								"select": map[string]any{
 									"$action": "reject",
@@ -122,6 +143,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"reject",
 								},
 							},
 							map[string]any{
@@ -139,10 +165,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/rollback",
-								"parts": []any{
-									"applications",
-									"{id}",
-									"rollback",
+								"segments": []any{
+									map[string]any{
+										"lit": "applications",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "rollback",
+									},
 								},
 								"select": map[string]any{
 									"$action": "rollback",
@@ -153,6 +185,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"rollback",
 								},
 							},
 						},
@@ -176,10 +213,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/applications/{id}/download-pdf",
-								"parts": []any{
-									"applications",
-									"{id}",
-									"download-pdf",
+								"segments": []any{
+									map[string]any{
+										"lit": "applications",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "download-pdf",
+									},
 								},
 								"select": map[string]any{
 									"$action": "download_pdf",
@@ -190,6 +233,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"download-pdf",
 								},
 							},
 						},
@@ -227,6 +275,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "password",
 						"name": "password",
 						"req": true,
 						"short": "User password",
@@ -264,6 +313,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "authentication",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -275,14 +328,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/login",
-								"parts": []any{
-									"auth",
-									"login",
+								"segments": []any{
+									map[string]any{
+										"lit": "auth",
+									},
+									map[string]any{
+										"lit": "login",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"auth",
+									"login",
 								},
 							},
 							map[string]any{
@@ -290,14 +351,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/logout",
-								"parts": []any{
-									"auth",
-									"logout",
+								"segments": []any{
+									map[string]any{
+										"lit": "auth",
+									},
+									map[string]any{
+										"lit": "logout",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"auth",
+									"logout",
 								},
 							},
 							map[string]any{
@@ -305,14 +374,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/verify-otp",
-								"parts": []any{
-									"auth",
-									"verify-otp",
+								"segments": []any{
+									map[string]any{
+										"lit": "auth",
+									},
+									map[string]any{
+										"lit": "verify-otp",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.user`",
+								},
+								"parts": []any{
+									"auth",
+									"verify-otp",
 								},
 							},
 						},
@@ -375,15 +452,21 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "submittedAt",
 						"short": "Submission timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "updatedAt",
 						"short": "Last update timestamp",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "correction_request",
 				"op": map[string]any{
@@ -443,8 +526,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/correction-requests",
-								"parts": []any{
-									"correction-requests",
+								"segments": []any{
+									map[string]any{
+										"lit": "correction-requests",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -460,6 +545,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"correction-requests",
 								},
 							},
 						},
@@ -483,9 +571,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/correction-requests/{id}",
-								"parts": []any{
-									"correction-requests",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "correction-requests",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -495,6 +587,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"correction-requests",
+									"{id}",
 								},
 							},
 						},
@@ -506,6 +602,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

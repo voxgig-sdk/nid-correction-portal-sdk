@@ -64,6 +64,10 @@ module NidCorrectionPortalConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "application",
           "op" => {
             "create" => {
@@ -85,10 +89,16 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/applications/{id}/approve",
-                  "parts" => [
-                    "applications",
-                    "{id}",
-                    "approve",
+                  "segments" => [
+                    {
+                      "lit" => "applications",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "approve",
+                    },
                   ],
                   "select" => {
                     "$action" => "approve",
@@ -100,6 +110,11 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "applications",
+                    "{id}",
+                    "approve",
+                  ],
                 },
                 {
                   "args" => {
@@ -116,10 +131,16 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/applications/{id}/reject",
-                  "parts" => [
-                    "applications",
-                    "{id}",
-                    "reject",
+                  "segments" => [
+                    {
+                      "lit" => "applications",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "reject",
+                    },
                   ],
                   "select" => {
                     "$action" => "reject",
@@ -131,6 +152,11 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "applications",
+                    "{id}",
+                    "reject",
+                  ],
                 },
                 {
                   "args" => {
@@ -147,10 +173,16 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/applications/{id}/rollback",
-                  "parts" => [
-                    "applications",
-                    "{id}",
-                    "rollback",
+                  "segments" => [
+                    {
+                      "lit" => "applications",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "rollback",
+                    },
                   ],
                   "select" => {
                     "$action" => "rollback",
@@ -162,6 +194,11 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "applications",
+                    "{id}",
+                    "rollback",
+                  ],
                 },
               ],
             },
@@ -184,10 +221,16 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/applications/{id}/download-pdf",
-                  "parts" => [
-                    "applications",
-                    "{id}",
-                    "download-pdf",
+                  "segments" => [
+                    {
+                      "lit" => "applications",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                    {
+                      "lit" => "download-pdf",
+                    },
                   ],
                   "select" => {
                     "$action" => "download_pdf",
@@ -199,6 +242,11 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "applications",
+                    "{id}",
+                    "download-pdf",
+                  ],
                 },
               ],
             },
@@ -235,6 +283,7 @@ module NidCorrectionPortalConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "password",
               "name" => "password",
               "req" => true,
               "short" => "User password",
@@ -272,6 +321,10 @@ module NidCorrectionPortalConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "authentication",
           "op" => {
             "create" => {
@@ -283,45 +336,69 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/login",
-                  "parts" => [
-                    "auth",
-                    "login",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "login",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "auth",
+                    "login",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/logout",
-                  "parts" => [
-                    "auth",
-                    "logout",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "logout",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "auth",
+                    "logout",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/verify-otp",
-                  "parts" => [
-                    "auth",
-                    "verify-otp",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "verify-otp",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "auth",
+                    "verify-otp",
+                  ],
                 },
               ],
             },
@@ -383,16 +460,22 @@ module NidCorrectionPortalConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "submittedAt",
               "short" => "Submission timestamp",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "short" => "Last update timestamp",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "correction_request",
           "op" => {
             "list" => {
@@ -451,8 +534,10 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/correction-requests",
-                  "parts" => [
-                    "correction-requests",
+                  "segments" => [
+                    {
+                      "lit" => "correction-requests",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -469,6 +554,9 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "correction-requests",
+                  ],
                 },
               ],
             },
@@ -491,9 +579,13 @@ module NidCorrectionPortalConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/correction-requests/{id}",
-                  "parts" => [
-                    "correction-requests",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "correction-requests",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -504,6 +596,10 @@ module NidCorrectionPortalConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "correction-requests",
+                    "{id}",
+                  ],
                 },
               ],
             },

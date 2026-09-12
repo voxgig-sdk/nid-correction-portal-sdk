@@ -196,14 +196,22 @@ func correction_requestDirectSetup(mockres any) *correction_requestDirectSetupRe
 	env := envOverride(map[string]any{
 		"NID_CORRECTION_PORTAL_TEST_CORRECTION_REQUEST_ENTID": map[string]any{},
 		"NID_CORRECTION_PORTAL_TEST_LIVE":    "FALSE",
-		"NID_CORRECTION_PORTAL_APIKEY":       "NONE",
+		"NID_CORRECTION_PORTAL_APIKEY":       "",
 	})
 
 	live := env["NID_CORRECTION_PORTAL_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["NID_CORRECTION_PORTAL_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewNidCorrectionPortalSDK(mergedOpts)
 

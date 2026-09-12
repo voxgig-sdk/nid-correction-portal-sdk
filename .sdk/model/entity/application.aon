@@ -48,10 +48,16 @@ main: kit: entity: application: {
           }
           method: "POST"
           orig: "/applications/{id}/approve"
-          parts: [
-            "applications"
-            "{id}"
-            "approve"
+          segments: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "approve"
+            }
           ]
           select: {
             "$action": "approve"
@@ -78,10 +84,16 @@ main: kit: entity: application: {
           }
           method: "POST"
           orig: "/applications/{id}/reject"
-          parts: [
-            "applications"
-            "{id}"
-            "reject"
+          segments: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "reject"
+            }
           ]
           select: {
             "$action": "reject"
@@ -108,10 +120,16 @@ main: kit: entity: application: {
           }
           method: "POST"
           orig: "/applications/{id}/rollback"
-          parts: [
-            "applications"
-            "{id}"
-            "rollback"
+          segments: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "rollback"
+            }
           ]
           select: {
             "$action": "rollback"
@@ -143,10 +161,16 @@ main: kit: entity: application: {
           }
           method: "GET"
           orig: "/applications/{id}/download-pdf"
-          parts: [
-            "applications"
-            "{id}"
-            "download-pdf"
+          segments: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "download-pdf"
+            }
           ]
           select: {
             "$action": "download_pdf"

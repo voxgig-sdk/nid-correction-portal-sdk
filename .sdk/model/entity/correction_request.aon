@@ -66,12 +66,14 @@ main: kit: entity: correction_request: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "submittedAt"
       req: false
       short: "Submission timestamp"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       short: "Last update timestamp"
@@ -147,8 +149,10 @@ main: kit: entity: correction_request: {
           }
           method: "GET"
           orig: "/correction-requests"
-          parts: [
-            "correction-requests"
+          segments: [
+            {
+              lit: "correction-requests"
+            }
           ]
           select: {
             exist: [
@@ -185,9 +189,13 @@ main: kit: entity: correction_request: {
           }
           method: "GET"
           orig: "/correction-requests/{id}"
-          parts: [
-            "correction-requests"
-            "{id}"
+          segments: [
+            {
+              lit: "correction-requests"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
