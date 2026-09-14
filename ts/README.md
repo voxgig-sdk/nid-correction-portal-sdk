@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal'
+import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal-sdk'
 
 const client = new NidCorrectionPortalSDK({
   apikey: process.env.NID_CORRECTION_PORTAL_APIKEY,
@@ -555,7 +555,7 @@ nid-correction-portal/
 Import the SDK from the package root:
 
 ```ts
-import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal'
+import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal-sdk'
 ```
 
 ### Entity state

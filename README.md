@@ -105,7 +105,7 @@ local result, err = client:Application():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nid-correction-portal-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
 | Python | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
 | PHP | `voxgig-sdk/nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/nid-correction-portal-sdk/go` | `go get github.com/voxgig-sdk/nid-correction-portal-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Application():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal'
+import { NidCorrectionPortalSDK } from '@voxgig-sdk/nid-correction-portal-sdk'
 
 const client = new NidCorrectionPortalSDK({
   apikey: process.env.NID_CORRECTION_PORTAL_APIKEY,
