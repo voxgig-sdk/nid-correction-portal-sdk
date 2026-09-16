@@ -1,12 +1,18 @@
 # NidCorrectionPortal SDK feature factory
 
 from nidcorrectionportal_sdk.feature.base_feature import NidCorrectionPortalBaseFeature
+from nidcorrectionportal_sdk.feature.ratelimit_feature import NidCorrectionPortalRatelimitFeature
+from nidcorrectionportal_sdk.feature.retry_feature import NidCorrectionPortalRetryFeature
 from nidcorrectionportal_sdk.feature.test_feature import NidCorrectionPortalTestFeature
+from nidcorrectionportal_sdk.feature.timeout_feature import NidCorrectionPortalTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NidCorrectionPortalBaseFeature(),
+    "ratelimit": lambda: NidCorrectionPortalRatelimitFeature(),
+    "retry": lambda: NidCorrectionPortalRetryFeature(),
     "test": lambda: NidCorrectionPortalTestFeature(),
+    "timeout": lambda: NidCorrectionPortalTimeoutFeature(),
 }
 
 

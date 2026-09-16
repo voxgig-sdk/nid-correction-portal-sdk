@@ -25,5 +25,809 @@
         "reason": "s7a"
       }
     }
+  },
+  "requests": {
+    "POST /applications/{id}/approve": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "approveApplication",
+        "parameters": [
+          {
+            "description": "Application ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "notes": {
+                    "description": "Approval notes or comments",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "allOf": [
+                        {
+                          "properties": {
+                            "applicantName": {
+                              "description": "Name of the applicant",
+                              "type": "string"
+                            },
+                            "category": {
+                              "description": "Category of correction",
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "Correction request ID",
+                              "type": "string"
+                            },
+                            "nid": {
+                              "description": "National ID number",
+                              "type": "string"
+                            },
+                            "source": {
+                              "description": "Source of the request",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "Current status of the request",
+                              "enum": [
+                                "pending",
+                                "approved",
+                                "rejected",
+                                "processing"
+                              ],
+                              "type": "string"
+                            },
+                            "submittedAt": {
+                              "description": "Submission timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "description": "Last update timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "changes": {
+                              "description": "List of field changes",
+                              "items": {
+                                "properties": {
+                                  "field": {
+                                    "description": "Field name",
+                                    "type": "string"
+                                  },
+                                  "newValue": {
+                                    "description": "Requested new value",
+                                    "type": "string"
+                                  },
+                                  "oldValue": {
+                                    "description": "Current value",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "documents": {
+                              "description": "Supporting documents",
+                              "items": {
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "history": {
+                              "description": "Status change history",
+                              "items": {
+                                "properties": {
+                                  "notes": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "timestamp": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "user": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "notes": {
+                              "default": "none",
+                              "description": "Additional notes",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "message": {
+                      "example": "Application approved successfully",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application approved successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "bearerFormat": "JWT",
+            "description": "JWT token obtained after successful OTP verification",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /applications/{id}/reject": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "rejectApplication",
+        "parameters": [
+          {
+            "description": "Application ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "notes": {
+                    "description": "Additional notes",
+                    "type": "string"
+                  },
+                  "reason": {
+                    "description": "Reason for rejection",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "reason"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "allOf": [
+                        {
+                          "properties": {
+                            "applicantName": {
+                              "description": "Name of the applicant",
+                              "type": "string"
+                            },
+                            "category": {
+                              "description": "Category of correction",
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "Correction request ID",
+                              "type": "string"
+                            },
+                            "nid": {
+                              "description": "National ID number",
+                              "type": "string"
+                            },
+                            "source": {
+                              "description": "Source of the request",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "Current status of the request",
+                              "enum": [
+                                "pending",
+                                "approved",
+                                "rejected",
+                                "processing"
+                              ],
+                              "type": "string"
+                            },
+                            "submittedAt": {
+                              "description": "Submission timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "description": "Last update timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "changes": {
+                              "description": "List of field changes",
+                              "items": {
+                                "properties": {
+                                  "field": {
+                                    "description": "Field name",
+                                    "type": "string"
+                                  },
+                                  "newValue": {
+                                    "description": "Requested new value",
+                                    "type": "string"
+                                  },
+                                  "oldValue": {
+                                    "description": "Current value",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "documents": {
+                              "description": "Supporting documents",
+                              "items": {
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "history": {
+                              "description": "Status change history",
+                              "items": {
+                                "properties": {
+                                  "notes": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "timestamp": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "user": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "notes": {
+                              "default": "none",
+                              "description": "Additional notes",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "message": {
+                      "example": "Application rejected successfully",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application rejected successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "bearerFormat": "JWT",
+            "description": "JWT token obtained after successful OTP verification",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "POST /applications/{id}/rollback": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "rollbackApplication",
+        "parameters": [
+          {
+            "description": "Application ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "notes": {
+                    "description": "Rollback notes",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "allOf": [
+                        {
+                          "properties": {
+                            "applicantName": {
+                              "description": "Name of the applicant",
+                              "type": "string"
+                            },
+                            "category": {
+                              "description": "Category of correction",
+                              "type": "string"
+                            },
+                            "id": {
+                              "description": "Correction request ID",
+                              "type": "string"
+                            },
+                            "nid": {
+                              "description": "National ID number",
+                              "type": "string"
+                            },
+                            "source": {
+                              "description": "Source of the request",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "Current status of the request",
+                              "enum": [
+                                "pending",
+                                "approved",
+                                "rejected",
+                                "processing"
+                              ],
+                              "type": "string"
+                            },
+                            "submittedAt": {
+                              "description": "Submission timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "description": "Last update timestamp",
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        {
+                          "properties": {
+                            "changes": {
+                              "description": "List of field changes",
+                              "items": {
+                                "properties": {
+                                  "field": {
+                                    "description": "Field name",
+                                    "type": "string"
+                                  },
+                                  "newValue": {
+                                    "description": "Requested new value",
+                                    "type": "string"
+                                  },
+                                  "oldValue": {
+                                    "description": "Current value",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "documents": {
+                              "description": "Supporting documents",
+                              "items": {
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "history": {
+                              "description": "Status change history",
+                              "items": {
+                                "properties": {
+                                  "notes": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "timestamp": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "user": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "notes": {
+                              "default": "none",
+                              "description": "Additional notes",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "message": {
+                      "example": "Application rolled back successfully",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application rolled back successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "bearerFormat": "JWT",
+            "description": "JWT token obtained after successful OTP verification",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /applications/{id}/download-pdf": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadApplicationPdf",
+        "parameters": [
+          {
+            "description": "Application ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "PDF file"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "bearerFormat": "JWT",
+            "description": "JWT token obtained after successful OTP verification",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

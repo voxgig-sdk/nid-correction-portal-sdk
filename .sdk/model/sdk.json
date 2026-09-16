@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "application": {
           "active": true,
@@ -77,6 +141,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /applications/{id}/approve",
+                    "json": "{\"operationId\":\"approveApplication\",\"parameters\":[{\"description\":\"Application ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"notes\":{\"description\":\"Approval notes or comments\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":false},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"allOf\":[{\"properties\":{\"applicantName\":{\"description\":\"Name of the applicant\",\"type\":\"string\"},\"category\":{\"description\":\"Category of correction\",\"type\":\"string\"},\"id\":{\"description\":\"Correction request ID\",\"type\":\"string\"},\"nid\":{\"description\":\"National ID number\",\"type\":\"string\"},\"source\":{\"description\":\"Source of the request\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the request\",\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"},\"submittedAt\":{\"description\":\"Submission timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"changes\":{\"description\":\"List of field changes\",\"items\":{\"properties\":{\"field\":{\"description\":\"Field name\",\"type\":\"string\"},\"newValue\":{\"description\":\"Requested new value\",\"type\":\"string\"},\"oldValue\":{\"description\":\"Current value\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"documents\":{\"description\":\"Supporting documents\",\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"history\":{\"description\":\"Status change history\",\"items\":{\"properties\":{\"notes\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"timestamp\":{\"format\":\"date-time\",\"type\":\"string\"},\"user\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"notes\":{\"default\":\"none\",\"description\":\"Additional notes\",\"type\":\"string\"}},\"type\":\"object\"}]},\"message\":{\"example\":\"Application approved successfully\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application approved successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/applications/{id}/approve",
@@ -116,6 +186,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /applications/{id}/reject",
+                    "json": "{\"operationId\":\"rejectApplication\",\"parameters\":[{\"description\":\"Application ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"notes\":{\"description\":\"Additional notes\",\"type\":\"string\"},\"reason\":{\"description\":\"Reason for rejection\",\"type\":\"string\"}},\"required\":[\"reason\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"allOf\":[{\"properties\":{\"applicantName\":{\"description\":\"Name of the applicant\",\"type\":\"string\"},\"category\":{\"description\":\"Category of correction\",\"type\":\"string\"},\"id\":{\"description\":\"Correction request ID\",\"type\":\"string\"},\"nid\":{\"description\":\"National ID number\",\"type\":\"string\"},\"source\":{\"description\":\"Source of the request\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the request\",\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"},\"submittedAt\":{\"description\":\"Submission timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"changes\":{\"description\":\"List of field changes\",\"items\":{\"properties\":{\"field\":{\"description\":\"Field name\",\"type\":\"string\"},\"newValue\":{\"description\":\"Requested new value\",\"type\":\"string\"},\"oldValue\":{\"description\":\"Current value\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"documents\":{\"description\":\"Supporting documents\",\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"history\":{\"description\":\"Status change history\",\"items\":{\"properties\":{\"notes\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"timestamp\":{\"format\":\"date-time\",\"type\":\"string\"},\"user\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"notes\":{\"default\":\"none\",\"description\":\"Additional notes\",\"type\":\"string\"}},\"type\":\"object\"}]},\"message\":{\"example\":\"Application rejected successfully\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application rejected successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/applications/{id}/reject",
@@ -154,6 +230,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "POST /applications/{id}/rollback",
+                    "json": "{\"operationId\":\"rollbackApplication\",\"parameters\":[{\"description\":\"Application ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"notes\":{\"description\":\"Rollback notes\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":false},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"allOf\":[{\"properties\":{\"applicantName\":{\"description\":\"Name of the applicant\",\"type\":\"string\"},\"category\":{\"description\":\"Category of correction\",\"type\":\"string\"},\"id\":{\"description\":\"Correction request ID\",\"type\":\"string\"},\"nid\":{\"description\":\"National ID number\",\"type\":\"string\"},\"source\":{\"description\":\"Source of the request\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the request\",\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"},\"submittedAt\":{\"description\":\"Submission timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"changes\":{\"description\":\"List of field changes\",\"items\":{\"properties\":{\"field\":{\"description\":\"Field name\",\"type\":\"string\"},\"newValue\":{\"description\":\"Requested new value\",\"type\":\"string\"},\"oldValue\":{\"description\":\"Current value\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"documents\":{\"description\":\"Supporting documents\",\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"history\":{\"description\":\"Status change history\",\"items\":{\"properties\":{\"notes\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"timestamp\":{\"format\":\"date-time\",\"type\":\"string\"},\"user\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"notes\":{\"default\":\"none\",\"description\":\"Additional notes\",\"type\":\"string\"}},\"type\":\"object\"}]},\"message\":{\"example\":\"Application rolled back successfully\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application rolled back successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "POST",
@@ -199,6 +281,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /applications/{id}/download-pdf",
+                    "json": "{\"operationId\":\"downloadApplicationPdf\",\"parameters\":[{\"description\":\"Application ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/pdf\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"PDF file\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Application not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -333,6 +421,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /auth/login",
+                    "json": "{\"operationId\":\"login\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"password\":{\"description\":\"User password\",\"format\":\"password\",\"type\":\"string\"},\"username\":{\"description\":\"Username or employee ID\",\"type\":\"string\"}},\"required\":[\"username\",\"password\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"OTP sent to your mobile\",\"type\":\"string\"},\"sessionId\":{\"description\":\"Session identifier for OTP verification\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"OTP sent successfully\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Invalid credentials\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/auth/login",
@@ -353,6 +447,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /auth/logout",
+                    "json": "{\"operationId\":\"logout\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Logged out successfully\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Logged out successfully\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/auth/logout",
@@ -373,6 +473,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /auth/verify-otp",
+                    "json": "{\"operationId\":\"verifyOtp\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"otp\":{\"description\":\"6-digit OTP code\",\"pattern\":\"^[0-9]{6}$\",\"type\":\"string\"},\"sessionId\":{\"description\":\"Session identifier from login response\",\"type\":\"string\"}},\"required\":[\"sessionId\",\"otp\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"success\":{\"example\":true,\"type\":\"boolean\"},\"token\":{\"description\":\"JWT authentication token\",\"type\":\"string\"},\"user\":{\"properties\":{\"id\":{\"description\":\"User ID\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"organization\":{\"description\":\"Organization name\",\"example\":\"Bangladesh Election Commission\",\"type\":\"string\"},\"role\":{\"description\":\"User role\",\"enum\":[\"admin\",\"officer\",\"supervisor\"],\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"OTP verified successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Invalid OTP\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/auth/verify-otp",
@@ -564,6 +670,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /correction-requests",
+                    "json": "{\"operationId\":\"searchCorrectionRequests\",\"parameters\":[{\"description\":\"National ID number\",\"in\":\"query\",\"name\":\"nid\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Name of the applicant\",\"in\":\"query\",\"name\":\"applicantName\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Application status\",\"in\":\"query\",\"name\":\"status\",\"schema\":{\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"}},{\"description\":\"Correction category\",\"in\":\"query\",\"name\":\"category\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Source of the request\",\"in\":\"query\",\"name\":\"source\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of items per page\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"applicantName\":{\"description\":\"Name of the applicant\",\"type\":\"string\"},\"category\":{\"description\":\"Category of correction\",\"type\":\"string\"},\"id\":{\"description\":\"Correction request ID\",\"type\":\"string\"},\"nid\":{\"description\":\"National ID number\",\"type\":\"string\"},\"source\":{\"description\":\"Source of the request\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the request\",\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"},\"submittedAt\":{\"description\":\"Submission timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"currentPage\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"itemsPerPage\":{\"description\":\"Number of items per page\",\"type\":\"integer\"},\"totalItems\":{\"description\":\"Total number of items\",\"type\":\"integer\"},\"totalPages\":{\"description\":\"Total number of pages\",\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"List of correction requests\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/correction-requests",
@@ -608,6 +720,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /correction-requests/{id}",
+                    "json": "{\"operationId\":\"getCorrectionRequestById\",\"parameters\":[{\"description\":\"Correction request ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"allOf\":[{\"properties\":{\"applicantName\":{\"description\":\"Name of the applicant\",\"type\":\"string\"},\"category\":{\"description\":\"Category of correction\",\"type\":\"string\"},\"id\":{\"description\":\"Correction request ID\",\"type\":\"string\"},\"nid\":{\"description\":\"National ID number\",\"type\":\"string\"},\"source\":{\"description\":\"Source of the request\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the request\",\"enum\":[\"pending\",\"approved\",\"rejected\",\"processing\"],\"type\":\"string\"},\"submittedAt\":{\"description\":\"Submission timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"updatedAt\":{\"description\":\"Last update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"changes\":{\"description\":\"List of field changes\",\"items\":{\"properties\":{\"field\":{\"description\":\"Field name\",\"type\":\"string\"},\"newValue\":{\"description\":\"Requested new value\",\"type\":\"string\"},\"oldValue\":{\"description\":\"Current value\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"documents\":{\"description\":\"Supporting documents\",\"items\":{\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"history\":{\"description\":\"Status change history\",\"items\":{\"properties\":{\"notes\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"timestamp\":{\"format\":\"date-time\",\"type\":\"string\"},\"user\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"notes\":{\"default\":\"none\",\"description\":\"Additional notes\",\"type\":\"string\"}},\"type\":\"object\"}]},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Correction request details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Correction request not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/correction-requests/{id}",
@@ -638,13 +756,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -734,6 +1062,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -877,6 +1301,48 @@
         "website": "https://cms-card-management-system-nid-cms-steel.vercel.app"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1431,6 +1897,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1472,7 +1939,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

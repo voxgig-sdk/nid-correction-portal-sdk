@@ -89,6 +89,12 @@ main: kit: entity: authentication: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /auth/login"
+            json: "{\"operationId\":\"login\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"password\":{\"description\":\"User password\",\"format\":\"password\",\"type\":\"string\"},\"username\":{\"description\":\"Username or employee ID\",\"type\":\"string\"}},\"required\":[\"username\",\"password\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"OTP sent to your mobile\",\"type\":\"string\"},\"sessionId\":{\"description\":\"Session identifier for OTP verification\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"OTP sent successfully\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Invalid credentials\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/auth/login"
           segments: [
@@ -105,6 +111,12 @@ main: kit: entity: authentication: {
           }
         }
         {
+          contract: {
+            id: "POST /auth/logout"
+            json: "{\"operationId\":\"logout\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"example\":\"Logged out successfully\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Logged out successfully\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/auth/logout"
           segments: [
@@ -121,6 +133,12 @@ main: kit: entity: authentication: {
           }
         }
         {
+          contract: {
+            id: "POST /auth/verify-otp"
+            json: "{\"operationId\":\"verifyOtp\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"otp\":{\"description\":\"6-digit OTP code\",\"pattern\":\"^[0-9]{6}$\",\"type\":\"string\"},\"sessionId\":{\"description\":\"Session identifier from login response\",\"type\":\"string\"}},\"required\":[\"sessionId\",\"otp\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"success\":{\"example\":true,\"type\":\"boolean\"},\"token\":{\"description\":\"JWT authentication token\",\"type\":\"string\"},\"user\":{\"properties\":{\"id\":{\"description\":\"User ID\",\"type\":\"string\"},\"name\":{\"description\":\"Full name\",\"type\":\"string\"},\"organization\":{\"description\":\"Organization name\",\"example\":\"Bangladesh Election Commission\",\"type\":\"string\"},\"role\":{\"description\":\"User role\",\"enum\":[\"admin\",\"officer\",\"supervisor\"],\"type\":\"string\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"OTP verified successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Invalid OTP\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"bearerFormat\":\"JWT\",\"description\":\"JWT token obtained after successful OTP verification\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/auth/verify-otp"
           segments: [
