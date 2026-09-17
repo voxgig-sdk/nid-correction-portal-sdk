@@ -98,17 +98,6 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
-					map[string]any{
-						"name": "notes",
-						"short": "Approval notes or comments",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "reason",
-						"req": true,
-						"short": "Reason for rejection",
-						"type": "`$STRING`",
-					},
 				},
 				"id": map[string]any{
 					"field": "id",

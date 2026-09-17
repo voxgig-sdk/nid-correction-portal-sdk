@@ -47,7 +47,7 @@ print(application)
 
 ```lua
 -- Create
-local created, err = client:Application():create({ id = "example_id", reason = "example_reason" })
+local created, err = client:Application():create({ id = "example_id" })
 if err then error(err) end
 
 ```
@@ -244,8 +244,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `notes` | Approval notes or comments |
-| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -312,8 +310,6 @@ Create an instance: `local application = client:Application(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `notes` | `string` | Approval notes or comments |
-| `reason` | `string` | Reason for rejection |
 
 #### Example: Load
 
@@ -326,7 +322,6 @@ local application, err = client:Application():load({ id = "application_id" })
 ```lua
 local application, err = client:Application():create({
   id = "example_id", -- string
-  reason = "example_reason", -- string
 })
 ```
 
@@ -550,6 +545,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── nid-correction-portal_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

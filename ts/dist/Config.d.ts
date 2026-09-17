@@ -79,22 +79,10 @@ declare class Config {
     };
     entity: {
         application: {
-            fields: ({
+            fields: {
                 name: string;
                 type: string;
-                short?: undefined;
-                req?: undefined;
-            } | {
-                name: string;
-                short: string;
-                type: string;
-                req?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
-            })[];
+            }[];
             id: {
                 field: string;
                 name: string;

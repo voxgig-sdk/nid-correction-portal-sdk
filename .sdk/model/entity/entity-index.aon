@@ -1,5 +1,5 @@
 # Entity Models
 
-@"application.aon"
-@"authentication.aon"
-@"correction_request.aon"
+@"./application.aon"
+@"./authentication.aon"
+@"./correction_request.aon"

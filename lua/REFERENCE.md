@@ -100,8 +100,6 @@ local application = client:Application(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `notes` | `string` | No | Approval notes or comments |
-| `reason` | `string` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -112,7 +110,6 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Application():create({
   id = --[[ string ]],
-  reason = --[[ string ]],
 })
 ```
 

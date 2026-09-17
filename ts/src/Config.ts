@@ -131,15 +131,15 @@ class Config {
 
     entity: {
       
-      application: {
-      },
-
-      authentication: {
-      },
-
-      correction_request: {
-      },
-
+        application: {
+        },
+  
+        authentication: {
+        },
+  
+        correction_request: {
+        },
+  
     }
   }
 
@@ -149,17 +149,6 @@ class Config {
       "fields": [
         {
           "name": "id",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "notes",
-          "short": "Approval notes or comments",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "reason",
-          "req": true,
-          "short": "Reason for rejection",
           "type": "`$STRING`"
         }
       ],

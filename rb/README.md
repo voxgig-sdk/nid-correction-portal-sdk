@@ -48,7 +48,7 @@ end
 
 ```ruby
 # create returns the ENTITY — call data_get for the created Application record.
-created = client.Application.create({ "id" => "example_id", "reason" => "example_reason" })
+created = client.Application.create({ "id" => "example_id" })
 
 ```
 
@@ -255,8 +255,6 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `notes` | Approval notes or comments |
-| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -323,8 +321,6 @@ Create an instance: `application = client.Application`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `String` |  |
-| `notes` | `String` | Approval notes or comments |
-| `reason` | `String` | Reason for rejection |
 
 #### Example: Load
 
@@ -338,7 +334,6 @@ application = client.Application.load({ "id" => "application_id" })
 ```ruby
 application = client.Application.create({
   "id" => "example_id", # String
-  "reason" => "example_reason", # String
 })
 ```
 
@@ -564,6 +559,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── NidCorrectionPortal_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

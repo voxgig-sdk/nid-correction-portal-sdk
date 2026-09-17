@@ -12,16 +12,8 @@
 #
 # @!attribute [rw] id
 #   @return [String, nil]
-#
-# @!attribute [rw] notes
-#   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [String]
 Application = Struct.new(
   :id,
-  :notes,
-  :reason,
   keyword_init: true
 )
 
@@ -38,16 +30,8 @@ ApplicationLoadMatch = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
-#
-# @!attribute [rw] notes
-#   @return [String, nil]
-#
-# @!attribute [rw] reason
-#   @return [String]
 ApplicationCreateData = Struct.new(
   :id,
-  :notes,
-  :reason,
   keyword_init: true
 )
 

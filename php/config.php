@@ -120,17 +120,6 @@ class NidCorrectionPortalConfig
               'name' => 'id',
               'type' => '`$STRING`',
             ],
-            [
-              'name' => 'notes',
-              'short' => 'Approval notes or comments',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'reason',
-              'req' => true,
-              'short' => 'Reason for rejection',
-              'type' => '`$STRING`',
-            ],
           ],
           'id' => [
             'field' => 'id',

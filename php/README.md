@@ -49,7 +49,7 @@ try {
 
 ```php
 // create() returns the ENTITY — call data_get() for the created Application record.
-$created = $client->Application()->create(["id" => "example_id", "reason" => "example_reason"]);
+$created = $client->Application()->create(["id" => "example_id"]);
 
 ```
 
@@ -265,8 +265,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `notes` | Approval notes or comments |
-| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -333,8 +331,6 @@ Create an instance: `$application = $client->Application();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `notes` | `string` | Approval notes or comments |
-| `reason` | `string` | Reason for rejection |
 
 #### Example: Load
 
@@ -348,7 +344,6 @@ $application = $client->Application()->load(["id" => "application_id"]);
 ```php
 $application = $client->Application()->create([
     "id" => null, // string
-    "reason" => null, // string
 ]);
 ```
 
@@ -574,6 +569,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── nidcorrectionportal_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

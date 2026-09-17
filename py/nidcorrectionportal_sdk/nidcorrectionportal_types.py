@@ -16,26 +16,16 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class ApplicationRequired(TypedDict):
-    reason: str
-
-
-class Application(ApplicationRequired, total=False):
+class Application(TypedDict, total=False):
     id: str
-    notes: str
 
 
 class ApplicationLoadMatch(TypedDict):
     id: str
 
 
-class ApplicationCreateDataRequired(TypedDict):
+class ApplicationCreateData(TypedDict):
     id: str
-    reason: str
-
-
-class ApplicationCreateData(ApplicationCreateDataRequired, total=False):
-    notes: str
 
 
 class AuthenticationRequired(TypedDict):

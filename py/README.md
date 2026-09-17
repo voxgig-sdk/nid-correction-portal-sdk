@@ -55,7 +55,7 @@ except Exception as err:
 
 ```python
 # Create — returns the ENTITY (call data_get() for the record)
-created = client.Application().create({"id": "example_id", "reason": "example_reason"})
+created = client.Application().create({"id": "example_id"})
 
 ```
 
@@ -259,8 +259,6 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `notes` | Approval notes or comments |
-| `reason` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -327,8 +325,6 @@ Create an instance: `application = client.Application()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `str` |  |
-| `notes` | `str` | Approval notes or comments |
-| `reason` | `str` | Reason for rejection |
 
 #### Example: Load
 
@@ -341,7 +337,6 @@ application = client.Application().load({"id": "application_id"})
 ```python
 application = client.Application().create({
     "id": "example_id",  # str
-    "reason": "example_reason",  # str
 })
 ```
 
@@ -565,6 +560,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── nidcorrectionportal_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

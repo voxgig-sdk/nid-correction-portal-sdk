@@ -108,8 +108,6 @@ fmt.Println(application.GetName()) // "application"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `notes` | `string` | No | Approval notes or comments |
-| `reason` | `string` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -132,7 +130,6 @@ Create a new entity with the given data.
 ```go
 result, err := client.Application(nil).Create(map[string]any{
     "id": "example_id",
-    "reason": "example_reason",
 }, nil)
 if err != nil {
     panic(err)

@@ -16,8 +16,6 @@ declare(strict_types=1);
 class Application
 {
     public ?string $id = null;
-    public ?string $notes = null;
-    public string $reason;
 }
 
 /** Request payload for Application#load. */
@@ -30,8 +28,6 @@ class ApplicationLoadMatch
 class ApplicationCreateData
 {
     public string $id;
-    public ?string $notes = null;
-    public string $reason;
 }
 
 /** Authentication entity data model. */

@@ -2,28 +2,19 @@
   "existing": {
     "application": {
       "APPLICATION00": {
-        "id": "APPLICATION00",
-        "notes": "s1f",
-        "reason": "s20"
+        "id": "APPLICATION00"
       },
       "APPLICATION01": {
-        "id": "APPLICATION01",
-        "notes": "s3d",
-        "reason": "s3e"
+        "id": "APPLICATION01"
       },
       "APPLICATION02": {
-        "id": "APPLICATION02",
-        "notes": "s5b",
-        "reason": "s5c"
+        "id": "APPLICATION02"
       }
     }
   },
   "new": {
     "application": {
-      "application_ref01": {
-        "notes": "s79",
-        "reason": "s7a"
-      }
+      "application_ref01": {}
     }
   },
   "requests": {

@@ -1,7 +1,5 @@
 export interface Application {
     id?: string;
-    notes?: string;
-    reason: string;
 }
 export interface ApplicationLoadMatch {
     id: string;
@@ -10,8 +8,6 @@ export interface ApplicationLoadMatch {
 }
 export interface ApplicationCreateData {
     id: string;
-    notes?: string;
-    reason: string;
     $action?: string;
     [action: string]: any;
 }

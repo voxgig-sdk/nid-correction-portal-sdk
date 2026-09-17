@@ -61,7 +61,7 @@ func main() {
     fmt.Println(application)
 
     // Create a application.
-    created, err := client.Application(nil).Create(map[string]any{"id": "example_id", "reason": "example_reason"}, nil)
+    created, err := client.Application(nil).Create(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -276,8 +276,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"id"` |  |
-| `"notes"` | Approval notes or comments |
-| `"reason"` | Reason for rejection |
 
 Operations: Create, Load.
 
@@ -344,8 +342,6 @@ Create an instance: `application := client.Application(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `notes` | `string` | Approval notes or comments |
-| `reason` | `string` | Reason for rejection |
 
 #### Example: Load
 
@@ -362,7 +358,6 @@ fmt.Println(application) // the loaded record
 ```go
 result, err := client.Application(nil).Create(map[string]any{
     "id": "example_id",
-    "reason": "example_reason",
 }, nil)
 if err != nil {
     panic(err)

@@ -47,7 +47,7 @@ network, and no credentials:
 const client = NidCorrectionPortalSDK.test({
   entity: {
     application: {
-      test01: { id: 'test01', reason: 'example_reason' },
+      test01: { id: 'test01' },
     },
   },
 })
@@ -105,12 +105,12 @@ local result, err = client:Application():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nid-correction-portal-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
-| Python | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
-| PHP | `voxgig-sdk/nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nid-correction-portal-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags) |
+| Python | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags) |
+| PHP | `voxgig-sdk/nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/nid-correction-portal-sdk/go` | `go get github.com/voxgig-sdk/nid-correction-portal-sdk/go@latest` |
-| Ruby | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
-| Lua | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases) |
+| Ruby | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags) |
+| Lua | `voxgig-sdk-nid-correction-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/nid-correction-portal-sdk/go-cli` | `go install github.com/voxgig-sdk/nid-correction-portal-sdk/go-cli/cmd/nid-correction-portal@latest` |
 | Go MCP server | `github.com/voxgig-sdk/nid-correction-portal-sdk/go-mcp` | `go get github.com/voxgig-sdk/nid-correction-portal-sdk/go-mcp@latest` |
 

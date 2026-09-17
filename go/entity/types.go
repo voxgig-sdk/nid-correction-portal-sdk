@@ -15,8 +15,6 @@ import (
 // Application is the typed data model for the application entity.
 type Application struct {
 	Id *string `json:"id,omitempty"`
-	Notes *string `json:"notes,omitempty"`
-	Reason string `json:"reason"`
 }
 
 // ApplicationLoadMatch is the typed request payload for Application.LoadTyped.
@@ -27,8 +25,6 @@ type ApplicationLoadMatch struct {
 // ApplicationCreateData is the typed request payload for Application.CreateTyped.
 type ApplicationCreateData struct {
 	Id string `json:"id"`
-	Notes *string `json:"notes,omitempty"`
-	Reason string `json:"reason"`
 }
 
 // Authentication is the typed data model for the authentication entity.

@@ -7,8 +7,6 @@
 
 export interface Application {
   id?: string
-  notes?: string
-  reason: string
 }
 
 export interface ApplicationLoadMatch {
@@ -23,8 +21,6 @@ export interface ApplicationLoadMatch {
 
 export interface ApplicationCreateData {
   id: string
-  notes?: string
-  reason: string
 
   // Selects a custom action instead of the plain create:
   //   'approve' | 'reject' | 'rollback'

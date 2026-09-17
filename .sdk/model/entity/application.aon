@@ -10,18 +10,6 @@ main: kit: entity: application: {
       req: false
       type: "`$STRING`"
     }
-    {
-      name: "notes"
-      req: false
-      short: "Approval notes or comments"
-      type: "`$STRING`"
-    }
-    {
-      name: "reason"
-      req: true
-      short: "Reason for rejection"
-      type: "`$STRING`"
-    }
   ]
 
   id: {

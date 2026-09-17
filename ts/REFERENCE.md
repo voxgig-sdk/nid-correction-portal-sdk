@@ -142,8 +142,6 @@ const application = client.Application()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `notes` | `string` | No | Approval notes or comments |
-| `reason` | `string` | Yes | Reason for rejection |
 
 ### Actions
 
@@ -177,7 +175,6 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Application().create({
   id: 'example_id',
-  reason: 'example_reason',
 })
 ```
 

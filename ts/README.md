@@ -54,7 +54,6 @@ try {
 // Create — returns the created Application ENTITY (.data() for the record)
 const created = await client.Application().create({
   id: 'example_id',
-  reason: 'example_reason',
 })
 
 ```
@@ -314,8 +313,6 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `id` |  |
-| `notes` | Approval notes or comments |
-| `reason` | Reason for rejection |
 
 Operations: create, load.
 
@@ -382,8 +379,6 @@ Create an instance: `const application = client.Application()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `id` | `string` |  |
-| `notes` | `string` | Approval notes or comments |
-| `reason` | `string` | Reason for rejection |
 
 #### Example: Load
 
@@ -396,7 +391,6 @@ const application = await client.Application().load({ id: 'application_id' })
 ```ts
 const application = await client.Application().create({
   id: 'example_id',
-  reason: 'example_reason',
 })
 ```
 

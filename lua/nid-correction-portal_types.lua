@@ -8,16 +8,12 @@
 
 ---@class Application
 ---@field id? string
----@field notes? string
----@field reason string
 
 ---@class ApplicationLoadMatch
 ---@field id string
 
 ---@class ApplicationCreateData
 ---@field id string
----@field notes? string
----@field reason string
 
 ---@class Authentication
 ---@field id? string

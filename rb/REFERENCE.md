@@ -103,8 +103,6 @@ application = client.Application
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `String` | No |  |
-| `notes` | `String` | No | Approval notes or comments |
-| `reason` | `String` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -115,7 +113,6 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Application.create({
   "id" => "example_id", # String
-  "reason" => "example_reason", # String
 })
 ```
 

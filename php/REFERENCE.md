@@ -102,8 +102,6 @@ $application = $client->Application();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `string` | No |  |
-| `notes` | `string` | No | Approval notes or comments |
-| `reason` | `string` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -114,7 +112,6 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Application()->create([
   "id" => null, // string
-  "reason" => null, // string
 ]);
 ```
 

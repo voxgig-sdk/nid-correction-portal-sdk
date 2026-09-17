@@ -97,8 +97,6 @@ application = client.Application()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `id` | `str` | No |  |
-| `notes` | `str` | No | Approval notes or comments |
-| `reason` | `str` | Yes | Reason for rejection |
 
 ### Operations
 
@@ -109,7 +107,6 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Application().create({
     "id": "example_id",  # str
-    "reason": "example_reason",  # str
 })
 ```
 
