@@ -1,7 +1,7 @@
 // Typed models for the NidCorrectionPortal SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,7 +14,6 @@ import (
 
 // Application is the typed data model for the application entity.
 type Application struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ApplicationLoadMatch is the typed request payload for Application.LoadTyped.
@@ -29,16 +28,6 @@ type ApplicationCreateData struct {
 
 // Authentication is the typed data model for the authentication entity.
 type Authentication struct {
-	Id *string `json:"id,omitempty"`
-	Message *string `json:"message,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Organization *string `json:"organization,omitempty"`
-	Otp string `json:"otp"`
-	Password string `json:"password"`
-	Role *string `json:"role,omitempty"`
-	SessionId *string `json:"sessionId,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Username string `json:"username"`
 }
 
 // AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
@@ -57,18 +46,6 @@ type AuthenticationCreateData struct {
 
 // CorrectionRequest is the typed data model for the correction_request entity.
 type CorrectionRequest struct {
-	ApplicantName *string `json:"applicantName,omitempty"`
-	Category *string `json:"category,omitempty"`
-	Changes *[]any `json:"changes,omitempty"`
-	Documents *[]any `json:"documents,omitempty"`
-	History *[]any `json:"history,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Nid *string `json:"nid,omitempty"`
-	Notes *string `json:"notes,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Status *string `json:"status,omitempty"`
-	SubmittedAt *string `json:"submittedAt,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
 }
 
 // CorrectionRequestLoadMatch is the typed request payload for CorrectionRequest.LoadTyped.

@@ -1,5 +1,0 @@
-# Flows
-
-@"./BasicApplicationFlow.aon"
-@"./BasicAuthenticationFlow.aon"
-@"./BasicCorrectionRequestFlow.aon"

@@ -1,0 +1,170 @@
+# Entity: authentication
+
+main: kit: entity: authentication: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "User ID"
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Full name"
+      t: "`$STRING`"
+    }
+    organization: {
+      h: "Organization"
+      n: "organization"
+      r: false
+      sh: "Organization name"
+      t: "`$STRING`"
+    }
+    otp: {
+      h: "Otp"
+      n: "otp"
+      r: true
+      sh: "6-digit OTP code"
+      t: "`$STRING`"
+    }
+    password: {
+      fo: "password"
+      h: "Password"
+      n: "password"
+      r: true
+      sh: "User password"
+      t: "`$STRING`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      r: false
+      sh: "User role"
+      t: "`$STRING`"
+    }
+    sessionId: {
+      h: "Session Id"
+      n: "sessionId"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Session identifier for OTP verification"
+      t: "`$STRING`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Username or employee ID"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "authentication"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /auth/login"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/auth/login"
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "login"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /auth/logout"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/auth/logout"
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "logout"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /auth/verify-otp"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/auth/verify-otp"
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "verify-otp"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

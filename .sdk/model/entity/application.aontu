@@ -1,0 +1,201 @@
+# Entity: application
+
+main: kit: entity: application: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "application"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /applications/{id}/approve"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/applications/{id}/approve"
+          q: {
+            "$action": "approve"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "approve"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "POST /applications/{id}/reject"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/applications/{id}/reject"
+          q: {
+            "$action": "reject"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "reject"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "POST /applications/{id}/rollback"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/applications/{id}/rollback"
+          q: {
+            "$action": "rollback"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "rollback"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /applications/{id}/download-pdf"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/applications/{id}/download-pdf"
+          q: {
+            "$action": "download_pdf"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "applications"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "download-pdf"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

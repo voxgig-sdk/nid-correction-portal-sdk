@@ -1,0 +1,238 @@
+# Entity: correction_request
+
+main: kit: entity: correction_request: {
+
+  alias: field: {}
+
+  fields: {
+    applicantName: {
+      h: "Applicant Name"
+      n: "applicantName"
+      r: false
+      sh: "Name of the applicant"
+      t: "`$STRING`"
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "Category of correction"
+      t: "`$STRING`"
+    }
+    changes: {
+      h: "Changes"
+      n: "changes"
+      r: false
+      sh: "List of field changes"
+      t: "`$ARRAY`"
+    }
+    documents: {
+      h: "Documents"
+      n: "documents"
+      r: false
+      sh: "Supporting documents"
+      t: "`$ARRAY`"
+    }
+    history: {
+      h: "History"
+      n: "history"
+      r: false
+      sh: "Status change history"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Correction request ID"
+      t: "`$STRING`"
+    }
+    nid: {
+      h: "Nid"
+      n: "nid"
+      r: false
+      sh: "National ID number"
+      t: "`$STRING`"
+    }
+    notes: {
+      h: "Notes"
+      n: "notes"
+      r: false
+      sh: "Additional notes"
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      sh: "Source of the request"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Current status of the request"
+      t: "`$STRING`"
+    }
+    submittedAt: {
+      fo: "date-time"
+      h: "Submitted At"
+      n: "submittedAt"
+      r: false
+      sh: "Submission timestamp"
+      t: "`$STRING`"
+    }
+    updatedAt: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updatedAt"
+      r: false
+      sh: "Last update timestamp"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "correction_request"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /correction-requests"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "applicant_name"
+                or: "applicant_name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "nid"
+                or: "nid"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "source"
+                or: "source"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/correction-requests"
+          q: {
+            exist: [
+              "applicant_name"
+              "category"
+              "limit"
+              "nid"
+              "page"
+              "source"
+              "status"
+            ]
+          }
+          s: [
+            {
+              lit: "correction-requests"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /correction-requests/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/correction-requests/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "correction-requests"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

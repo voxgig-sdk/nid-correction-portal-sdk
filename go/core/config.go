@@ -96,6 +96,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -110,17 +111,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/approve",
@@ -135,34 +125,35 @@ func MakeConfig() map[string]any {
 										"lit": "approve",
 									},
 								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"approve",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "approve",
 									"exist": []any{
 										"id",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"applications",
-									"{id}",
-									"approve",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/reject",
@@ -177,34 +168,35 @@ func MakeConfig() map[string]any {
 										"lit": "reject",
 									},
 								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"reject",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "reject",
 									"exist": []any{
 										"id",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"applications",
-									"{id}",
-									"reject",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/applications/{id}/rollback",
@@ -219,20 +211,32 @@ func MakeConfig() map[string]any {
 										"lit": "rollback",
 									},
 								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"rollback",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "rollback",
 									"exist": []any{
 										"id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"applications",
-									"{id}",
-									"rollback",
 								},
 							},
 						},
@@ -242,17 +246,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/applications/{id}/download-pdf",
@@ -267,20 +260,32 @@ func MakeConfig() map[string]any {
 										"lit": "download-pdf",
 									},
 								},
+								"parts": []any{
+									"applications",
+									"{id}",
+									"download-pdf",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "download_pdf",
 									"exist": []any{
 										"id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"applications",
-									"{id}",
-									"download-pdf",
 								},
 							},
 						},
@@ -294,43 +299,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
-						"short": "User ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "User ID",
 					},
 					map[string]any{
 						"name": "message",
+						"title": "Message",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Full name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Full name",
 					},
 					map[string]any{
 						"name": "organization",
-						"short": "Organization name",
+						"title": "Organization",
 						"type": "`$STRING`",
+						"short": "Organization name",
 					},
 					map[string]any{
 						"name": "otp",
+						"title": "Otp",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "6-digit OTP code",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "password",
 						"name": "password",
+						"title": "Password",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User password",
-						"type": "`$STRING`",
+						"format": "password",
 					},
 					map[string]any{
 						"name": "role",
-						"short": "User role",
+						"title": "Role",
 						"type": "`$STRING`",
+						"short": "User role",
 					},
 					map[string]any{
 						"name": "sessionId",
+						"title": "Session Id",
+						"type": "`$STRING`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -338,22 +352,23 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Session identifier for OTP verification",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "success",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "username",
+						"title": "Username",
+						"type": "`$STRING`",
+						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
-						"req": true,
 						"short": "Username or employee ID",
-						"type": "`$STRING`",
 					},
 				},
 				"id": map[string]any{
@@ -367,7 +382,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/login",
@@ -379,18 +393,19 @@ func MakeConfig() map[string]any {
 										"lit": "login",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"auth",
 									"login",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/logout",
@@ -402,18 +417,19 @@ func MakeConfig() map[string]any {
 										"lit": "logout",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"auth",
 									"logout",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/verify-otp",
@@ -425,15 +441,17 @@ func MakeConfig() map[string]any {
 										"lit": "verify-otp",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
 								"parts": []any{
 									"auth",
 									"verify-otp",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -446,65 +464,77 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "applicantName",
-						"short": "Name of the applicant",
+						"title": "Applicant Name",
 						"type": "`$STRING`",
+						"short": "Name of the applicant",
 					},
 					map[string]any{
 						"name": "category",
-						"short": "Category of correction",
+						"title": "Category",
 						"type": "`$STRING`",
+						"short": "Category of correction",
 					},
 					map[string]any{
 						"name": "changes",
-						"short": "List of field changes",
+						"title": "Changes",
 						"type": "`$ARRAY`",
+						"short": "List of field changes",
 					},
 					map[string]any{
 						"name": "documents",
-						"short": "Supporting documents",
+						"title": "Documents",
 						"type": "`$ARRAY`",
+						"short": "Supporting documents",
 					},
 					map[string]any{
 						"name": "history",
-						"short": "Status change history",
+						"title": "History",
 						"type": "`$ARRAY`",
+						"short": "Status change history",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Correction request ID",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Correction request ID",
 					},
 					map[string]any{
 						"name": "nid",
-						"short": "National ID number",
+						"title": "Nid",
 						"type": "`$STRING`",
+						"short": "National ID number",
 					},
 					map[string]any{
 						"name": "notes",
-						"short": "Additional notes",
+						"title": "Notes",
 						"type": "`$STRING`",
+						"short": "Additional notes",
 					},
 					map[string]any{
 						"name": "source",
-						"short": "Source of the request",
+						"title": "Source",
 						"type": "`$STRING`",
+						"short": "Source of the request",
 					},
 					map[string]any{
 						"name": "status",
+						"title": "Status",
+						"type": "`$STRING`",
 						"short": "Current status of the request",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "submittedAt",
-						"short": "Submission timestamp",
+						"title": "Submitted At",
 						"type": "`$STRING`",
+						"short": "Submission timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "updatedAt",
-						"short": "Last update timestamp",
+						"title": "Updated At",
 						"type": "`$STRING`",
+						"short": "Last update timestamp",
+						"format": "date-time",
 					},
 				},
 				"id": map[string]any{
@@ -518,60 +548,68 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "applicant_name",
-											"orig": "applicant_name",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "category",
-											"orig": "category",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "nid",
-											"orig": "nid",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "source",
-											"orig": "source",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "status",
-											"orig": "status",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/correction-requests",
 								"segments": []any{
 									map[string]any{
 										"lit": "correction-requests",
+									},
+								},
+								"parts": []any{
+									"correction-requests",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "applicant_name",
+											"orig": "applicant_name",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "category",
+											"orig": "category",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "nid",
+											"orig": "nid",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "source",
+											"orig": "source",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "status",
+											"orig": "status",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -585,13 +623,6 @@ func MakeConfig() map[string]any {
 										"status",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"correction-requests",
-								},
 							},
 						},
 					},
@@ -600,17 +631,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/correction-requests/{id}",
@@ -622,18 +642,30 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"correction-requests",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"correction-requests",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

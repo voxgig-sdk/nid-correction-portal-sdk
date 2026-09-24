@@ -118,6 +118,7 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
           ],
@@ -132,17 +133,6 @@ class NidCorrectionPortalConfig
               'name' => 'create',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/approve',
@@ -157,34 +147,35 @@ class NidCorrectionPortalConfig
                       'lit' => 'approve',
                     ],
                   ],
+                  'parts' => [
+                    'applications',
+                    '{id}',
+                    'approve',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.data`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'approve',
                     'exist' => [
                       'id',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.data`',
-                  ],
-                  'parts' => [
-                    'applications',
-                    '{id}',
-                    'approve',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/reject',
@@ -199,34 +190,35 @@ class NidCorrectionPortalConfig
                       'lit' => 'reject',
                     ],
                   ],
+                  'parts' => [
+                    'applications',
+                    '{id}',
+                    'reject',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.data`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'reject',
                     'exist' => [
                       'id',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.data`',
-                  ],
-                  'parts' => [
-                    'applications',
-                    '{id}',
-                    'reject',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/applications/{id}/rollback',
@@ -241,20 +233,32 @@ class NidCorrectionPortalConfig
                       'lit' => 'rollback',
                     ],
                   ],
+                  'parts' => [
+                    'applications',
+                    '{id}',
+                    'rollback',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.data`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'rollback',
                     'exist' => [
                       'id',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.data`',
-                  ],
-                  'parts' => [
-                    'applications',
-                    '{id}',
-                    'rollback',
                   ],
                 ],
               ],
@@ -264,17 +268,6 @@ class NidCorrectionPortalConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/applications/{id}/download-pdf',
@@ -289,20 +282,32 @@ class NidCorrectionPortalConfig
                       'lit' => 'download-pdf',
                     ],
                   ],
+                  'parts' => [
+                    'applications',
+                    '{id}',
+                    'download-pdf',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     '$action' => 'download_pdf',
                     'exist' => [
                       'id',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'applications',
-                    '{id}',
-                    'download-pdf',
                   ],
                 ],
               ],
@@ -316,43 +321,52 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'name' => 'id',
-              'short' => 'User ID',
+              'title' => 'Id',
               'type' => '`$STRING`',
+              'short' => 'User ID',
             ],
             [
               'name' => 'message',
+              'title' => 'Message',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
-              'short' => 'Full name',
+              'title' => 'Name',
               'type' => '`$STRING`',
+              'short' => 'Full name',
             ],
             [
               'name' => 'organization',
-              'short' => 'Organization name',
+              'title' => 'Organization',
               'type' => '`$STRING`',
+              'short' => 'Organization name',
             ],
             [
               'name' => 'otp',
+              'title' => 'Otp',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => '6-digit OTP code',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'password',
               'name' => 'password',
+              'title' => 'Password',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'User password',
-              'type' => '`$STRING`',
+              'format' => 'password',
             ],
             [
               'name' => 'role',
-              'short' => 'User role',
+              'title' => 'Role',
               'type' => '`$STRING`',
+              'short' => 'User role',
             ],
             [
               'name' => 'sessionId',
+              'title' => 'Session Id',
+              'type' => '`$STRING`',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -360,22 +374,23 @@ class NidCorrectionPortalConfig
                 ],
               ],
               'short' => 'Session identifier for OTP verification',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'success',
+              'title' => 'Success',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'username',
+              'title' => 'Username',
+              'type' => '`$STRING`',
+              'req' => true,
               'op' => [
                 'create' => [
                   'type' => '`$STRING`',
                 ],
               ],
-              'req' => true,
               'short' => 'Username or employee ID',
-              'type' => '`$STRING`',
             ],
           ],
           'id' => [
@@ -389,7 +404,6 @@ class NidCorrectionPortalConfig
               'name' => 'create',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/login',
@@ -401,18 +415,19 @@ class NidCorrectionPortalConfig
                       'lit' => 'login',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'auth',
                     'login',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/logout',
@@ -424,18 +439,19 @@ class NidCorrectionPortalConfig
                       'lit' => 'logout',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'auth',
                     'logout',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/verify-otp',
@@ -447,15 +463,17 @@ class NidCorrectionPortalConfig
                       'lit' => 'verify-otp',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.user`',
-                  ],
                   'parts' => [
                     'auth',
                     'verify-otp',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.user`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -468,65 +486,77 @@ class NidCorrectionPortalConfig
           'fields' => [
             [
               'name' => 'applicantName',
-              'short' => 'Name of the applicant',
+              'title' => 'Applicant Name',
               'type' => '`$STRING`',
+              'short' => 'Name of the applicant',
             ],
             [
               'name' => 'category',
-              'short' => 'Category of correction',
+              'title' => 'Category',
               'type' => '`$STRING`',
+              'short' => 'Category of correction',
             ],
             [
               'name' => 'changes',
-              'short' => 'List of field changes',
+              'title' => 'Changes',
               'type' => '`$ARRAY`',
+              'short' => 'List of field changes',
             ],
             [
               'name' => 'documents',
-              'short' => 'Supporting documents',
+              'title' => 'Documents',
               'type' => '`$ARRAY`',
+              'short' => 'Supporting documents',
             ],
             [
               'name' => 'history',
-              'short' => 'Status change history',
+              'title' => 'History',
               'type' => '`$ARRAY`',
+              'short' => 'Status change history',
             ],
             [
               'name' => 'id',
-              'short' => 'Correction request ID',
+              'title' => 'Id',
               'type' => '`$STRING`',
+              'short' => 'Correction request ID',
             ],
             [
               'name' => 'nid',
-              'short' => 'National ID number',
+              'title' => 'Nid',
               'type' => '`$STRING`',
+              'short' => 'National ID number',
             ],
             [
               'name' => 'notes',
-              'short' => 'Additional notes',
+              'title' => 'Notes',
               'type' => '`$STRING`',
+              'short' => 'Additional notes',
             ],
             [
               'name' => 'source',
-              'short' => 'Source of the request',
+              'title' => 'Source',
               'type' => '`$STRING`',
+              'short' => 'Source of the request',
             ],
             [
               'name' => 'status',
+              'title' => 'Status',
+              'type' => '`$STRING`',
               'short' => 'Current status of the request',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'submittedAt',
-              'short' => 'Submission timestamp',
+              'title' => 'Submitted At',
               'type' => '`$STRING`',
+              'short' => 'Submission timestamp',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'updatedAt',
-              'short' => 'Last update timestamp',
+              'title' => 'Updated At',
               'type' => '`$STRING`',
+              'short' => 'Last update timestamp',
+              'format' => 'date-time',
             ],
           ],
           'id' => [
@@ -540,60 +570,68 @@ class NidCorrectionPortalConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'applicant_name',
-                        'orig' => 'applicant_name',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'category',
-                        'orig' => 'category',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 20,
-                        'kind' => 'query',
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'nid',
-                        'orig' => 'nid',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 1,
-                        'kind' => 'query',
-                        'name' => 'page',
-                        'orig' => 'page',
-                        'type' => '`$INTEGER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'source',
-                        'orig' => 'source',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'status',
-                        'orig' => 'status',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/correction-requests',
                   'segments' => [
                     [
                       'lit' => 'correction-requests',
+                    ],
+                  ],
+                  'parts' => [
+                    'correction-requests',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'applicant_name',
+                        'orig' => 'applicant_name',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'category',
+                        'orig' => 'category',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 20,
+                      ],
+                      [
+                        'name' => 'nid',
+                        'orig' => 'nid',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'page',
+                        'orig' => 'page',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 1,
+                      ],
+                      [
+                        'name' => 'source',
+                        'orig' => 'source',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'status',
+                        'orig' => 'status',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
                     ],
                   ],
                   'select' => [
@@ -607,13 +645,6 @@ class NidCorrectionPortalConfig
                       'status',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'correction-requests',
-                  ],
                 ],
               ],
             ],
@@ -622,17 +653,6 @@ class NidCorrectionPortalConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/correction-requests/{id}',
@@ -644,18 +664,30 @@ class NidCorrectionPortalConfig
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
-                    ],
+                  'parts' => [
+                    'correction-requests',
+                    '{id}',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'parts' => [
-                    'correction-requests',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],
