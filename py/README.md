@@ -268,15 +268,13 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` | User ID |
 | `message` |  |
-| `name` | Full name |
-| `organization` | Organization name |
 | `otp` | 6-digit OTP code |
 | `password` | User password |
-| `role` | User role |
 | `sessionId` | Session identifier for OTP verification |
 | `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 | `username` | Username or employee ID |
 
 Operations: Create.
@@ -355,15 +353,13 @@ Create an instance: `authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` | User ID |
 | `message` | `str` |  |
-| `name` | `str` | Full name |
-| `organization` | `str` | Organization name |
 | `otp` | `str` | 6-digit OTP code |
 | `password` | `str` | User password |
-| `role` | `str` | User role |
 | `sessionId` | `str` | Session identifier for OTP verification |
 | `success` | `bool` |  |
+| `token` | `str` | JWT authentication token |
+| `user` | `dict` |  |
 | `username` | `str` | Username or employee ID |
 
 #### Example: Create

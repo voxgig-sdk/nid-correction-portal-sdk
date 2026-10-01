@@ -114,7 +114,7 @@ main: kit: entity: correction_request: {
               {
                 k: "query"
                 n: "applicant_name"
-                or: "applicant_name"
+                or: "applicantName"
                 r: false
                 t: "`$STRING`"
               }
@@ -184,7 +184,7 @@ main: kit: entity: correction_request: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

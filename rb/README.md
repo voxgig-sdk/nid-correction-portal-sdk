@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/nid-correction-portal-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-nid-correction-portal-sdk", path: "./nid-correction-portal-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -264,15 +273,13 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` | User ID |
 | `message` |  |
-| `name` | Full name |
-| `organization` | Organization name |
 | `otp` | 6-digit OTP code |
 | `password` | User password |
-| `role` | User role |
 | `sessionId` | Session identifier for OTP verification |
 | `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 | `username` | Username or employee ID |
 
 Operations: Create.
@@ -352,15 +359,13 @@ Create an instance: `authentication = client.Authentication`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `String` | User ID |
 | `message` | `String` |  |
-| `name` | `String` | Full name |
-| `organization` | `String` | Organization name |
 | `otp` | `String` | 6-digit OTP code |
 | `password` | `String` | User password |
-| `role` | `String` | User role |
 | `sessionId` | `String` | Session identifier for OTP verification |
 | `success` | `Boolean` |  |
+| `token` | `String` | JWT authentication token |
+| `user` | `Hash` |  |
 | `username` | `String` | Username or employee ID |
 
 #### Example: Create

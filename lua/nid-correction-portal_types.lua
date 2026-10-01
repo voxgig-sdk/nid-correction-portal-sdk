@@ -16,27 +16,23 @@
 ---@field id string
 
 ---@class Authentication
----@field id? string
 ---@field message? string
----@field name? string
----@field organization? string
 ---@field otp string
 ---@field password string
----@field role? string
 ---@field sessionId? string
 ---@field success? boolean
+---@field token? string
+---@field user? table
 ---@field username string
 
 ---@class AuthenticationCreateData
----@field id? string
 ---@field message? string
----@field name? string
----@field organization? string
 ---@field otp string
 ---@field password string
----@field role? string
 ---@field sessionId? string
 ---@field success? boolean
+---@field token? string
+---@field user? table
 ---@field username string
 
 ---@class CorrectionRequest

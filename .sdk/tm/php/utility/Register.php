@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 NidCorrectionPortalUtility::setRegistrar(function (NidCorrectionPortalUtility $u): void {
     $u->clean = [NidCorrectionPortalClean::class, 'call'];
+    $u->clean_add = [NidCorrectionPortalClean::class, 'add'];
+    $u->clean_explain = [NidCorrectionPortalDone::class, 'clean_explain'];
     $u->done = [NidCorrectionPortalDone::class, 'call'];
     $u->make_error = [NidCorrectionPortalMakeError::class, 'call'];
     $u->feature_add = [NidCorrectionPortalFeatureAdd::class, 'call'];

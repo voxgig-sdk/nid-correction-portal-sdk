@@ -298,27 +298,9 @@ func MakeConfig() map[string]any {
 			"authentication": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"short": "User ID",
-					},
-					map[string]any{
 						"name": "message",
 						"title": "Message",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"short": "Full name",
-					},
-					map[string]any{
-						"name": "organization",
-						"title": "Organization",
-						"type": "`$STRING`",
-						"short": "Organization name",
 					},
 					map[string]any{
 						"name": "otp",
@@ -334,12 +316,6 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"short": "User password",
 						"format": "password",
-					},
-					map[string]any{
-						"name": "role",
-						"title": "Role",
-						"type": "`$STRING`",
-						"short": "User role",
 					},
 					map[string]any{
 						"name": "sessionId",
@@ -359,21 +335,23 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"name": "token",
+						"title": "Token",
+						"type": "`$STRING`",
+						"short": "JWT authentication token",
+					},
+					map[string]any{
+						"name": "user",
+						"title": "User",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
 						"name": "username",
 						"title": "Username",
 						"type": "`$STRING`",
 						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
 						"short": "Username or employee ID",
 					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
 				},
 				"name": "authentication",
 				"op": map[string]any{
@@ -448,7 +426,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.user`",
+									"res": "`body`",
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
@@ -562,13 +540,13 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
 											"name": "applicant_name",
-											"orig": "applicant_name",
+											"orig": "applicantName",
 											"type": "`$STRING`",
 											"kind": "query",
 										},

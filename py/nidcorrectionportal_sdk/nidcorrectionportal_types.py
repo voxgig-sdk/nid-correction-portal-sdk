@@ -35,13 +35,11 @@ class AuthenticationRequired(TypedDict):
 
 
 class Authentication(AuthenticationRequired, total=False):
-    id: str
     message: str
-    name: str
-    organization: str
-    role: str
     sessionId: str
     success: bool
+    token: str
+    user: dict
 
 
 class AuthenticationCreateDataRequired(TypedDict):
@@ -51,13 +49,11 @@ class AuthenticationCreateDataRequired(TypedDict):
 
 
 class AuthenticationCreateData(AuthenticationCreateDataRequired, total=False):
-    id: str
     message: str
-    name: str
-    organization: str
-    role: str
     sessionId: str
     success: bool
+    token: str
+    user: dict
 
 
 class CorrectionRequest(TypedDict, total=False):

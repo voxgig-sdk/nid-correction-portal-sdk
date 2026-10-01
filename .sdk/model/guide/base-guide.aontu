@@ -39,13 +39,13 @@ guide: {
     }
     path: "/auth/verify-otp": {
       op: create: method: *POST
-      op: create: transform: res: *("`body.user`")|top
     }
   }
 
   entity: correction_request: {
     path: "/correction-requests": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/correction-requests/{id}": {
       op: load: method: *GET

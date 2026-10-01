@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/nid-correction-portal-sdk
+composer config repositories.nid-correction-portal-sdk path ./nid-correction-portal-sdk/php
+composer require voxgig-sdk/nid-correction-portal-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
@@ -274,15 +279,13 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` | User ID |
 | `message` |  |
-| `name` | Full name |
-| `organization` | Organization name |
 | `otp` | 6-digit OTP code |
 | `password` | User password |
-| `role` | User role |
 | `sessionId` | Session identifier for OTP verification |
 | `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 | `username` | Username or employee ID |
 
 Operations: Create.
@@ -362,15 +365,13 @@ Create an instance: `$authentication = $client->Authentication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | User ID |
 | `message` | `string` |  |
-| `name` | `string` | Full name |
-| `organization` | `string` | Organization name |
 | `otp` | `string` | 6-digit OTP code |
 | `password` | `string` | User password |
-| `role` | `string` | User role |
 | `sessionId` | `string` | Session identifier for OTP verification |
 | `success` | `bool` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `array` |  |
 | `username` | `string` | Username or employee ID |
 
 #### Example: Create

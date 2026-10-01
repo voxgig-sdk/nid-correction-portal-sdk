@@ -12,27 +12,23 @@ export interface ApplicationCreateData {
     [action: string]: any;
 }
 export interface Authentication {
-    id?: string;
     message?: string;
-    name?: string;
-    organization?: string;
     otp: string;
     password: string;
-    role?: string;
     sessionId?: string;
     success?: boolean;
+    token?: string;
+    user?: Record<string, any>;
     username: string;
 }
 export interface AuthenticationCreateData {
-    id?: string;
     message?: string;
-    name?: string;
-    organization?: string;
     otp: string;
     password: string;
-    role?: string;
     sessionId?: string;
     success?: boolean;
+    token?: string;
+    user?: Record<string, any>;
     username: string;
 }
 export interface CorrectionRequest {

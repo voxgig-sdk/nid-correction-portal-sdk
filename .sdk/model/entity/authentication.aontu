@@ -5,31 +5,10 @@ main: kit: entity: authentication: {
   alias: field: {}
 
   fields: {
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      sh: "User ID"
-      t: "`$STRING`"
-    }
     message: {
       h: "Message"
       n: "message"
       r: false
-      t: "`$STRING`"
-    }
-    name: {
-      h: "Name"
-      n: "name"
-      r: false
-      sh: "Full name"
-      t: "`$STRING`"
-    }
-    organization: {
-      h: "Organization"
-      n: "organization"
-      r: false
-      sh: "Organization name"
       t: "`$STRING`"
     }
     otp: {
@@ -45,13 +24,6 @@ main: kit: entity: authentication: {
       n: "password"
       r: true
       sh: "User password"
-      t: "`$STRING`"
-    }
-    role: {
-      h: "Role"
-      n: "role"
-      r: false
-      sh: "User role"
       t: "`$STRING`"
     }
     sessionId: {
@@ -73,24 +45,26 @@ main: kit: entity: authentication: {
       r: false
       t: "`$BOOLEAN`"
     }
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "JWT authentication token"
+      t: "`$STRING`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      t: "`$OBJECT`"
+    }
     username: {
       h: "Username"
       n: "username"
-      op: {
-        create: {
-          req: false
-          type: "`$STRING`"
-        }
-      }
       r: true
       sh: "Username or employee ID"
       t: "`$STRING`"
     }
-  }
-
-  id: {
-    field: "id"
-    name: "id"
   }
 
   name: "authentication"
@@ -158,7 +132,7 @@ main: kit: entity: authentication: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.user`"
+            res: "`body`"
           }
         }
       ]

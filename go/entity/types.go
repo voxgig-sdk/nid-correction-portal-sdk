@@ -32,15 +32,13 @@ type Authentication struct {
 
 // AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
 type AuthenticationCreateData struct {
-	Id *string `json:"id,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Organization *string `json:"organization,omitempty"`
 	Otp string `json:"otp"`
 	Password string `json:"password"`
-	Role *string `json:"role,omitempty"`
 	SessionId *string `json:"sessionId,omitempty"`
 	Success *bool `json:"success,omitempty"`
+	Token *string `json:"token,omitempty"`
+	User *map[string]any `json:"user,omitempty"`
 	Username string `json:"username"`
 }
 

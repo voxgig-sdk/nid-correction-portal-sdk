@@ -172,31 +172,27 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No | User ID |
 | `message` | `string` | No |  |
-| `name` | `string` | No | Full name |
-| `organization` | `string` | No | Organization name |
 | `otp` | `string` | Yes | 6-digit OTP code |
 | `password` | `string` | Yes | User password |
-| `role` | `string` | No | User role |
 | `sessionId` | `string` | No | Session identifier for OTP verification |
 | `success` | `bool` | No |  |
+| `token` | `string` | No | JWT authentication token |
+| `user` | `map[string]any` | No |  |
 | `username` | `string` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `id` | - |
 | `message` | - |
-| `name` | - |
-| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `role` | - |
 | `sessionId` | Yes |
 | `success` | - |
-| `username` | Yes |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 

@@ -157,31 +157,27 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No | User ID |
 | `message` | `str` | No |  |
-| `name` | `str` | No | Full name |
-| `organization` | `str` | No | Organization name |
 | `otp` | `str` | Yes | 6-digit OTP code |
 | `password` | `str` | Yes | User password |
-| `role` | `str` | No | User role |
 | `sessionId` | `str` | No | Session identifier for OTP verification |
 | `success` | `bool` | No |  |
+| `token` | `str` | No | JWT authentication token |
+| `user` | `dict` | No |  |
 | `username` | `str` | Yes | Username or employee ID |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `id` | - |
 | `message` | - |
-| `name` | - |
-| `organization` | - |
 | `otp` | - |
 | `password` | - |
-| `role` | - |
 | `sessionId` | Yes |
 | `success` | - |
-| `username` | Yes |
+| `token` | - |
+| `user` | - |
+| `username` | - |
 
 ### Operations
 

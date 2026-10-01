@@ -170,16 +170,8 @@ declare class Config {
                 name: string;
                 title: string;
                 type: string;
-                short: string;
                 req?: undefined;
-                format?: undefined;
-                op?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
                 short?: undefined;
-                req?: undefined;
                 format?: undefined;
                 op?: undefined;
             } | {
@@ -215,20 +207,11 @@ declare class Config {
                 name: string;
                 title: string;
                 type: string;
-                req: boolean;
-                op: {
-                    create: {
-                        type: string;
-                        req?: undefined;
-                    };
-                };
                 short: string;
+                req?: undefined;
                 format?: undefined;
+                op?: undefined;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 create: {

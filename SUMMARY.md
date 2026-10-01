@@ -30,11 +30,11 @@ SDK operations: `create`.
 
 Key fields to recognise:
 
-- `id`: User ID
-- `name`: Full name
-- `organization`: Organization name
 - `otp`: 6-digit OTP code
 - `password`: User password
+- `sessionId`: Session identifier for OTP verification
+- `token`: JWT authentication token
+- `username`: Username
 
 ### CorrectionRequest
 

@@ -253,15 +253,13 @@ API path: `/applications/{id}/approve`
 
 | Field | Description |
 | --- | --- |
-| `id` | User ID |
 | `message` |  |
-| `name` | Full name |
-| `organization` | Organization name |
 | `otp` | 6-digit OTP code |
 | `password` | User password |
-| `role` | User role |
 | `sessionId` | Session identifier for OTP verification |
 | `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 | `username` | Username or employee ID |
 
 Operations: Create.
@@ -340,15 +338,13 @@ Create an instance: `local authentication = client:Authentication(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | User ID |
 | `message` | `string` |  |
-| `name` | `string` | Full name |
-| `organization` | `string` | Organization name |
 | `otp` | `string` | 6-digit OTP code |
 | `password` | `string` | User password |
-| `role` | `string` | User role |
 | `sessionId` | `string` | Session identifier for OTP verification |
 | `success` | `boolean` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `table` |  |
 | `username` | `string` | Username or employee ID |
 
 #### Example: Create

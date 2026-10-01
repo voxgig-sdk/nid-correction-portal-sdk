@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 NidCorrectionPortalUtility.registrar = ->(u) {
   u.clean = NidCorrectionPortalUtilities::Clean
+  u.clean_add = NidCorrectionPortalUtilities::CleanAdd
+  u.clean_explain = NidCorrectionPortalUtilities::CleanExplain
   u.done = NidCorrectionPortalUtilities::Done
   u.make_error = NidCorrectionPortalUtilities::MakeError
   u.feature_add = NidCorrectionPortalUtilities::FeatureAdd

@@ -37,16 +37,7 @@ ApplicationCreateData = Struct.new(
 
 # Authentication entity data model.
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] message
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] organization
 #   @return [String, nil]
 #
 # @!attribute [rw] otp
@@ -55,43 +46,35 @@ ApplicationCreateData = Struct.new(
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] role
-#   @return [String, nil]
-#
 # @!attribute [rw] sessionId
 #   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] token
+#   @return [String, nil]
+#
+# @!attribute [rw] user
+#   @return [Hash, nil]
+#
 # @!attribute [rw] username
 #   @return [String]
 Authentication = Struct.new(
-  :id,
   :message,
-  :name,
-  :organization,
   :otp,
   :password,
-  :role,
   :sessionId,
   :success,
+  :token,
+  :user,
   :username,
   keyword_init: true
 )
 
 # Request payload for Authentication#create.
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] message
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] organization
 #   @return [String, nil]
 #
 # @!attribute [rw] otp
@@ -100,27 +83,28 @@ Authentication = Struct.new(
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] role
-#   @return [String, nil]
-#
 # @!attribute [rw] sessionId
 #   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] token
+#   @return [String, nil]
+#
+# @!attribute [rw] user
+#   @return [Hash, nil]
+#
 # @!attribute [rw] username
 #   @return [String]
 AuthenticationCreateData = Struct.new(
-  :id,
   :message,
-  :name,
-  :organization,
   :otp,
   :password,
-  :role,
   :sessionId,
   :success,
+  :token,
+  :user,
   :username,
   keyword_init: true
 )

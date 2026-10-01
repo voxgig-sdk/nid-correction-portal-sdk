@@ -33,30 +33,26 @@ class ApplicationCreateData
 /** Authentication entity data model. */
 class Authentication
 {
-    public ?string $id = null;
     public ?string $message = null;
-    public ?string $name = null;
-    public ?string $organization = null;
     public string $otp;
     public string $password;
-    public ?string $role = null;
     public ?string $sessionId = null;
     public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
     public string $username;
 }
 
 /** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
-    public ?string $id = null;
     public ?string $message = null;
-    public ?string $name = null;
-    public ?string $organization = null;
     public string $otp;
     public string $password;
-    public ?string $role = null;
     public ?string $sessionId = null;
     public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
     public string $username;
 }
 

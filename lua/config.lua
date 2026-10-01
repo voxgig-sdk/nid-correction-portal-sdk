@@ -294,27 +294,9 @@ local function make_config()
       ["authentication"] = {
         ["fields"] = {
           {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-            ["short"] = "User ID",
-          },
-          {
             ["name"] = "message",
             ["title"] = "Message",
             ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "name",
-            ["title"] = "Name",
-            ["type"] = "`$STRING`",
-            ["short"] = "Full name",
-          },
-          {
-            ["name"] = "organization",
-            ["title"] = "Organization",
-            ["type"] = "`$STRING`",
-            ["short"] = "Organization name",
           },
           {
             ["name"] = "otp",
@@ -330,12 +312,6 @@ local function make_config()
             ["req"] = true,
             ["short"] = "User password",
             ["format"] = "password",
-          },
-          {
-            ["name"] = "role",
-            ["title"] = "Role",
-            ["type"] = "`$STRING`",
-            ["short"] = "User role",
           },
           {
             ["name"] = "sessionId",
@@ -355,21 +331,23 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["name"] = "token",
+            ["title"] = "Token",
+            ["type"] = "`$STRING`",
+            ["short"] = "JWT authentication token",
+          },
+          {
+            ["name"] = "user",
+            ["title"] = "User",
+            ["type"] = "`$OBJECT`",
+          },
+          {
             ["name"] = "username",
             ["title"] = "Username",
             ["type"] = "`$STRING`",
             ["req"] = true,
-            ["op"] = {
-              ["create"] = {
-                ["type"] = "`$STRING`",
-              },
-            },
             ["short"] = "Username or employee ID",
           },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
         },
         ["name"] = "authentication",
         ["op"] = {
@@ -444,7 +422,7 @@ local function make_config()
                 ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.user`",
+                  ["res"] = "`body`",
                 },
                 ["args"] = {},
                 ["select"] = {},
@@ -558,13 +536,13 @@ local function make_config()
                 ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["args"] = {
                   ["query"] = {
                     {
                       ["name"] = "applicant_name",
-                      ["orig"] = "applicant_name",
+                      ["orig"] = "applicantName",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },

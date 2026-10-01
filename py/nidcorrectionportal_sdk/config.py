@@ -323,27 +323,9 @@ def make_config():
       "authentication": {
         "fields": [
           {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "short": "User ID",
-          },
-          {
             "name": "message",
             "title": "Message",
             "type": "`$STRING`",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "short": "Full name",
-          },
-          {
-            "name": "organization",
-            "title": "Organization",
-            "type": "`$STRING`",
-            "short": "Organization name",
           },
           {
             "name": "otp",
@@ -359,12 +341,6 @@ def make_config():
             "req": True,
             "short": "User password",
             "format": "password",
-          },
-          {
-            "name": "role",
-            "title": "Role",
-            "type": "`$STRING`",
-            "short": "User role",
           },
           {
             "name": "sessionId",
@@ -384,22 +360,24 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "name": "token",
+            "title": "Token",
+            "type": "`$STRING`",
+            "short": "JWT authentication token",
+          },
+          {
+            "name": "user",
+            "title": "User",
+            "type": "`$OBJECT`",
+          },
+          {
             "name": "username",
             "title": "Username",
             "type": "`$STRING`",
             "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
             "short": "Username or employee ID",
           },
         ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
         "name": "authentication",
         "op": {
           "create": {
@@ -473,7 +451,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.user`",
+                  "res": "`body`",
                 },
                 "args": {},
                 "select": {},
@@ -587,13 +565,13 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "query": [
                     {
                       "name": "applicant_name",
-                      "orig": "applicant_name",
+                      "orig": "applicantName",
                       "type": "`$STRING`",
                       "kind": "query",
                     },
