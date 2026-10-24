@@ -79,6 +79,7 @@ module NidCorrectionPortalConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -160,6 +161,10 @@ module NidCorrectionPortalConfig
                       "id",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -203,6 +208,10 @@ module NidCorrectionPortalConfig
                       "id",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -245,6 +254,10 @@ module NidCorrectionPortalConfig
                     "exist" => [
                       "id",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -294,6 +307,11 @@ module NidCorrectionPortalConfig
                     "exist" => [
                       "id",
                     ],
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/pdf",
                   },
                 },
               ],
@@ -390,6 +408,10 @@ module NidCorrectionPortalConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -414,6 +436,10 @@ module NidCorrectionPortalConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -438,6 +464,10 @@ module NidCorrectionPortalConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -563,6 +593,7 @@ module NidCorrectionPortalConfig
                         "orig" => "category",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                       {
                         "name" => "limit",
@@ -576,6 +607,7 @@ module NidCorrectionPortalConfig
                         "orig" => "nid",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                       {
                         "name" => "page",
@@ -589,25 +621,21 @@ module NidCorrectionPortalConfig
                         "orig" => "source",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                       {
                         "name" => "status",
                         "orig" => "status",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "applicant_name",
-                      "category",
-                      "limit",
-                      "nid",
-                      "page",
-                      "source",
-                      "status",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -652,6 +680,10 @@ module NidCorrectionPortalConfig
                     "exist" => [
                       "id",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

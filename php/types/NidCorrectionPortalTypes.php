@@ -28,6 +28,8 @@ class ApplicationLoadMatch
 class ApplicationCreateData
 {
     public string $id;
+    public mixed $notes = null;
+    public mixed $reason = null;
 }
 
 /** Authentication entity data model. */
@@ -49,7 +51,7 @@ class AuthenticationCreateData
     public ?string $message = null;
     public string $otp;
     public string $password;
-    public ?string $sessionId = null;
+    public string $sessionId;
     public ?bool $success = null;
     public ?string $token = null;
     public ?array $user = null;

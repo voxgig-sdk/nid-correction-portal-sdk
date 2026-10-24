@@ -3,5 +3,32 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "6-digit OTP code",
+      "Application approved successfully",
+      "Application rejected successfully",
+      "Application rolled back successfully",
+      "Category of correction",
+      "Correction request ID",
+      "Correction request details",
+      "JWT authentication token",
+      "JWT token obtained after successful OTP verification",
+      "List of correction requests",
+      "List of field changes",
+      "Logged out successfully",
+      "Name of the applicant",
+      "OTP sent successfully",
+      "OTP verified successfully",
+      "PDF file",
+      "Production server",
+      "Session identifier for OTP verification",
+      "Status change history",
+      "Supporting documents",
+      "This API provides a platform for users to manage and review National ID (NID) correction requests. Users can log in, search for requests, view details, approve or reject applications, and track status updates. It is designed specifically for authorized officials of the Bangladesh Election Commission.",
+      "User password",
+      "Username"
+    ]
+  }
 }

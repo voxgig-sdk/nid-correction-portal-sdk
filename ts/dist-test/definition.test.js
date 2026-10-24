@@ -24,7 +24,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [
             [
                 {
@@ -91,7 +96,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [
             [
                 {
@@ -158,7 +168,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [
             [
                 {
@@ -225,7 +240,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/pdf"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [
             [
                 {
@@ -249,13 +269,17 @@ const PLAN = [
         "select": {
             "applicant_name": "v1",
             "category": "v1",
-            "limit": "v1",
+            "limit": 20,
             "nid": "v1",
-            "page": "v1",
+            "page": 1,
             "source": "v1",
             "status": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "nid",
             "applicantName",
@@ -264,6 +288,36 @@ const PLAN = [
             "source",
             "page",
             "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "applicant_name",
+                "wire": "applicantName"
+            },
+            {
+                "name": "category",
+                "wire": "category"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "nid",
+                "wire": "nid"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "source",
+                "wire": "source"
+            },
+            {
+                "name": "status",
+                "wire": "status"
+            }
         ],
         "auth": [
             [
@@ -279,21 +333,21 @@ const PLAN = [
             "success": true,
             "data": [
                 {
-                    "applicantName": "x",
-                    "category": "x",
                     "id": "x",
                     "nid": "x",
-                    "source": "x",
+                    "applicantName": "x",
                     "status": "pending",
+                    "category": "x",
+                    "source": "x",
                     "submittedAt": "2026-01-01T00:00:00Z",
                     "updatedAt": "2026-01-01T00:00:00Z"
                 }
             ],
             "pagination": {
                 "currentPage": 1,
-                "itemsPerPage": 1,
+                "totalPages": 1,
                 "totalItems": 1,
-                "totalPages": 1
+                "itemsPerPage": 1
             }
         },
         "idField": "id"
@@ -313,7 +367,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [
             [
                 {

@@ -24,6 +24,8 @@ type ApplicationLoadMatch struct {
 // ApplicationCreateData is the typed request payload for Application.CreateTyped.
 type ApplicationCreateData struct {
 	Id string `json:"id"`
+	Notes *any `json:"notes,omitempty"`
+	Reason *any `json:"reason,omitempty"`
 }
 
 // Authentication is the typed data model for the authentication entity.
@@ -35,7 +37,7 @@ type AuthenticationCreateData struct {
 	Message *string `json:"message,omitempty"`
 	Otp string `json:"otp"`
 	Password string `json:"password"`
-	SessionId *string `json:"sessionId,omitempty"`
+	SessionId string `json:"sessionId"`
 	Success *bool `json:"success,omitempty"`
 	Token *string `json:"token,omitempty"`
 	User *map[string]any `json:"user,omitempty"`

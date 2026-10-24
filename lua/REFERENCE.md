@@ -105,17 +105,11 @@ local application = client:Application(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
-
-```lua
-local result, err = client:Application():create({
-  id = --[[ string ]],
-})
-```
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Application():load({ id = "application_id" })
@@ -187,12 +181,13 @@ local authentication = client:Authentication(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Authentication():create({
   otp = --[[ string ]],
   password = --[[ string ]],
+  sessionId = --[[ string ]],
   username = --[[ string ]],
 })
 ```
@@ -254,7 +249,7 @@ local correction_request = client:CorrectionRequest(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:CorrectionRequest():list()
@@ -262,7 +257,7 @@ local results, err = client:CorrectionRequest():list()
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:CorrectionRequest():load({ id = "correction_request_id" })
@@ -455,6 +450,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

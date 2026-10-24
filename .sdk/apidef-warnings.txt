@@ -1,0 +1,12 @@
+{
+  point: "warning"
+  note: "Points POST /auth/login, POST /auth/logout and POST /auth/verify-otp on entity=authentication op=create have the same selector (exist: none), so only POST /auth/login is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "authentication"
+  op: "create"
+  points: [
+    "POST /auth/login"
+    "POST /auth/logout"
+    "POST /auth/verify-otp"
+  ]
+
+}

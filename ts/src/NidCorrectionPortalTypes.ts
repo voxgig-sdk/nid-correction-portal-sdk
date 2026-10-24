@@ -21,6 +21,8 @@ export interface ApplicationLoadMatch {
 
 export interface ApplicationCreateData {
   id: string
+  notes?: any
+  reason?: any
 
   // Selects a custom action instead of the plain create:
   //   'approve' | 'reject' | 'rollback'
@@ -44,7 +46,7 @@ export interface AuthenticationCreateData {
   message?: string
   otp: string
   password: string
-  sessionId?: string
+  sessionId: string
   success?: boolean
   token?: string
   user?: Record<string, any>

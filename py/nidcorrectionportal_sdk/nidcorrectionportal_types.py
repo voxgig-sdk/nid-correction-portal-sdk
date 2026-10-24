@@ -24,8 +24,13 @@ class ApplicationLoadMatch(TypedDict):
     id: str
 
 
-class ApplicationCreateData(TypedDict):
+class ApplicationCreateDataRequired(TypedDict):
     id: str
+
+
+class ApplicationCreateData(ApplicationCreateDataRequired, total=False):
+    notes: Any
+    reason: Any
 
 
 class AuthenticationRequired(TypedDict):
@@ -45,12 +50,12 @@ class Authentication(AuthenticationRequired, total=False):
 class AuthenticationCreateDataRequired(TypedDict):
     otp: str
     password: str
+    sessionId: str
     username: str
 
 
 class AuthenticationCreateData(AuthenticationCreateDataRequired, total=False):
     message: str
-    sessionId: str
     success: bool
     token: str
     user: dict

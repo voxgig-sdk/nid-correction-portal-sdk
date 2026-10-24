@@ -166,16 +166,9 @@ main: kit: entity: correction_request: {
           }
           m: "GET"
           o: "/correction-requests"
-          q: {
-            exist: [
-              "applicant_name"
-              "category"
-              "limit"
-              "nid"
-              "page"
-              "source"
-              "status"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -215,6 +208,10 @@ main: kit: entity: correction_request: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

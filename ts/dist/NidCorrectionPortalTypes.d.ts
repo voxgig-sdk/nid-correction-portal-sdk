@@ -8,6 +8,8 @@ export interface ApplicationLoadMatch {
 }
 export interface ApplicationCreateData {
     id: string;
+    notes?: any;
+    reason?: any;
     $action?: string;
     [action: string]: any;
 }
@@ -25,7 +27,7 @@ export interface AuthenticationCreateData {
     message?: string;
     otp: string;
     password: string;
-    sessionId?: string;
+    sessionId: string;
     success?: boolean;
     token?: string;
     user?: Record<string, any>;

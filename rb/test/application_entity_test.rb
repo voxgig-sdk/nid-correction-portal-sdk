@@ -6,42 +6,56 @@ require_relative "../NidCorrectionPortal_sdk"
 require_relative "runner"
 
 class ApplicationEntityTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
   def test_create_instance
     testsdk = NidCorrectionPortalSDK.test(nil, nil)
     ent = testsdk.Application(nil)
     assert !ent.nil?
   end
 
+  def test_validate
+    cfg = NidCorrectionPortalConfig.shared_config
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
+    end
+    client = NidCorrectionPortalSDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
+    err = assert_raises(StandardError) do
+      client.Application(nil).load({ "id" => 1 }, nil)
+    end
+    assert_equal "validate_failed", err.code
+  end
+
   def test_basic_flow
     setup = application_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    ["create", "load"].each do |_op|
+    ["load"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "application." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
         return
       end
     end
-    # The basic flow consumes synthetic IDs from the fixture. In live mode
-    # without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID JSON to run live"
-      return
+    if setup[:live]
+      Runner.live_miss(LIVE_STRICT, "Live entity test blocked: " + "the flow loads a application record it has no list to find")
     end
     client = setup[:client]
 
-    # CREATE
-    application_ref01_ent = client.Application(nil)
-    application_ref01_data = Helpers.to_map(Vs.getprop(
-      Vs.getpath(setup[:data], "new.application"), "application_ref01"))
-
-    application_ref01_data_result = application_ref01_ent.create(application_ref01_data, nil)
-    application_ref01_data = Helpers.to_map(application_ref01_data_result.respond_to?(:data_get) ? application_ref01_data_result.data_get : application_ref01_data_result)
-    assert !application_ref01_data.nil?
-    assert !application_ref01_data["id"].nil?
+    # Bootstrap entity data from existing test data.
+    application_ref01_data_raw = Vs.items(Helpers.to_map(
+      Vs.getpath(setup[:data], "existing.application")))
+    application_ref01_data = nil
+    if application_ref01_data_raw.length > 0
+      application_ref01_data = Helpers.to_map(application_ref01_data_raw[0][1])
+    end
 
     # LOAD
+    application_ref01_ent = client.Application(nil)
     application_ref01_match_dt0 = {
       "id" => application_ref01_data["id"],
     }
@@ -57,7 +71,7 @@ def application_basic_setup(extra)
   Runner.load_env_local
 
   entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "application", "ApplicationTestData.json")
-  entity_data_source = File.read(entity_data_file)
+  entity_data_source = File.read(entity_data_file, encoding: "UTF-8")
   entity_data = JSON.parse(entity_data_source)
 
   options = {}
@@ -76,9 +90,8 @@ def application_basic_setup(extra)
     }
   )
 
-  # Detect ENTID env override before envOverride consumes it. When live
-  # mode is on without a real override, the basic test runs against synthetic
-  # IDs from the fixture and 4xx's. Surface this so the test can skip.
+  # Whether *_ENTID supplied the idmap, read before env_override consumes
+  # it: without it, the ids a live flow binds are the fixture's synthetic ones.
   entid_env_raw = ENV["NID_CORRECTION_PORTAL_TEST_APPLICATION_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 

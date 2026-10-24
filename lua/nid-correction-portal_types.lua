@@ -14,6 +14,8 @@
 
 ---@class ApplicationCreateData
 ---@field id string
+---@field notes? any
+---@field reason? any
 
 ---@class Authentication
 ---@field message? string
@@ -29,7 +31,7 @@
 ---@field message? string
 ---@field otp string
 ---@field password string
----@field sessionId? string
+---@field sessionId string
 ---@field success? boolean
 ---@field token? string
 ---@field user? table

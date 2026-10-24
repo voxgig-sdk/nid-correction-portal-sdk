@@ -117,6 +117,9 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "notes"
+                  ],
                   "co": {
                     "id": "POST /applications/{id}/approve",
                     "source": "openapi3",
@@ -144,6 +147,10 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "applications"
@@ -162,6 +169,10 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "notes",
+                    "reason"
+                  ],
                   "co": {
                     "id": "POST /applications/{id}/reject",
                     "source": "openapi3",
@@ -189,6 +200,10 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "applications"
@@ -207,6 +222,9 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "notes"
+                  ],
                   "co": {
                     "id": "POST /applications/{id}/rollback",
                     "source": "openapi3",
@@ -234,6 +252,10 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "applications"
@@ -285,6 +307,11 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/pdf"
+                  },
                   "s": [
                     {
                       "lit": "applications"
@@ -391,6 +418,10 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "password",
+                    "username"
+                  ],
                   "co": {
                     "id": "POST /auth/login",
                     "source": "openapi3",
@@ -402,6 +433,10 @@
                   "o": "/auth/login",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "auth"
@@ -428,6 +463,10 @@
                   "o": "/auth/logout",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "auth"
@@ -443,6 +482,10 @@
                 },
                 {
                   "a": true,
+                  "bf": [
+                    "otp",
+                    "sessionId"
+                  ],
                   "co": {
                     "id": "POST /auth/verify-otp",
                     "source": "openapi3",
@@ -454,6 +497,10 @@
                   "o": "/auth/verify-otp",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "auth"
@@ -661,18 +708,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/correction-requests",
-                  "q": {
-                    "exist": [
-                      "applicant_name",
-                      "category",
-                      "limit",
-                      "nid",
-                      "page",
-                      "source",
-                      "status"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "correction-requests"
@@ -717,6 +758,10 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "correction-requests"
@@ -1060,6 +1105,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1291,7 +1337,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1344,6 +1390,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1574,7 +1625,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1951,6 +2005,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

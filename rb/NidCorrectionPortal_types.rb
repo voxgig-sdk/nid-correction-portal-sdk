@@ -30,8 +30,16 @@ ApplicationLoadMatch = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] notes
+#   @return [Object, nil]
+#
+# @!attribute [rw] reason
+#   @return [Object, nil]
 ApplicationCreateData = Struct.new(
   :id,
+  :notes,
+  :reason,
   keyword_init: true
 )
 
@@ -84,7 +92,7 @@ Authentication = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] sessionId
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]

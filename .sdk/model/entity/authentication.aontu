@@ -73,6 +73,10 @@ main: kit: entity: authentication: {
       name: "create"
       points: [
         {
+          bf: [
+            "password"
+            "username"
+          ]
           co: {
             id: "POST /auth/login"
             source: "openapi3"
@@ -80,6 +84,10 @@ main: kit: entity: authentication: {
           }
           m: "POST"
           o: "/auth/login"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "auth"
@@ -101,6 +109,10 @@ main: kit: entity: authentication: {
           }
           m: "POST"
           o: "/auth/logout"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "auth"
@@ -115,6 +127,10 @@ main: kit: entity: authentication: {
           }
         }
         {
+          bf: [
+            "otp"
+            "sessionId"
+          ]
           co: {
             id: "POST /auth/verify-otp"
             source: "openapi3"
@@ -122,6 +138,10 @@ main: kit: entity: authentication: {
           }
           m: "POST"
           o: "/auth/verify-otp"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "auth"

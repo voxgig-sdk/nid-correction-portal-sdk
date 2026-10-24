@@ -21,6 +21,7 @@ export NID_CORRECTION_PORTAL_APIKEY=sk_live_xxx
 # 4. Each command line is ONE boru expression, run against the API:
 ./nid-correction-portal-cli load 1 application            # {id:1} shorthand
 ./nid-correction-portal-cli load '{id:1}' application       # explicit match map
+./nid-correction-portal-cli list correction_request
 
 # 5. Override the API base URL for a single call
 NID_CORRECTION_PORTAL_BASE=https://api.example.com ./nid-correction-portal-cli load 1 application

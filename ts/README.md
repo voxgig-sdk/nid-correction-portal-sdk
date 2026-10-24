@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nid-correction-portal-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/nid-correction-portal-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -41,25 +41,15 @@ const client = new NidCorrectionPortalSDK({
 
 ### 3. Load an application
 
-`load()` returns the entity directly and throws on failure:
+`load()` returns the entity and throws on failure; `.data()` reads its record:
 
 ```ts
 try {
   const application = await client.Application().load({ id: 'example_id' })
-  console.log(application)
+  console.log(application.data())
 } catch (err) {
   console.error('load failed:', err)
 }
-```
-
-### 4. Create, update, and remove
-
-```ts
-// Create — returns the created Application ENTITY (.data() for the record)
-const created = await client.Application().create({
-  id: 'example_id',
-})
-
 ```
 
 
@@ -70,14 +60,15 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 ```ts
 try {
   const application = await client.Application().load({ id: "example_id" })
-  console.log(application)
+  console.log(application.data())
 } catch (err) {
   console.error('load failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -86,8 +77,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -105,9 +96,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -137,9 +125,8 @@ Create a mock client for unit testing — no server required:
 const client = NidCorrectionPortalSDK.test()
 
 const application = await client.Application().load({ id: 'test01' })
-// application is the entity, populated with mock response data
-// — call application.data() for the record itself
-console.log(application)
+// application is the Application entity; .data() reads its mock record
+console.log(application.data())
 ```
 
 You can also use the instance method:
@@ -260,9 +247,9 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria, and return it. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria, one per record. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity, and return it. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -271,8 +258,8 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `load` and `create` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
@@ -388,14 +375,6 @@ Create an instance: `const application = client.Application()`
 const application = await client.Application().load({ id: 'application_id' })
 ```
 
-#### Example: Create
-
-```ts
-const application = await client.Application().create({
-  id: 'example_id',
-})
-```
-
 
 ### Authentication
 
@@ -426,6 +405,7 @@ Create an instance: `const authentication = client.Authentication()`
 const authentication = await client.Authentication().create({
   otp: 'example_otp',
   password: 'example_password',
+  sessionId: 'example_sessionId',
   username: 'example_username',
 })
 ```

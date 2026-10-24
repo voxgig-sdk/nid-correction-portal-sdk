@@ -24,6 +24,9 @@ main: kit: entity: application: {
       name: "create"
       points: [
         {
+          bf: [
+            "notes"
+          ]
           co: {
             id: "POST /applications/{id}/approve"
             source: "openapi3"
@@ -48,6 +51,10 @@ main: kit: entity: application: {
               "id"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "applications"
@@ -65,6 +72,10 @@ main: kit: entity: application: {
           }
         }
         {
+          bf: [
+            "notes"
+            "reason"
+          ]
           co: {
             id: "POST /applications/{id}/reject"
             source: "openapi3"
@@ -89,6 +100,10 @@ main: kit: entity: application: {
               "id"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "applications"
@@ -106,6 +121,9 @@ main: kit: entity: application: {
           }
         }
         {
+          bf: [
+            "notes"
+          ]
           co: {
             id: "POST /applications/{id}/rollback"
             source: "openapi3"
@@ -129,6 +147,10 @@ main: kit: entity: application: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -175,6 +197,11 @@ main: kit: entity: application: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/pdf"
           }
           s: [
             {
